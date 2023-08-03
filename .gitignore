@@ -23,3 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+# Vercel configuration
+vercel.json
