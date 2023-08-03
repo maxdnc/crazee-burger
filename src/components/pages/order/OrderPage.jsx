@@ -1,11 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 
 const OrderPage = () => {
-  const { userId } = useParams();
+  const { username } = useParams();
 
   return (
     <>
-      <h1>Bonjour {userId}</h1>
+      <h1>Bonjour {username}</h1>
       <Link to="/">
         <button>log out</button>
       </Link>
