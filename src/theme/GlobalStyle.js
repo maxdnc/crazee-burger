@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   margin: 0;
 }
 body {
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
