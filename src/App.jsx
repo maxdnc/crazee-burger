@@ -4,6 +4,10 @@ import ErrorPage from "./components/pages/error/ErrorPage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+//style
+
+import { GlobalStyle } from "./theme/GlobalStyle.js";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +26,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
+      <GlobalStyle />
       <RouterProvider router={router} />
     </>
   );
