@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { theme } from ".";
 
 export const GlobalStyle = createGlobalStyle`
 *, *::before, *::after {
@@ -8,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
   margin: 0;
 }
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: ${theme.fontsFamily.openSans};
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }

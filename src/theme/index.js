@@ -32,13 +32,19 @@ const fonts = {
   XXXS: "0.5rem",
   XXS: "0.625rem",
   XS: "0.75rem",
-  P0: "0.9375rem",
+  P0: "1rem",
   P1: "1.125rem",
   P2: "1.25rem",
   P3: "1.5rem",
   P4: "2.25rem",
   P5: "3rem",
   P6: "3.75rem",
+  P7: "6.875rem",
+};
+
+const fontsFamily = {
+  amatic: "'Amatic SC', cursive",
+  openSans: "'Open Sans', sans-serif",
 };
 
 const gridUnit = 8;
@@ -61,6 +67,7 @@ const weights = {
 export const theme = {
   colors,
   fonts,
+  fontsFamily,
   gridUnit,
   borderRadius,
   shadows,
