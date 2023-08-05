@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
+import burgerLogo from "/images/logo-orange.png";
 
-const Logo = () => {
+const Logo = ({ className }) => {
   return (
-    <LogoStyled>
+    <LogoStyled className={className}>
       <span>CRAZEE</span>
-      <img src="./images/logo-orange.png" alt="crazee house burger" />
+      <img src={burgerLogo} alt="crazee house burger" />
       <span>BURGER</span>
     </LogoStyled>
   );
@@ -15,15 +16,16 @@ const LogoStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: ${theme.spacing.md};
+  gap: ${theme.spacing.xxs};
 
   img {
-    max-width: 200px;
+    width: 80px;
+    height: 60px;
   }
 
   span {
     color: ${theme.colors.primary_burger};
-    font-size: ${theme.fonts.P7};
+    font-size: ${theme.fonts.P4};
     font-family: ${theme.fontsFamily.amatic};
     font-weight: ${theme.weights.bold};
   }
