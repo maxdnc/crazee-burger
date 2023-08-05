@@ -8,6 +8,7 @@ import { FaChevronRight } from "react-icons/fa";
 //style
 import { theme } from "../../../theme";
 import styled from "styled-components";
+import TextInput from "../../reusable-ui/TextInput";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -19,7 +20,7 @@ const LoginForm = () => {
     setUsername("");
   };
 
-  const handleChange = (event) => {
+  const handleChangeUsername = (event) => {
     setUsername(event.target.value);
   };
 
@@ -29,16 +30,15 @@ const LoginForm = () => {
       <hr />
       <h2>Log In</h2>
 
-      <div className="input-container">
-        <BsPersonCircle className="icon" />
-        <input
-          onChange={handleChange}
-          value={username}
-          type="text"
-          placeholder="Enter your first name"
-          required
-        />
-      </div>
+      <TextInput
+        label="Enter your first name"
+        id="input-username"
+        Icon={<BsPersonCircle />}
+        onChange={handleChangeUsername}
+        value={username}
+        placeholder="First Name"
+        required
+      />
 
       <button>
         Access your dedicated area <FaChevronRight className="icon" />
@@ -105,34 +105,9 @@ const LoginFormStyled = styled.form`
       color: ${theme.colors.white};
     }
 
-    & .icon {
+    .icon {
       margin-top: 3px;
       transform: scale(0.8);
-    }
-  }
-  .input-container {
-    width: 100%;
-    background-color: ${theme.colors.white};
-    border-radius: ${theme.borderRadius.round};
-    padding-block: 1rem;
-    display: inline-flex;
-    gap: 1rem;
-    align-items: center;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    input {
-      width: 100%;
-      border: none;
-
-      &::placeholder {
-        color: ${theme.colors.greyMedium};
-        font-size: ${theme.fonts.P0};
-      }
-    }
-
-    & .icon {
-      color: ${theme.colors.greyDark};
     }
   }
 `;
