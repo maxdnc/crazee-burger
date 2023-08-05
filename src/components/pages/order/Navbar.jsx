@@ -5,11 +5,11 @@ import styled from "styled-components";
 export const Navbar = ({ username }) => {
   return (
     <NavbarStyled>
-      <div className="right-side">
+      <div className="left-side">
         logo
         {/* <Logo /> */}
       </div>
-      <div className="left-side">
+      <div className="right-side">
         <h1>Hey {username}</h1>
         <Link to="/">
           <button>Log out</button>
