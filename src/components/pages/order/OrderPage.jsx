@@ -7,7 +7,6 @@ import Main from "./Main";
 
 import styled from "styled-components";
 import { theme } from "../../../theme";
-import Logo from "../../reusable-ui/Logo";
 
 const OrderPage = () => {
   const { username } = useParams();
@@ -40,12 +39,6 @@ const OrderPageStyled = styled.div`
     overflow: hidden;
     display: flex;
     flex-direction: column;
-
-    header {
-      background-color: white;
-      width: 100%;
-      padding: 2rem 1.5rem;
-    }
   }
 `;
 
