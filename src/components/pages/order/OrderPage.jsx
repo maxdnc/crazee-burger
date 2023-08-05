@@ -28,9 +28,9 @@ const OrderPageStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 1rem;
 
   .container {
-    background-color: red;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
