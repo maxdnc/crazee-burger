@@ -23,7 +23,7 @@ const OrderPage = () => {
 };
 
 const OrderPageStyled = styled.div`
-  background-color: orange;
+  background-color: ${theme.colors.primary};
   min-height: 100vh;
   display: flex;
   justify-content: center;
