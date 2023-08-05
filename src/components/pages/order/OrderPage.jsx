@@ -1,6 +1,7 @@
-import { Link, useParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 //components
+import { Navbar } from "./Navbar";
+import Main from "./Main";
 
 //style
 
@@ -10,25 +11,13 @@ import Logo from "../../reusable-ui/Logo";
 
 const OrderPage = () => {
   const { username } = useParams();
-
   return (
     <OrderPageStyled>
       <div className="container">
         <header>
-          <nav>
-            <div className="right-side">
-              logo
-              {/* <Logo /> */}
-            </div>
-            <div className="left-side">
-              <h1>Hey {username}</h1>
-              <Link to="/">
-                <button>Log out</button>
-              </Link>
-            </div>
-          </nav>
+          <Navbar username={username} />
         </header>
-        <main>main</main>
+        <Main />
       </div>
     </OrderPageStyled>
   );
@@ -56,20 +45,6 @@ const OrderPageStyled = styled.div`
       background-color: white;
       width: 100%;
       padding: 2rem 1.5rem;
-
-      nav {
-        display: flex;
-        justify-content: space-between;
-
-        .right-side {
-          /* transform: scale(0.4); */
-        }
-      }
-    }
-
-    main {
-      background-color: green;
-      flex: 1;
     }
   }
 `;
