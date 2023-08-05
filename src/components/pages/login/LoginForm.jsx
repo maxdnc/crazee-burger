@@ -8,7 +8,10 @@ import { FaChevronRight } from "react-icons/fa";
 //style
 import { theme } from "../../../theme";
 import styled from "styled-components";
+
+//components
 import TextInput from "../../reusable-ui/TextInput";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -39,10 +42,10 @@ const LoginForm = () => {
         placeholder="First Name"
         required
       />
-
-      <button>
-        Access your dedicated area <FaChevronRight className="icon" />
-      </button>
+      <PrimaryButton
+        label={"Access your dedicated area"}
+        Icon={<FaChevronRight className="icon-access-button" />}
+      />
     </LoginFormStyled>
   );
 };
@@ -75,40 +78,9 @@ const LoginFormStyled = styled.form`
     margin-bottom: 1.5rem;
   }
 
-  button {
-    width: 100%;
-    background-color: ${theme.colors.primary};
-    border: 1px solid ${theme.colors.primary};
-    border-radius: ${theme.borderRadius.round};
-    padding-block: 1rem;
-    color: ${theme.colors.white};
-    font-size: ${theme.fonts.P0};
-    font-weight: ${theme.weights.bold};
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.75rem;
-    line-height: small;
-
-    cursor: pointer;
-    transition: all 150ms ease-out;
-    &:hover {
-      background-color: ${theme.colors.white};
-      color: ${theme.colors.primary};
-    }
-    &:focus {
-      border-color: ${theme.colors.white};
-    }
-    &:active {
-      border-color: ${theme.colors.white};
-      background-color: ${theme.colors.primary};
-      color: ${theme.colors.white};
-    }
-
-    .icon {
-      margin-top: 3px;
-      transform: scale(0.8);
-    }
+  .icon-access-button {
+    margin-top: 3px;
+    transform: scale(0.8);
   }
 `;
 
