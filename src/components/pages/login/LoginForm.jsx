@@ -25,9 +25,9 @@ const LoginForm = () => {
 
   return (
     <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-      <h1>Bienvenue chez nous !</h1>
+      <h1>Explore Our Platform !</h1>
       <hr />
-      <h2>Connectez-vous</h2>
+      <h2>Log In</h2>
 
       <div className="input-container">
         <BsPersonCircle className="icon" />
@@ -35,13 +35,13 @@ const LoginForm = () => {
           onChange={handleChange}
           value={username}
           type="text"
-          placeholder="Entrez votre prénom"
+          placeholder="Enter your first name"
           required
         />
       </div>
 
       <button>
-        Accédez à votre espace <FaChevronRight className="icon" />
+        Access your dedicated area <FaChevronRight className="icon" />
       </button>
     </LoginFormStyled>
   );
