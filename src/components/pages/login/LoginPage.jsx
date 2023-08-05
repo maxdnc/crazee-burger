@@ -5,7 +5,7 @@ import styled from "styled-components";
 const LoginPage = () => {
   return (
     <LoginPageStyled>
-      <Logo />
+      <Logo className={"logo-login-page"} />
       <LoginForm />
     </LoginPageStyled>
   );
@@ -14,7 +14,7 @@ const LoginPage = () => {
 const LoginPageStyled = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 5rem;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -26,9 +26,12 @@ const LoginPageStyled = styled.div`
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: url("./images/burger-background.jpg") rgba(0, 0, 0, 0.5)
+    background: url("/images/burger-background.jpg") rgba(0, 0, 0, 0.5)
       center/cover;
     background-blend-mode: darken;
+  }
+  .logo-login-page {
+    transform: scale(2.5);
   }
 `;
 
