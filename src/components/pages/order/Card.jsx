@@ -1,16 +1,14 @@
 import styled from "styled-components";
+import { theme } from "../../../theme";
 
-const Card = () => {
+const Card = ({ image, title, price }) => {
   return (
     <CardStyled>
-      card
-      <div className="container-image">
-        container image
-        <div className="image">image</div>
-      </div>
-      <div className="title">title</div>
+      <img src={image} />
+
       <div className="container-price-add">
-        <div className="price">price</div>
+        <h3>{title}</h3>
+        <p>{price}</p>
         <div className="add-button">Add</div>
       </div>
     </CardStyled>
@@ -21,39 +19,44 @@ const CardStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 1rem;
 
   background: tomato;
   max-width: 240px;
-  max-height: 330px;
-  height: 100%;
-  padding: 1.25rem;
-  .container-image {
-    background: red;
+  height: 330px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 3.125rem;
+  padding-bottom: 1.75rem;
+
+  img {
     width: 200px;
     height: 145px;
-    overflow: hidden;
-
-    .image {
-      background: green;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    object-fit: contain;
   }
 
-  .title {
-    background: blueviolet;
-  }
   .container-price-add {
-    display: flex;
-    justify-content: space-between;
-    background: yellowgreen;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 0.75rem;
+    align-items: center;
 
-    .price {
+    h3 {
+      grid-area: 1 / 1 / 2 / 5;
+      line-height: normal;
+      font-size: ${theme.fonts.P4};
+      font-family: ${theme.fontsFamily.amatic};
+      font-weight: ${theme.weights.bold};
+      color: ${theme.colors.dark};
+    }
+    p {
+      grid-area: 2 / 1 / 3 / 3;
       background: orange;
       width: 100%;
     }
     .add-button {
+      grid-area: 2 / 3 / 3 / 5;
       background: yellow;
       width: 100%;
     }

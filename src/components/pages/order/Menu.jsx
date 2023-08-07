@@ -14,7 +14,11 @@ const Menu = () => {
       {menuData.map((product) => {
         return (
           <li key={product.id}>
-            <Card />
+            <Card
+              image={product.imageSource}
+              title={product.title}
+              price={product.price}
+            />
           </li>
         );
       })}
