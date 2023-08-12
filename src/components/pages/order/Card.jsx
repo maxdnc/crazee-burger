@@ -5,10 +5,10 @@ import { theme } from "../../../theme";
 
 import PrimaryButton from "../../reusable-ui/PrimaryButton.jsx";
 
-const Card = ({ image, title, price }) => {
+const Card = ({ image, title, price, alt }) => {
   return (
     <CardStyled>
-      <img src={image} />
+      <img src={image} alt={alt} />
 
       <div className="container-price-add">
         <h3>{title}</h3>

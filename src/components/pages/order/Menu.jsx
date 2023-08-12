@@ -20,6 +20,7 @@ const Menu = () => {
           <li key={product.id}>
             <Card
               image={product.imageSource}
+              alt={product.title}
               title={product.title}
               price={formatPrice(product.price)}
             />
