@@ -5,6 +5,10 @@ import styled from "styled-components";
 //data
 import { fakeMenu2 } from "../../../fakeData/fakeMenu";
 
+//utils
+
+import { formatPrice } from "../../../utils/maths";
+
 const Menu = () => {
   const [menuData, setMenuData] = useState(fakeMenu2);
   console.log(menuData);
@@ -17,7 +21,7 @@ const Menu = () => {
             <Card
               image={product.imageSource}
               title={product.title}
-              price={product.price}
+              price={formatPrice(product.price)}
             />
           </li>
         );
