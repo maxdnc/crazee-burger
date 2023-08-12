@@ -1,5 +1,5 @@
 //components
-import Profil from "./Profil";
+import Profil from "../Profil";
 
 //Icon
 

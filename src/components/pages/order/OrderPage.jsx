@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 //components
-import { Navbar } from "./Navbar";
+import { Navbar } from "./Navbar/Navbar.jsx";
 import Main from "./Main";
 
 //style
