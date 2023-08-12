@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Card from "./Card";
+import Card from "../../reusable-ui/Card.jsx";
 import styled from "styled-components";
 
 //data
@@ -15,14 +15,15 @@ const Menu = () => {
 
   return (
     <MenuStyled>
-      {menuData.map((product) => {
+      {menuData.map(({ imageSource, title, price, id }) => {
         return (
-          <li key={product.id}>
+          <li key={id}>
             <Card
-              image={product.imageSource}
-              alt={product.title}
-              title={product.title}
-              price={formatPrice(product.price)}
+              image={imageSource}
+              alt={title}
+              title={title}
+              leftDescription={formatPrice(price)}
+              labelButton={"Add Item"}
             />
           </li>
         );

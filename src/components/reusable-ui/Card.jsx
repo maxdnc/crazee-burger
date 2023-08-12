@@ -1,19 +1,19 @@
 import styled from "styled-components";
-import { theme } from "../../../theme";
+import { theme } from "../../theme";
 
 // component
 
-import PrimaryButton from "../../reusable-ui/PrimaryButton.jsx";
+import PrimaryButton from "./PrimaryButton.jsx";
 
-const Card = ({ image, title, price, alt }) => {
+const Card = ({ image, alt, title, leftDescription, labelButton }) => {
   return (
     <CardStyled>
       <img src={image} alt={alt} />
 
-      <div className="container-price-add">
+      <div className="container-description">
         <h3>{title}</h3>
-        <p>{price}</p>
-        <PrimaryButton label={"Add Item"} className={"card-button-add"} />
+        <p>{leftDescription}</p>
+        <PrimaryButton label={labelButton} className={"card-button-add"} />
       </div>
     </CardStyled>
   );
@@ -38,7 +38,7 @@ const CardStyled = styled.div`
     object-fit: contain;
   }
 
-  .container-price-add {
+  .container-description {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
