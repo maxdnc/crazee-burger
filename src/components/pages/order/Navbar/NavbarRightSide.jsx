@@ -1,4 +1,5 @@
 //components
+import ToggleButton from "../../../reusable-ui/ToggleButton";
 import Profil from "../Profil";
 
 //Icon
@@ -9,7 +10,7 @@ import styled from "styled-components";
 const NavbarRightSide = ({ username }) => {
   return (
     <NavbarRightSideStyled>
-      {/* <div className="admin-button">Admin button</div> */}
+      <ToggleButton />
       <Profil username={username} />
     </NavbarRightSideStyled>
   );
