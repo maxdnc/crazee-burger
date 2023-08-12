@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { theme } from "../../../theme";
 
+// component
+
+import PrimaryButton from "../../reusable-ui/PrimaryButton.jsx";
+
 const Card = ({ image, title, price }) => {
   return (
     <CardStyled>
@@ -9,7 +13,7 @@ const Card = ({ image, title, price }) => {
       <div className="container-price-add">
         <h3>{title}</h3>
         <p>{price}</p>
-        <div className="add-button">Add</div>
+        <PrimaryButton label={"Add Item"} className={"card-button-add"} />
       </div>
     </CardStyled>
   );
@@ -21,13 +25,12 @@ const CardStyled = styled.div`
   justify-content: center;
   gap: 1rem;
 
-  background: tomato;
+  background: ${theme.colors.white};
+  border-radius: ${theme.borderRadius.extraRound};
+  box-shadow: 0px 4px 15px 4px rgba(0, 0, 0, 0.1);
   max-width: 240px;
   height: 330px;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  padding-top: 3.125rem;
-  padding-bottom: 1.75rem;
+  padding: 3.125rem 1.5rem 1.75rem 1.5rem;
 
   img {
     width: 200px;
@@ -39,7 +42,7 @@ const CardStyled = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    row-gap: 0.75rem;
+    row-gap: 0.875rem;
     align-items: center;
 
     h3 {
@@ -52,13 +55,13 @@ const CardStyled = styled.div`
     }
     p {
       grid-area: 2 / 1 / 3 / 3;
-      background: orange;
       width: 100%;
+      color: ${theme.colors.primary};
     }
-    .add-button {
+    .card-button-add {
       grid-area: 2 / 3 / 3 / 5;
-      background: yellow;
-      width: 100%;
+      font-size: ${theme.fonts.XS};
+      padding: 0.75rem;
     }
   }
 `;
