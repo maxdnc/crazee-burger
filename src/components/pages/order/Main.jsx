@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import { theme } from "../../../theme";
+
 import Menu from "./Menu";
+import Admin from "./Admin/Admin";
 
 const Main = () => {
   return (
     <MainStyled>
       <Menu />
+      <Admin />
     </MainStyled>
   );
 };
