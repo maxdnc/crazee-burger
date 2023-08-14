@@ -3,6 +3,8 @@ import OrderPage from "./components/pages/order/OrderPage.jsx";
 import ErrorPage from "./components/pages/error/ErrorPage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //style
 
@@ -27,6 +29,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <ToastContainer />
       <RouterProvider router={router} />
     </>
   );
