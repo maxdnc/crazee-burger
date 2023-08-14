@@ -1,8 +1,11 @@
-//components
 import { useState } from "react";
+//components
 import ToggleButton from "../../../reusable-ui/ToggleButton";
 import Profil from "../Profil";
-import { toast } from "react-toastify";
+
+//utils
+
+import { toastAdminModeNotify } from "../../../../utils/toast";
 
 //style
 import styled from "styled-components";
@@ -10,18 +13,9 @@ import styled from "styled-components";
 const NavbarRightSide = ({ username }) => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
 
-  const DisplayToastAdminModeNotify = () => {
+  const displayToastAdminModeNotify = () => {
     if (!isModeAdmin) {
-      toast.info("Admin Mode Activated", {
-        theme: "dark",
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toastAdminModeNotify();
     }
     setIsModeAdmin(!isModeAdmin);
   };
@@ -31,7 +25,7 @@ const NavbarRightSide = ({ username }) => {
       <ToggleButton
         labelIfChecked="Disable Admin Mode"
         labelIfUnchecked="Enable Admin Mode"
-        onToggle={DisplayToastAdminModeNotify}
+        onToggle={displayToastAdminModeNotify}
       />
       <Profil username={username} />
     </NavbarRightSideStyled>
