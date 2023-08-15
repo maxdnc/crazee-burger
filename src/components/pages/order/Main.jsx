@@ -1,14 +1,23 @@
+import { useContext, useState } from "react";
+
+//style
 import styled from "styled-components";
 import { theme } from "../../../theme";
+
+//component
 
 import Menu from "./Menu";
 import Admin from "./Admin/Admin";
 
+// context
+import OrderContext from "../../../context/OrderContext";
+
 const Main = () => {
+  const { isModeAdmin } = useContext(OrderContext);
   return (
     <MainStyled>
       <Menu />
-      <Admin />
+      {isModeAdmin && <Admin />}
     </MainStyled>
   );
 };

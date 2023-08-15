@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 //components
 import { Navbar } from "./Navbar/Navbar.jsx";
 import Main from "./Main";
@@ -7,18 +8,27 @@ import Main from "./Main";
 
 import styled from "styled-components";
 import { theme } from "../../../theme";
+import AdminContext from "../../../context/OrderContext.js";
 
 const OrderPage = () => {
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
+
+  const isModeAdminContextValue = {
+    isModeAdmin,
+    setIsModeAdmin,
+  };
+
   const { username } = useParams();
+
   return (
-    <OrderPageStyled>
-      <div className="container">
-        <header>
+    <AdminContext.Provider value={isModeAdminContextValue}>
+      <OrderPageStyled>
+        <div className="container">
           <Navbar username={username} />
-        </header>
-        <Main />
-      </div>
-    </OrderPageStyled>
+          <Main />
+        </div>
+      </OrderPageStyled>
+    </AdminContext.Provider>
   );
 };
 
