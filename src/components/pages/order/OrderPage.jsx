@@ -13,12 +13,15 @@ import AdminContext from "../../../context/OrderContext.js";
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [currentTabSelected, setCurrentTabSelected] = useState("add");
 
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
     isCollapsed,
     setIsCollapsed,
+    currentTabSelected,
+    setCurrentTabSelected,
   };
 
   const { username } = useParams();
