@@ -12,16 +12,19 @@ import AdminContext from "../../../context/OrderContext.js";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const isModeAdminContextValue = {
+  const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
+    isCollapsed,
+    setIsCollapsed,
   };
 
   const { username } = useParams();
 
   return (
-    <AdminContext.Provider value={isModeAdminContextValue}>
+    <AdminContext.Provider value={orderContextValue}>
       <OrderPageStyled>
         <div className="container">
           <Navbar username={username} />

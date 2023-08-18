@@ -1,15 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const Tab = ({ Icon, label }) => {
-  const [isActive, setIsActive] = useState(false);
-
-  const handleOnClick = () => {
-    setIsActive(!isActive);
-  };
-
+const Tab = ({ Icon, label, onClick, className }) => {
   return (
-    <TabStyled onClick={handleOnClick} className={isActive ? "active" : ""}>
+    <TabStyled onClick={onClick} className={className}>
       {Icon && <span>{Icon}</span>}
       {label && <span>{label}</span>}
     </TabStyled>

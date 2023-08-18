@@ -4,16 +4,39 @@ import Tab from "../../../reusable-ui/Tab";
 
 // Icon
 
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 
+//context
+import OrderContext from "../../../../context/OrderContext";
+import { useContext } from "react";
+
 const AdminTabs = () => {
+  const { isCollapsed, setIsCollapsed } = useContext(OrderContext);
+
+  const handleTabSelected = () => {
+    setIsCollapsed(false);
+  };
   return (
     <AdminTabsStyled>
-      <Tab Icon={<FiChevronDown />} />
-      <Tab label={"Ajouter un produit"} Icon={<AiOutlinePlus />} />
-      <Tab label={"Modifier un produit"} Icon={<MdModeEditOutline />} />
+      <Tab
+        Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
+        onClick={() => {
+          setIsCollapsed(!isCollapsed);
+        }}
+        className={isCollapsed ? "active" : ""}
+      />
+      <Tab
+        label={"Ajouter un produit"}
+        Icon={<AiOutlinePlus />}
+        onClick={handleTabSelected}
+      />
+      <Tab
+        label={"Modifier un produit"}
+        Icon={<MdModeEditOutline />}
+        onClick={handleTabSelected}
+      />
     </AdminTabsStyled>
   );
 };
