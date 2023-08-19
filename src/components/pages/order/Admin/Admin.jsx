@@ -19,7 +19,6 @@ const Admin = () => {
 const AdminStyled = styled.div`
   position: sticky;
   bottom: 0;
-  background-color: white;
 `;
 
 export default Admin;

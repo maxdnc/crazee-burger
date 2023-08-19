@@ -52,7 +52,8 @@ const AdminTabs = () => {
 };
 
 const AdminTabsStyled = styled.div`
-  background-color: blueviolet;
   display: flex;
+  gap: 1px;
+  padding-left: 4.375rem;
 `;
 export default AdminTabs;
