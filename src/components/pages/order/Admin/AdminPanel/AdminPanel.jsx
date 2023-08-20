@@ -10,7 +10,7 @@ const AdminPanel = () => {
 
   const tabSelected = getTabSelected(tabs, currentTabSelected);
 
-  return <AdminPanelStyled>{tabSelected.label}</AdminPanelStyled>;
+  return <AdminPanelStyled>{tabSelected.Content}</AdminPanelStyled>;
 };
 
 const AdminPanelStyled = styled.div`
