@@ -3,14 +3,14 @@ import Card from "../../reusable-ui/Card.jsx";
 import styled from "styled-components";
 
 //data
-import { fakeMenu2 } from "../../../fakeData/fakeMenu";
+import { fakeMenu } from "../../../fakeData/fakeMenu";
 
 //utils
 
 import { formatPrice } from "../../../utils/maths";
 
 const Menu = () => {
-  const [menuData, setMenuData] = useState(fakeMenu2);
+  const [menuData, setMenuData] = useState(fakeMenu.LARGE);
   console.log(menuData);
 
   return (
@@ -37,7 +37,7 @@ const MenuStyled = styled.ul`
   margin-left: 0;
   padding-left: 5.75rem;
   padding-right: 5.75rem;
-  margin-top: 3rem;
+  margin-block: 3rem;
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

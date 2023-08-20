@@ -17,8 +17,10 @@ const Admin = () => {
 };
 
 const AdminStyled = styled.div`
-  position: sticky;
+  position: absolute;
   bottom: 0;
+  left: 0;
+  right: 0;
 `;
 
 export default Admin;

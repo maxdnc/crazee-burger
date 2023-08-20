@@ -55,6 +55,7 @@ const OrderPageStyled = styled.div`
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
 `;
 
