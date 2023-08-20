@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
 import styled from "styled-components";
+import { theme } from "../../../../theme";
 import { getTabSelected, tabsConfig } from "./tabsConfig";
 
 const AdminPanel = () => {
@@ -13,7 +14,11 @@ const AdminPanel = () => {
 };
 
 const AdminPanelStyled = styled.div`
-  background-color: tomato;
   height: 250px;
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  background: ${theme.colors.white};
+  border-top: 1px solid ${theme.colors.greyLight};
+  box-shadow: ${theme.shadows.subtle};
 `;
 export default AdminPanel;
