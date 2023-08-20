@@ -1,9 +1,17 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-const TextInput = ({ onChange, value, Icon, label, id, ...extraProps }) => {
+const TextInput = ({
+  onChange,
+  value,
+  Icon,
+  label,
+  id,
+  className,
+  ...extraProps
+}) => {
   return (
-    <TextInputStyled>
+    <TextInputStyled className={className}>
       <span>{Icon && Icon}</span>
       {label && (
         <label hidden htmlFor={id}>
@@ -37,6 +45,7 @@ const TextInputStyled = styled.div`
   input {
     width: 100%;
     border: none;
+    background: none;
 
     &::placeholder {
       color: ${theme.colors.greyMedium};

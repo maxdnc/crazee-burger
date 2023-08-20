@@ -20,5 +20,6 @@ const AdminPanelStyled = styled.div`
   background: ${theme.colors.white};
   border-top: 1px solid ${theme.colors.greyLight};
   box-shadow: ${theme.shadows.subtle};
+  padding: 30px 5%;
 `;
 export default AdminPanel;
