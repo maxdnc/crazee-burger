@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../../../context/OrderContext";
 import styled from "styled-components";
-import { theme } from "../../../../theme";
-import { getTabSelected, tabsConfig } from "./tabsConfig";
+import { theme } from "../../../../../theme";
+import { getTabSelected, tabsConfig } from "../tabsConfig";
 
 const AdminPanel = () => {
   const { currentTabSelected } = useContext(OrderContext);
