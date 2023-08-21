@@ -6,7 +6,7 @@ import { theme } from "../../../theme";
 
 //component
 
-import Menu from "./Menu";
+import Menu from "./Menu/Menu";
 import Admin from "./Admin/Admin";
 
 // context
