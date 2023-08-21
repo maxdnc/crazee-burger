@@ -10,8 +10,15 @@ import OrderContext from "../../../context/OrderContext.js";
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
 const Menu = () => {
-  const { menuData, isModeAdmin, handleDeleteToMenu } =
+  const { menuData, isModeAdmin, handleDeleteToMenu, resetMenu } =
     useContext(OrderContext);
+
+  if (menuData.length === 0)
+    return (
+      <div>
+        <span>Pas de Produit</span> <button onClick={resetMenu}>reset</button>
+      </div>
+    );
 
   return (
     <MenuStyled>
