@@ -7,6 +7,7 @@ import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
+import { FiCheck } from "react-icons/fi";
 
 //style
 import { styled } from "styled-components";
@@ -22,6 +23,7 @@ const EMPTY_PRODUCT = {
 
 const AddForm = () => {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const { handleAddToMenu } = useContext(OrderContext);
 
   const handleSubmit = (event) => {
@@ -32,6 +34,14 @@ const AddForm = () => {
     };
     handleAddToMenu(newProductToAdd);
     setNewProduct(EMPTY_PRODUCT);
+    displaySuccessMessage();
+  };
+
+  const displaySuccessMessage = () => {
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 2000);
   };
 
   const handleChange = (event) => {
@@ -88,6 +98,14 @@ const AddForm = () => {
           label={"Ajouter un nouveau produit au menu"}
           className={"add-form-button"}
         />
+        {isSubmitted && (
+          <div className="success">
+            <span>
+              <FiCheck />
+            </span>
+            <p>Ajouté avec succés</p>
+          </div>
+        )}
       </div>
     </AddFormStyled>
   );
@@ -140,6 +158,14 @@ const AddFormStyled = styled.form`
 
   .submit {
     grid-area: 4 / 2 / 5 / 3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .success {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
     .add-form-button {
       background-color: #60bd4f;
       padding-block: 0.5rem;
