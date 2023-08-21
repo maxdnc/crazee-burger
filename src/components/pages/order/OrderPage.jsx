@@ -18,6 +18,11 @@ const OrderPage = () => {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menuData, setMenuData] = useState(fakeMenu.LARGE);
 
+  const handleAddToMenu = (newProduct) => {
+    const menuDataCopy = [...menuData];
+    const menuDataUpdated = [newProduct, ...menuDataCopy];
+    setMenuData(menuDataUpdated);
+  };
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -27,6 +32,7 @@ const OrderPage = () => {
     setCurrentTabSelected,
     menuData,
     setMenuData,
+    handleAddToMenu,
   };
 
   const { username } = useParams();
