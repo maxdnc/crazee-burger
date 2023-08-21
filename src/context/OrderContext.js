@@ -10,4 +10,5 @@ export default createContext({
   menuData: [],
   setMenuData: () => {},
   handleAddToMenu: () => {},
+  handleDeleteToMenu: () => {},
 });

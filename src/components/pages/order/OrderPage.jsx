@@ -23,6 +23,16 @@ const OrderPage = () => {
     const menuDataUpdated = [newProduct, ...menuDataCopy];
     setMenuData(menuDataUpdated);
   };
+
+  const handleDeleteToMenu = (idProductToDelete) => {
+    const menuDataCopy = [...menuData];
+
+    const menuUpdated = menuDataCopy.filter(
+      (product) => product.id !== idProductToDelete
+    );
+    setMenuData(menuUpdated);
+  };
+
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -33,6 +43,7 @@ const OrderPage = () => {
     menuData,
     setMenuData,
     handleAddToMenu,
+    handleDeleteToMenu,
   };
 
   const { username } = useParams();

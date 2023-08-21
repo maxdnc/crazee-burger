@@ -10,7 +10,8 @@ import OrderContext from "../../../context/OrderContext.js";
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
 const Menu = () => {
-  const { menuData, setMenuData } = useContext(OrderContext);
+  const { menuData, isModeAdmin, handleDeleteToMenu } =
+    useContext(OrderContext);
 
   return (
     <MenuStyled>
@@ -23,6 +24,8 @@ const Menu = () => {
               title={title}
               leftDescription={formatPrice(price)}
               labelButton={"Add Item"}
+              hasDeleteButton={isModeAdmin}
+              onDelete={() => handleDeleteToMenu(id)}
             />
           </li>
         );
@@ -44,6 +47,7 @@ const MenuStyled = styled.ul`
 
   li {
     margin: 0 auto;
+    position: relative;
   }
 `;
 
