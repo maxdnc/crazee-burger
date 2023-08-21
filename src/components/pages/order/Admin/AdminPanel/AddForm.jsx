@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 //component
 import TextInput from "../../../../reusable-ui/TextInput";
 import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
@@ -11,12 +11,14 @@ import { MdOutlineEuro } from "react-icons/md";
 //style
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
+import OrderContext from "../../../../../context/OrderContext";
 
 const AddForm = () => {
   const [nom, setNom] = useState("");
   const [image, setImage] = useState("");
   const [prix, setPrix] = useState("");
   const [imagePreview, setImagePreview] = useState("");
+  const { handleAddToMenu } = useContext(OrderContext);
 
   const handleImageChange = (event) => {
     const imageUrl = event.target.value;
@@ -24,8 +26,21 @@ const AddForm = () => {
     setImagePreview(imageUrl);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleAddToMenu(newProduct);
+  };
+
+  const newProduct = {
+    id: new Date().getTime(),
+    title: "New Product Test",
+    imageSource:
+      "https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J",
+    price: 2.6,
+  };
+
   return (
-    <AddFormStyled method="POST">
+    <AddFormStyled onSubmit={handleSubmit} method="POST">
       <div className="container-image-preview">
         {imagePreview ? (
           <img src={imagePreview} alt="Prévisualisation de l'image" />
