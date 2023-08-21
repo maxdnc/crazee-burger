@@ -7,6 +7,8 @@ import styled from "styled-components";
 import { formatPrice } from "../../../utils/maths";
 import OrderContext from "../../../context/OrderContext.js";
 
+const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
+
 const Menu = () => {
   const { menuData, setMenuData } = useContext(OrderContext);
 
@@ -16,7 +18,7 @@ const Menu = () => {
         return (
           <li key={id}>
             <Card
-              image={imageSource}
+              image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
               alt={title}
               title={title}
               leftDescription={formatPrice(price)}
