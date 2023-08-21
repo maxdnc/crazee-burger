@@ -31,6 +31,7 @@ const AddForm = () => {
       id: crypto.randomUUID(),
     };
     handleAddToMenu(newProductToAdd);
+    setNewProduct(EMPTY_PRODUCT);
   };
 
   const handleChange = (event) => {
