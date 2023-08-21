@@ -14,15 +14,15 @@ import { theme } from "../../../../../theme";
 import OrderContext from "../../../../../context/OrderContext";
 
 const AddForm = () => {
-  const [nom, setNom] = useState("");
-  const [image, setImage] = useState("");
-  const [prix, setPrix] = useState("");
+  const [title, setTitle] = useState("");
+  const [imageSource, setImageSource] = useState("");
+  const [price, setPrice] = useState(0);
   const [imagePreview, setImagePreview] = useState("");
   const { handleAddToMenu } = useContext(OrderContext);
 
   const handleImageChange = (event) => {
     const imageUrl = event.target.value;
-    setImage(imageUrl);
+    setImageSource(imageUrl);
     setImagePreview(imageUrl);
   };
 
@@ -33,10 +33,9 @@ const AddForm = () => {
 
   const newProduct = {
     id: new Date().getTime(),
-    title: "New Product Test",
-    imageSource:
-      "https://www.princeton.edu/sites/default/files/styles/1x_full_2x_half_crop/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=Bg2K7j7J",
-    price: 2.6,
+    title: title,
+    imageSource: imageSource,
+    price: price,
   };
 
   return (
@@ -55,8 +54,8 @@ const AddForm = () => {
         <TextInput
           label={"Nom du produit"}
           placeholder="Nom du produit (ex: Super Burger)"
-          value={nom}
-          onChange={(e) => setNom(e.target.value)}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           id={"name"}
           className="input-add-form"
           Icon={<FaHamburger />}
@@ -64,7 +63,7 @@ const AddForm = () => {
         <TextInput
           label={"Lien de l'image"}
           placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-          value={image}
+          value={imageSource}
           onChange={handleImageChange}
           id={"image-link"}
           className="input-add-form"
@@ -73,8 +72,8 @@ const AddForm = () => {
         <TextInput
           label={"prix"}
           placeholder="Prix"
-          value={prix}
-          onChange={(e) => setPrix(e.target.value)}
+          value={price ? price : ""}
+          onChange={(e) => setPrice(e.target.value)}
           id={"price"}
           className="input-add-form"
           Icon={<MdOutlineEuro />}
