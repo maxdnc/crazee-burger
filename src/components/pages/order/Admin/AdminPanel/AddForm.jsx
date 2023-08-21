@@ -13,36 +13,36 @@ import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import OrderContext from "../../../../../context/OrderContext";
 
-const AddForm = () => {
-  const [title, setTitle] = useState("");
-  const [imageSource, setImageSource] = useState("");
-  const [price, setPrice] = useState(0);
-  const [imagePreview, setImagePreview] = useState("");
-  const { handleAddToMenu } = useContext(OrderContext);
+const EMPTY_PRODUCT = {
+  id: "",
+  title: "",
+  imageSource: "",
+  price: 0,
+};
 
-  const handleImageChange = (event) => {
-    const imageUrl = event.target.value;
-    setImageSource(imageUrl);
-    setImagePreview(imageUrl);
-  };
+const AddForm = () => {
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const { handleAddToMenu } = useContext(OrderContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleAddToMenu(newProduct);
+    const newProductToAdd = {
+      ...newProduct,
+      id: crypto.randomUUID(),
+    };
+    handleAddToMenu(newProductToAdd);
   };
 
-  const newProduct = {
-    id: new Date().getTime(),
-    title: title,
-    imageSource: imageSource,
-    price: price,
+  const handleChange = (event) => {
+    const { value, name } = event.target;
+    setNewProduct({ ...newProduct, [name]: value });
   };
 
   return (
     <AddFormStyled onSubmit={handleSubmit} method="POST">
       <div className="container-image-preview">
-        {imagePreview ? (
-          <img src={imagePreview} alt="Prévisualisation de l'image" />
+        {newProduct.imageSource ? (
+          <img src={newProduct.imageSource} alt="Prévisualisation de l'image" />
         ) : (
           <div className="empty-image">
             <p>Aucune Image</p>
@@ -52,28 +52,31 @@ const AddForm = () => {
 
       <div className="container-inputs">
         <TextInput
+          name="title"
           label={"Nom du produit"}
           placeholder="Nom du produit (ex: Super Burger)"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={newProduct.title}
+          onChange={handleChange}
           id={"name"}
           className="input-add-form"
           Icon={<FaHamburger />}
         />
         <TextInput
+          name="imageSource"
           label={"Lien de l'image"}
           placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-          value={imageSource}
-          onChange={handleImageChange}
+          value={newProduct.imageSource}
+          onChange={handleChange}
           id={"image-link"}
           className="input-add-form"
           Icon={<BsFillCameraFill />}
         />
         <TextInput
+          name="price"
           label={"prix"}
           placeholder="Prix"
-          value={price ? price : ""}
-          onChange={(e) => setPrice(e.target.value)}
+          value={newProduct.price ? newProduct.price : ""}
+          onChange={handleChange}
           id={"price"}
           className="input-add-form"
           Icon={<MdOutlineEuro />}
