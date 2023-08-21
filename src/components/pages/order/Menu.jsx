@@ -1,17 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Card from "../../reusable-ui/Card.jsx";
 import styled from "styled-components";
-
-//data
-import { fakeMenu } from "../../../fakeData/fakeMenu";
 
 //utils
 
 import { formatPrice } from "../../../utils/maths";
+import OrderContext from "../../../context/OrderContext.js";
 
 const Menu = () => {
-  const [menuData, setMenuData] = useState(fakeMenu.LARGE);
-  console.log(menuData);
+  const { menuData, setMenuData } = useContext(OrderContext);
 
   return (
     <MenuStyled>
