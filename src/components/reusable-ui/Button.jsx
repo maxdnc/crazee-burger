@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
-const Button = ({ label, Icon, className, version = "normal" }) => {
+const Button = ({ label, Icon, className, version = "normal", onClick }) => {
   return (
-    <ButtonStyled className={className} version={version}>
+    <ButtonStyled className={className} version={version} onClick={onClick}>
       <span>{label}</span>
       {Icon && <span> {Icon}</span>}
     </ButtonStyled>
@@ -42,6 +42,7 @@ const extraStyleNormal = css`
   background-color: ${theme.colors.primary};
   border: 1px solid ${theme.colors.primary};
   padding-block: 1rem;
+  padding: 1.125rem 1.5rem;
   color: ${theme.colors.white};
   font-size: ${theme.fonts.P0};
 `;
