@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import AdminTabs from "./AdminTabs";
-import AdminPanel from "./AdminPanel";
+import AdminPanel from "./AdminPanel/AdminPanel";
 
 //context
 import OrderContext from "../../../../context/OrderContext";
@@ -17,8 +17,10 @@ const Admin = () => {
 };
 
 const AdminStyled = styled.div`
-  position: sticky;
+  position: absolute;
   bottom: 0;
+  left: 0;
+  right: 0;
 `;
 
 export default Admin;

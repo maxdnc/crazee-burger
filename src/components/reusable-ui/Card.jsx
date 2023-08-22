@@ -2,18 +2,37 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 
 // component
+import Button from "./Button";
 
-import PrimaryButton from "./PrimaryButton.jsx";
+//Icon
 
-const Card = ({ image, alt, title, leftDescription, labelButton }) => {
+import { TiDelete } from "react-icons/ti";
+
+const Card = ({
+  image,
+  alt,
+  title,
+  leftDescription,
+  labelButton,
+  hasDeleteButton,
+  onDelete,
+}) => {
   return (
     <CardStyled>
+      {hasDeleteButton && (
+        <button
+          onClick={onDelete}
+          className="delete-button"
+          aria-label="delete item"
+        >
+          <TiDelete className="icon" />
+        </button>
+      )}
       <img src={image} alt={alt} />
-
       <div className="container-description">
         <h3>{title}</h3>
         <p>{leftDescription}</p>
-        <PrimaryButton label={labelButton} className={"card-button-add"} />
+        <Button label={labelButton} className={"card-button-add"} />
       </div>
     </CardStyled>
   );
@@ -31,6 +50,33 @@ const CardStyled = styled.div`
   max-width: 240px;
   height: 330px;
   padding: 3.125rem 1.5rem 1.75rem 1.5rem;
+
+  .delete-button {
+    border: 1px solid red;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 4.5%;
+    right: 6%;
+    width: 30px;
+    height: 30px;
+    color: ${theme.colors.primary};
+    padding: 0;
+
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
+
+    :hover {
+      color: ${theme.colors.red};
+    }
+
+    :active {
+      color: ${theme.colors.primary};
+    }
+  }
 
   img {
     width: 200px;
