@@ -69,8 +69,8 @@ const AddForm = () => {
           value={newProduct.title}
           onChange={handleChange}
           id={"name"}
-          className="input-add-form"
           Icon={<FaHamburger />}
+          version="minimalist"
         />
         <TextInput
           name="imageSource"
@@ -79,8 +79,8 @@ const AddForm = () => {
           value={newProduct.imageSource}
           onChange={handleChange}
           id={"image-link"}
-          className="input-add-form"
           Icon={<BsFillCameraFill />}
+          version="minimalist"
         />
         <TextInput
           name="price"
@@ -89,14 +89,15 @@ const AddForm = () => {
           value={newProduct.price ? newProduct.price : ""}
           onChange={handleChange}
           id={"price"}
-          className="input-add-form"
           Icon={<MdOutlineEuro />}
+          version="minimalist"
         />
       </div>
       <div className="submit">
         <PrimaryButton
           label={"Ajouter un nouveau produit au menu"}
           className={"add-form-button"}
+          version="success"
         />
         {isSubmitted && (
           <div className="success">
@@ -118,12 +119,6 @@ const AddFormStyled = styled.form`
   height: 100%;
   width: 70%;
   gap: 8px 20px;
-
-  .input-add-form {
-    background-color: #f5f5f7;
-    border-radius: 5px;
-    padding-block: 0;
-  }
 
   .container-image-preview {
     grid-area: 1 / 1 / 4 / 2;
@@ -165,18 +160,10 @@ const AddFormStyled = styled.form`
       display: inline-flex;
       justify-content: center;
       align-items: center;
-    }
-    .add-form-button {
-      background-color: #60bd4f;
-      padding-block: 0.5rem;
-      border-color: #60bd4f;
-      width: 50%;
-      font-size: 0.875rem;
-
-      &:hover {
-        background-color: white;
-        color: #60bd4f;
-      }
+      gap: 1rem;
+      place-content: center;
+      font-weight: bold;
+      font-size: 0.75rem;
     }
   }
 `;
