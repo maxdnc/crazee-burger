@@ -1,16 +1,12 @@
 import { useContext, useState } from "react";
+import { getTextInputsConfig } from "./textInputsConfig.jsx";
+
 //component
 import TextInput from "../../../../reusable-ui/TextInput";
 import Button from "../../../../reusable-ui/Button.jsx";
-//icon
-
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
 
 //style
 import { styled } from "styled-components";
-import { theme } from "../../../../../theme";
 import OrderContext from "../../../../../context/OrderContext";
 import ImagePreview from "./ImagePreview";
 import SubmitMessage from "./SubmitMessage";
@@ -49,6 +45,7 @@ const AddForm = () => {
     const { value, name } = event.target;
     setNewProduct({ ...newProduct, [name]: value });
   };
+  const textInputs = getTextInputsConfig(newProduct);
 
   return (
     <AddFormStyled onSubmit={handleSubmit} method="POST">
@@ -57,36 +54,14 @@ const AddForm = () => {
         title={newProduct.title}
       />
       <div className="container-inputs">
-        <TextInput
-          name="title"
-          label={"Nom du produit"}
-          placeholder="Nom du produit (ex: Super Burger)"
-          value={newProduct.title}
-          onChange={handleChange}
-          id={"name"}
-          Icon={<FaHamburger />}
-          version="minimalist"
-        />
-        <TextInput
-          name="imageSource"
-          label={"Lien de l'image"}
-          placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-          value={newProduct.imageSource}
-          onChange={handleChange}
-          id={"image-link"}
-          Icon={<BsFillCameraFill />}
-          version="minimalist"
-        />
-        <TextInput
-          name="price"
-          label={"prix"}
-          placeholder="Prix"
-          value={newProduct.price ? newProduct.price : ""}
-          onChange={handleChange}
-          id={"price"}
-          Icon={<MdOutlineEuro />}
-          version="minimalist"
-        />
+        {textInputs.map((textInput) => (
+          <TextInput
+            {...textInput}
+            key={textInput.name}
+            onChange={handleChange}
+            version="minimalist"
+          />
+        ))}
       </div>
       <div className="submit">
         <Button
