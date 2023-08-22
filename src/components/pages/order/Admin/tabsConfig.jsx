@@ -6,13 +6,13 @@ import EditForm from "./AdminPanel/EditForm";
 export const tabsConfig = [
   {
     index: "add",
-    label: "Ajouter un produit",
+    label: "Add product",
     Icon: <AiOutlinePlus />,
     Content: <AddForm />,
   },
   {
     index: "edit",
-    label: "Modifier un produit",
+    label: "Edit product",
     Icon: <MdModeEditOutline />,
     Content: <EditForm />,
   },

@@ -6,9 +6,9 @@ import Button from "../../../reusable-ui/Button.jsx";
 const EmptyMenuAdmin = ({ onClick }) => {
   return (
     <EmptyMenuAdminStyled>
-      <p className="title">Le menu est vide ?</p>
-      <p className="description">Cliquez ci-dessous pour le réinitialiser</p>
-      <Button label={"Générer de nouveaux produits"} onClick={onClick} />
+      <p className="title">Is the menu empty ?</p>
+      <p className="description">Click below to reset it</p>
+      <Button label={"Generate new products"} onClick={onClick} />
     </EmptyMenuAdminStyled>
   );
 };

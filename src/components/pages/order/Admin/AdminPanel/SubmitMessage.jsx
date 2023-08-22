@@ -10,7 +10,7 @@ const SubmitMessage = () => {
       <span>
         <FiCheck className="icon" />
       </span>
-      <p>Ajouté avec succés</p>
+      <p>Successfully added !</p>
     </SubmitMessageStyled>
   );
 };

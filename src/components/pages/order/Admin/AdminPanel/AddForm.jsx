@@ -65,7 +65,7 @@ const AddForm = () => {
       </div>
       <div className="submit">
         <Button
-          label={"Ajouter un nouveau produit au menu"}
+          label={"Add new product to the menu"}
           className={"add-form-button"}
           version="success"
         />

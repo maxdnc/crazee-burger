@@ -8,7 +8,7 @@ const ImagePreview = ({ imageSource, title }) => {
         <img src={imageSource} alt={title} />
       ) : (
         <div className="empty-image">
-          <p>Aucune Image</p>
+          <p>No image</p>
         </div>
       )}
     </ImagePreviewStyled>

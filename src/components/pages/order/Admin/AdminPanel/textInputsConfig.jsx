@@ -7,17 +7,16 @@ import { MdOutlineEuro } from "react-icons/md";
 export const getTextInputsConfig = (newProduct) => [
   {
     name: "title",
-    label: "Nom du produit",
-    placeholder: "Nom du produit (ex: Super Burger)",
+    label: "Product's name",
+    placeholder: "Product's name (e.g. Super Burger)",
     id: "title",
     Icon: <FaHamburger />,
     value: newProduct.title,
   },
   {
     name: "imageSource",
-    label: "Lien de l'image",
-    placeholder:
-      "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)",
+    label: "Image URL link",
+    placeholder: "Image URL (e.g. https://my-product-photo.png)",
     id: "imageSource",
     Icon: <BsFillCameraFill />,
     value: newProduct.imageSource,
@@ -25,7 +24,7 @@ export const getTextInputsConfig = (newProduct) => [
   {
     name: "price",
     label: "price",
-    placeholder: "Prix",
+    placeholder: "Price",
     id: "price",
     Icon: <MdOutlineEuro />,
     value: newProduct.price ? newProduct.price : "",

@@ -4,11 +4,9 @@ import { theme } from "../../../../theme";
 const EmptyMenuClient = () => {
   return (
     <EmptyMenuClientStyled>
-      <p className="title">Victime de notre succès ! :D</p>
-      <p className="description">
-        De nouvelles recettes sont en cours de préparation.
-      </p>
-      <p className="description">À très vite !</p>
+      <p className="title">Victim of our success! :D</p>
+      <p className="description">We are working on new recipes.</p>
+      <p className="description">See you soon!</p>
     </EmptyMenuClientStyled>
   );
 };
