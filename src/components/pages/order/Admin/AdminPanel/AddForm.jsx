@@ -7,13 +7,13 @@ import Button from "../../../../reusable-ui/Button.jsx";
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
-import { FiCheck } from "react-icons/fi";
 
 //style
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import OrderContext from "../../../../../context/OrderContext";
 import ImagePreview from "./ImagePreview";
+import SubmitMessage from "./SubmitMessage";
 
 export const EMPTY_PRODUCT = {
   id: "",
@@ -94,14 +94,7 @@ const AddForm = () => {
           className={"add-form-button"}
           version="success"
         />
-        {isSubmitted && (
-          <div className="success">
-            <span>
-              <FiCheck className="icon" />
-            </span>
-            <p>Ajouté avec succés</p>
-          </div>
-        )}
+        {isSubmitted && <SubmitMessage />}
       </div>
     </AddFormStyled>
   );
@@ -126,24 +119,6 @@ const AddFormStyled = styled.form`
     grid-area: 4 / 2 / 5 / 3;
     display: grid;
     grid-template-columns: 1fr 1fr;
-
-    .success {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      place-content: center;
-      font-weight: bold;
-      font-size: 1rem;
-      color: ${theme.colors.success};
-
-      .icon {
-        font-size: 1.3rem;
-        padding: 1.5px;
-        border: 2px solid ${theme.colors.success};
-        border-radius: ${theme.borderRadius.circle};
-      }
-    }
   }
 `;
 
