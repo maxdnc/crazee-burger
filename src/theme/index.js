@@ -12,6 +12,7 @@ const colors = {
   redSecondary: "#c4151c",
   blue: "#51a7e1",
   greyLight: "#e4e5e9",
+  greySemiMedium: "#D3D3D3",
   greyMedium: "#a7a8ad",
   greySemiDark: "#93a2b1",
   greyDark: "#6f737e",
