@@ -102,7 +102,7 @@ const AddForm = () => {
         {isSubmitted && (
           <div className="success">
             <span>
-              <FiCheck />
+              <FiCheck className="icon" />
             </span>
             <p>Ajouté avec succés</p>
           </div>
@@ -153,17 +153,25 @@ const AddFormStyled = styled.form`
 
   .submit {
     grid-area: 4 / 2 / 5 / 3;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
     .success {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      gap: 1rem;
+      gap: 0.5rem;
       place-content: center;
       font-weight: bold;
-      font-size: 0.75rem;
+      font-size: 1rem;
+      color: ${theme.colors.success};
+
+      .icon {
+        font-size: 1.3rem;
+        padding: 1.5px;
+        border: 2px solid ${theme.colors.success};
+        border-radius: ${theme.borderRadius.circle};
+      }
     }
   }
 `;
