@@ -11,7 +11,7 @@ import styled from "styled-components";
 
 //components
 import TextInput from "../../reusable-ui/TextInput";
-import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import Button from "../../reusable-ui/Button";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -42,7 +42,7 @@ const LoginForm = () => {
         placeholder="First Name"
         required
       />
-      <PrimaryButton
+      <Button
         label={"Access your dedicated area"}
         Icon={<FaChevronRight className="icon-access-button" />}
       />

@@ -1,16 +1,16 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
-const PrimaryButton = ({ label, Icon, className, version = "normal" }) => {
+const Button = ({ label, Icon, className, version = "normal" }) => {
   return (
-    <PrimaryButtonStyled className={className} version={version}>
+    <ButtonStyled className={className} version={version}>
       <span>{label}</span>
       {Icon && <span> {Icon}</span>}
-    </PrimaryButtonStyled>
+    </ButtonStyled>
   );
 };
 
-const PrimaryButtonStyled = styled.button`
+const ButtonStyled = styled.button`
   width: 100%;
   border-radius: ${theme.borderRadius.round};
   font-weight: ${theme.weights.bold};
@@ -64,4 +64,4 @@ const extraStyles = {
   normal: extraStyleNormal,
   success: extraStyleSuccess,
 };
-export default PrimaryButton;
+export default Button;

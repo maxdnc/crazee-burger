@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 //component
 import TextInput from "../../../../reusable-ui/TextInput";
-import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
+import Button from "../../../../reusable-ui/Button.jsx";
 //icon
 
 import { FaHamburger } from "react-icons/fa";
@@ -94,7 +94,7 @@ const AddForm = () => {
         />
       </div>
       <div className="submit">
-        <PrimaryButton
+        <Button
           label={"Ajouter un nouveau produit au menu"}
           className={"add-form-button"}
           version="success"

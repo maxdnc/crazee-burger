@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 
 // component
-import PrimaryButton from "./PrimaryButton.jsx";
+import Button from "./Button";
 
 //Icon
 
@@ -32,7 +32,7 @@ const Card = ({
       <div className="container-description">
         <h3>{title}</h3>
         <p>{leftDescription}</p>
-        <PrimaryButton label={labelButton} className={"card-button-add"} />
+        <Button label={labelButton} className={"card-button-add"} />
       </div>
     </CardStyled>
   );
