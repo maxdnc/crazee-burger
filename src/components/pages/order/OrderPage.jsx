@@ -5,6 +5,7 @@ import { Navbar } from "./Navbar/Navbar.jsx";
 import Main from "./Main";
 //data
 import { fakeMenu } from "../../../fakeData/fakeMenu";
+import { EMPTY_PRODUCT } from "./Admin/AdminPanel/AddForm";
 
 //style
 
@@ -17,6 +18,7 @@ const OrderPage = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menuData, setMenuData] = useState(fakeMenu.LARGE);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
   const handleAddToMenu = (newProduct) => {
     const menuDataCopy = [...menuData];
@@ -49,6 +51,8 @@ const OrderPage = () => {
     handleAddToMenu,
     handleDeleteToMenu,
     resetMenu,
+    newProduct,
+    setNewProduct,
   };
 
   const { username } = useParams();

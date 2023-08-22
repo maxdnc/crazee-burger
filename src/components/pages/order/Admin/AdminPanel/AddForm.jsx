@@ -14,7 +14,7 @@ import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import OrderContext from "../../../../../context/OrderContext";
 
-const EMPTY_PRODUCT = {
+export const EMPTY_PRODUCT = {
   id: "",
   title: "",
   imageSource: "",
@@ -22,9 +22,9 @@ const EMPTY_PRODUCT = {
 };
 
 const AddForm = () => {
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const { handleAddToMenu } = useContext(OrderContext);
+  const { handleAddToMenu, newProduct, setNewProduct } =
+    useContext(OrderContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
