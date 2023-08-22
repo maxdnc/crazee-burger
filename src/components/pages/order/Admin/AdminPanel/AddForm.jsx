@@ -13,6 +13,7 @@ import { FiCheck } from "react-icons/fi";
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import OrderContext from "../../../../../context/OrderContext";
+import ImagePreview from "./ImagePreview";
 
 export const EMPTY_PRODUCT = {
   id: "",
@@ -51,16 +52,10 @@ const AddForm = () => {
 
   return (
     <AddFormStyled onSubmit={handleSubmit} method="POST">
-      <div className="container-image-preview">
-        {newProduct.imageSource ? (
-          <img src={newProduct.imageSource} alt="Prévisualisation de l'image" />
-        ) : (
-          <div className="empty-image">
-            <p>Aucune Image</p>
-          </div>
-        )}
-      </div>
-
+      <ImagePreview
+        imageSource={newProduct.imageSource}
+        title={newProduct.title}
+      />
       <div className="container-inputs">
         <TextInput
           name="title"
@@ -119,30 +114,6 @@ const AddFormStyled = styled.form`
   height: 100%;
   width: 70%;
   gap: 8px 20px;
-
-  .container-image-preview {
-    grid-area: 1 / 1 / 4 / 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-      object-position: center center;
-    }
-    .empty-image {
-      border: 1px solid ${theme.colors.greyLight};
-      color: ${theme.colors.greySemiDark};
-      border-radius: ${theme.borderRadius.round};
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      width: 100%;
-    }
-  }
 
   .container-inputs {
     display: grid;
