@@ -10,13 +10,7 @@ import { styled } from "styled-components";
 import OrderContext from "../../../../../context/OrderContext";
 import ImagePreview from "./ImagePreview";
 import SubmitMessage from "./SubmitMessage";
-
-export const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-};
+import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
 const AddForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
