@@ -11,15 +11,23 @@ import SubmitMessage from "./SubmitMessage";
 import OrderContext from "../../../../../context/OrderContext";
 
 const EditForm = () => {
-  const { selectedProduct } = useContext(OrderContext);
+  const { selectedProduct, setSelectedProduct, handleEditToMenu } =
+    useContext(OrderContext);
+
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const textInputs = getTextInputsConfig(selectedProduct);
 
-  const handleChange = () => {};
-  const handleSubmit = () => {};
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    const productBeingUpdated = { ...selectedProduct, [name]: value };
+
+    setSelectedProduct(productBeingUpdated); //update form
+    handleEditToMenu(productBeingUpdated); // update menu
+  };
+
   return (
-    <EditFormStyled onSubmit={handleSubmit} method="POST">
+    <EditFormStyled>
       <ImagePreview
         imageSource={selectedProduct.imageSource}
         title={selectedProduct.title}

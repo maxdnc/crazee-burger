@@ -36,6 +36,13 @@ const OrderPage = () => {
     setMenuData(menuUpdated);
   };
 
+  const handleEditToMenu = (productBeingEdited) => {
+    const menuDataCopy = [...menuData];
+    const indexOfProducToEdit = menuData.indexOf(selectedProduct);
+    menuDataCopy[indexOfProducToEdit] = productBeingEdited;
+    setMenuData(menuDataCopy);
+  };
+
   const resetMenu = () => {
     setMenuData(fakeMenu.LARGE);
   };
@@ -56,6 +63,8 @@ const OrderPage = () => {
     setNewProduct,
     selectedProduct,
     setSelectedProduct,
+
+    handleEditToMenu,
   };
 
   const { username } = useParams();
