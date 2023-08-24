@@ -16,9 +16,10 @@ const Card = ({
   labelButton,
   hasDeleteButton,
   onDelete,
+  onClick,
 }) => {
   return (
-    <CardStyled>
+    <CardStyled onClick={onClick}>
       {hasDeleteButton && (
         <button
           onClick={onDelete}

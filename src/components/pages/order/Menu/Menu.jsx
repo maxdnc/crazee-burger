@@ -13,8 +13,13 @@ import EmptyMenuClient from "./EmptyMenuClient.jsx";
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
 const Menu = () => {
-  const { menuData, isModeAdmin, handleDeleteToMenu, resetMenu } =
-    useContext(OrderContext);
+  const {
+    menuData,
+    isModeAdmin,
+    handleDeleteToMenu,
+    resetMenu,
+    setSelectedProduct,
+  } = useContext(OrderContext);
 
   if (menuData.length === 0) {
     if (!isModeAdmin) return <EmptyMenuClient />;
@@ -22,6 +27,12 @@ const Menu = () => {
     return <EmptyMenuAdmin onClick={resetMenu} />;
   }
 
+  const getInfoCard = (idSelectedCard) => {
+    const selectedCard = menuData.find(
+      (product) => product.id === idSelectedCard
+    );
+    setSelectedProduct(selectedCard);
+  };
   return (
     <MenuStyled>
       {menuData.map(({ imageSource, title, price, id }) => {
@@ -35,6 +46,7 @@ const Menu = () => {
               labelButton={"Add Item"}
               hasDeleteButton={isModeAdmin}
               onDelete={() => handleDeleteToMenu(id)}
+              onClick={() => getInfoCard(id)}
             />
           </li>
         );
