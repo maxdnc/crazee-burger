@@ -39,7 +39,13 @@ const Card = ({
       <div className="container-description">
         <h3>{title}</h3>
         <p>{leftDescription}</p>
-        <Button label={labelButton} className={"card-button-add"} />
+        <Button
+          onClick={(event) => {
+            event.stopPropagation();
+          }}
+          label={labelButton}
+          className={"card-button-add"}
+        />
       </div>
     </CardStyled>
   );

@@ -27,6 +27,11 @@ const Menu = () => {
     setCurrentTabSelected,
   } = useContext(OrderContext);
 
+  const handleCardDelete = (event, idProductTodelete) => {
+    event.stopPropagation();
+    handleDeleteToMenu(idProductTodelete);
+  };
+
   const handleClick = (idSelectedProduct) => {
     const getInfoProduct = (idSelectedProduct) => {
       const selectedProduct = menuData.find(
@@ -57,7 +62,7 @@ const Menu = () => {
               leftDescription={formatPrice(price)}
               labelButton={"Add Item"}
               hasDeleteButton={isModeAdmin}
-              onDelete={() => handleDeleteToMenu(id)}
+              onDelete={(event) => handleCardDelete(event, id)}
               onClick={isModeAdmin ? () => handleClick(id) : undefined}
               isHoverable={isModeAdmin}
               isSelected={checkIfProductIsSelected(id, selectedProduct.id)}
