@@ -4,7 +4,6 @@ import ToggleButton from "../../../reusable-ui/ToggleButton";
 import Profil from "../Profil";
 
 //utils
-
 import { toastAdminModeNotify } from "../../../../utils/toast";
 
 //style
@@ -13,14 +12,28 @@ import styled from "styled-components";
 //Context
 import OrderContext from "../../../../context/OrderContext";
 
-const NavbarRightSide = ({ username }) => {
-  const { isModeAdmin, setIsModeAdmin } = useContext(OrderContext);
+import { EMPTY_PRODUCT } from "../../../../enums/product";
 
-  const displayToastAdminModeNotify = () => {
-    if (!isModeAdmin) {
-      toastAdminModeNotify();
-    }
+const NavbarRightSide = ({ username }) => {
+  const {
+    isModeAdmin,
+    setIsModeAdmin,
+    selectedProduct,
+    setSelectedProduct,
+    setCurrentTabSelected,
+  } = useContext(OrderContext);
+
+  const handleToggleAdminMode = () => {
+    const displayToastAdminModeNotify = () => {
+      if (!isModeAdmin) {
+        toastAdminModeNotify();
+      }
+    };
+
+    displayToastAdminModeNotify();
+    setCurrentTabSelected("add");
     setIsModeAdmin(!isModeAdmin);
+    selectedProduct && setSelectedProduct(EMPTY_PRODUCT);
   };
 
   return (
@@ -28,7 +41,7 @@ const NavbarRightSide = ({ username }) => {
       <ToggleButton
         labelIfChecked="Disable Admin Mode"
         labelIfUnchecked="Enable Admin Mode"
-        onToggle={displayToastAdminModeNotify}
+        onToggle={handleToggleAdminMode}
       />
       <Profil username={username} />
     </NavbarRightSideStyled>
