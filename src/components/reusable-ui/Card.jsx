@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
 // component
@@ -17,9 +17,10 @@ const Card = ({
   hasDeleteButton,
   onDelete,
   onClick,
+  isHoverable,
 }) => {
   return (
-    <CardStyled onClick={onClick}>
+    <CardStyled onClick={onClick} $isHoverable={isHoverable}>
       {hasDeleteButton && (
         <button
           onClick={onDelete}
@@ -51,6 +52,9 @@ const CardStyled = styled.div`
   max-width: 240px;
   height: 330px;
   padding: 3.125rem 1.5rem 1.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: ease-out 0.15s;
 
   .delete-button {
     border: 1px solid red;
@@ -110,6 +114,15 @@ const CardStyled = styled.div`
       font-size: ${theme.fonts.XS};
       padding: 0.75rem;
     }
+  }
+  ${({ $isHoverable }) => $isHoverable && hoverableStyle}
+`;
+
+const hoverableStyle = css`
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: ${theme.shadows.orangeHighlight};
+    cursor: pointer;
   }
 `;
 export default Card;

@@ -47,6 +47,7 @@ const Menu = () => {
               hasDeleteButton={isModeAdmin}
               onDelete={() => handleDeleteToMenu(id)}
               onClick={() => getInfoProduct(id)}
+              isHoverable={isModeAdmin}
             />
           </li>
         );
