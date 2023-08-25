@@ -6,7 +6,10 @@ import styled from "styled-components";
 import { formatPrice } from "../../../../utils/maths.js";
 
 import OrderContext from "../../../../context/OrderContext.js";
+//helper
+import { checkIfProductIsSelected } from "./helper";
 
+//components
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
 
@@ -18,21 +21,30 @@ const Menu = () => {
     isModeAdmin,
     handleDeleteToMenu,
     resetMenu,
+    selectedProduct,
     setSelectedProduct,
+    setIsCollapsed,
+    setCurrentTabSelected,
   } = useContext(OrderContext);
 
-  const getInfoProduct = (idSelectedProduct) => {
-    const selectedProduct = menuData.find(
-      (product) => product.id === idSelectedProduct
-    );
-    setSelectedProduct(selectedProduct);
+  const handleClick = (idSelectedProduct) => {
+    const getInfoProduct = (idSelectedProduct) => {
+      const selectedProduct = menuData.find(
+        (product) => product.id === idSelectedProduct
+      );
+      setSelectedProduct(selectedProduct);
+    };
 
-    if (menuData.length === 0) {
-      if (!isModeAdmin) return <EmptyMenuClient />;
-
-      return <EmptyMenuAdmin onClick={resetMenu} />;
-    }
+    setIsCollapsed(false);
+    setCurrentTabSelected("edit");
+    getInfoProduct(idSelectedProduct);
   };
+
+  if (menuData.length === 0) {
+    if (!isModeAdmin) return <EmptyMenuClient />;
+
+    return <EmptyMenuAdmin onClick={resetMenu} />;
+  }
   return (
     <MenuStyled>
       {menuData.map(({ imageSource, title, price, id }) => {
@@ -46,8 +58,9 @@ const Menu = () => {
               labelButton={"Add Item"}
               hasDeleteButton={isModeAdmin}
               onDelete={() => handleDeleteToMenu(id)}
-              onClick={() => getInfoProduct(id)}
+              onClick={isModeAdmin ? () => handleClick(id) : undefined}
               isHoverable={isModeAdmin}
+              isSelected={checkIfProductIsSelected(id, selectedProduct.id)}
             />
           </li>
         );
