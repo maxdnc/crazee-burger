@@ -8,10 +8,12 @@ import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 
 //style
-
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import AdminContext from "../../../context/OrderContext.js";
+
+//utils
+import { deepCopy } from "../../../utils/array";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -22,13 +24,14 @@ const OrderPage = () => {
   const [selectedProduct, setSelectedProduct] = useState(EMPTY_PRODUCT);
 
   const handleAddToMenu = (newProduct) => {
-    const menuDataCopy = [...menuData];
+    const menuDataCopy = deepCopy(menuData);
+
     const menuDataUpdated = [newProduct, ...menuDataCopy];
     setMenuData(menuDataUpdated);
   };
 
   const handleDeleteToMenu = (idProductToDelete) => {
-    const menuDataCopy = [...menuData];
+    const menuDataCopy = deepCopy(menuData);
 
     const menuUpdated = menuDataCopy.filter(
       (product) => product.id !== idProductToDelete
@@ -37,7 +40,7 @@ const OrderPage = () => {
   };
 
   const handleEditToMenu = (productBeingEdited) => {
-    const menuDataCopy = [...menuData];
+    const menuDataCopy = deepCopy(menuData);
     const indexOfProducToEdit = menuData.indexOf(selectedProduct);
     menuDataCopy[indexOfProducToEdit] = productBeingEdited;
     setMenuData(menuDataCopy);
