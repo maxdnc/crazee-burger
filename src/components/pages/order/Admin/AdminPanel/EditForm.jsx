@@ -11,8 +11,12 @@ import SubmitMessage from "./SubmitMessage";
 import OrderContext from "../../../../../context/OrderContext";
 
 const EditForm = () => {
-  const { selectedProduct, setSelectedProduct, handleEditToMenu } =
-    useContext(OrderContext);
+  const {
+    selectedProduct,
+    setSelectedProduct,
+    handleEditToMenu,
+    titleEditRef,
+  } = useContext(OrderContext);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -39,6 +43,7 @@ const EditForm = () => {
             key={product.name}
             onChange={handleChange}
             version="minimalist"
+            ref={product.name === "title" ? titleEditRef : null}
           />
         ))}
       </div>

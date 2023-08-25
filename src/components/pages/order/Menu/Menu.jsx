@@ -28,6 +28,7 @@ const Menu = () => {
     setSelectedProduct,
     setIsCollapsed,
     setCurrentTabSelected,
+    titleEditRef,
   } = useContext(OrderContext);
 
   const handleCardDelete = (event, idProductTodelete) => {
@@ -35,7 +36,7 @@ const Menu = () => {
     handleDeleteToMenu(idProductTodelete);
   };
 
-  const handleClick = (idSelectedProduct) => {
+  const handleClick = async (idSelectedProduct) => {
     const isSelectedProductSame =
       isProductSelected(selectedProduct) &&
       selectedProduct.id === idSelectedProduct;
@@ -47,9 +48,10 @@ const Menu = () => {
         (product) => product.id === idSelectedProduct
       );
 
-      setSelectedProduct(selectedProduct);
-      setIsCollapsed(false);
-      setCurrentTabSelected("edit");
+      await setIsCollapsed(false);
+      await setSelectedProduct(selectedProduct);
+      await setCurrentTabSelected("edit");
+      titleEditRef.current.focus();
     }
   };
 

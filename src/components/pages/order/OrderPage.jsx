@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 //components
 import { Navbar } from "./Navbar/Navbar.jsx";
 import Main from "./Main";
@@ -22,6 +22,7 @@ const OrderPage = () => {
   const [menuData, setMenuData] = useState(fakeMenu.LARGE);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [selectedProduct, setSelectedProduct] = useState(EMPTY_PRODUCT);
+  const titleEditRef = useRef();
 
   const handleAddToMenu = (newProduct) => {
     const menuDataCopy = deepCopy(menuData);
@@ -66,8 +67,8 @@ const OrderPage = () => {
     setNewProduct,
     selectedProduct,
     setSelectedProduct,
-
     handleEditToMenu,
+    titleEditRef,
   };
 
   const { username } = useParams();
