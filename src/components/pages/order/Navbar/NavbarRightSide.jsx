@@ -38,6 +38,8 @@ const NavbarRightSide = ({ username }) => {
     if (isProductSelected(selectedProduct)) {
       setIsCollapsed(false);
       setCurrentTabSelected("edit");
+    } else {
+      setCurrentTabSelected("add");
     }
   };
 
