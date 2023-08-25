@@ -21,17 +21,17 @@ const Menu = () => {
     setSelectedProduct,
   } = useContext(OrderContext);
 
-  if (menuData.length === 0) {
-    if (!isModeAdmin) return <EmptyMenuClient />;
-
-    return <EmptyMenuAdmin onClick={resetMenu} />;
-  }
-
-  const getInfoCard = (idSelectedCard) => {
-    const selectedCard = menuData.find(
-      (product) => product.id === idSelectedCard
+  const getInfoProduct = (idSelectedProduct) => {
+    const selectedProduct = menuData.find(
+      (product) => product.id === idSelectedProduct
     );
-    setSelectedProduct(selectedCard);
+    setSelectedProduct(selectedProduct);
+
+    if (menuData.length === 0) {
+      if (!isModeAdmin) return <EmptyMenuClient />;
+
+      return <EmptyMenuAdmin onClick={resetMenu} />;
+    }
   };
   return (
     <MenuStyled>
@@ -46,7 +46,7 @@ const Menu = () => {
               labelButton={"Add Item"}
               hasDeleteButton={isModeAdmin}
               onDelete={() => handleDeleteToMenu(id)}
-              onClick={() => getInfoCard(id)}
+              onClick={() => getInfoProduct(id)}
             />
           </li>
         );
