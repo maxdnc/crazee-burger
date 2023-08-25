@@ -143,10 +143,17 @@ const selectedStyle = css`
       background-color: ${theme.colors.primary};
       border: 1px solid ${theme.colors.white};
     }
+    &:active {
+      color: ${theme.colors.primary};
+      background-color: ${theme.colors.white};
+    }
   }
 
-  & .delete-button {
+  .delete-button {
     color: ${theme.colors.white};
+    :active {
+      color: ${theme.colors.white};
+    }
   }
 
   .container-description {
