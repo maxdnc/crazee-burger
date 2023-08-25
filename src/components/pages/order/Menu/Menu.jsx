@@ -8,10 +8,13 @@ import { formatPrice } from "../../../../utils/maths.js";
 import OrderContext from "../../../../context/OrderContext.js";
 //helper
 import { checkIfProductIsSelected } from "./helper";
-
+import { isProductSelected } from "../../../../enums/product";
 //components
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
+
+//enums
+import { EMPTY_PRODUCT } from "../../../../enums/product";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
@@ -33,16 +36,21 @@ const Menu = () => {
   };
 
   const handleClick = (idSelectedProduct) => {
-    const getInfoProduct = (idSelectedProduct) => {
+    const isSelectedProductSame =
+      isProductSelected(selectedProduct) &&
+      selectedProduct.id === idSelectedProduct;
+
+    if (isSelectedProductSame) {
+      setSelectedProduct(EMPTY_PRODUCT);
+    } else {
       const selectedProduct = menuData.find(
         (product) => product.id === idSelectedProduct
       );
-      setSelectedProduct(selectedProduct);
-    };
 
-    setIsCollapsed(false);
-    setCurrentTabSelected("edit");
-    getInfoProduct(idSelectedProduct);
+      setSelectedProduct(selectedProduct);
+      setIsCollapsed(false);
+      setCurrentTabSelected("edit");
+    }
   };
 
   if (menuData.length === 0) {
