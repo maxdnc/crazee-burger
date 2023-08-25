@@ -12,15 +12,17 @@ import styled from "styled-components";
 //Context
 import OrderContext from "../../../../context/OrderContext";
 
-import { EMPTY_PRODUCT } from "../../../../enums/product";
+//helper
+
+import { isProductSelected } from "../../../../enums/product";
 
 const NavbarRightSide = ({ username }) => {
   const {
     isModeAdmin,
     setIsModeAdmin,
     selectedProduct,
-    setSelectedProduct,
     setCurrentTabSelected,
+    setIsCollapsed,
   } = useContext(OrderContext);
 
   const handleToggleAdminMode = () => {
@@ -31,9 +33,12 @@ const NavbarRightSide = ({ username }) => {
     };
 
     displayToastAdminModeNotify();
-    setCurrentTabSelected("add");
     setIsModeAdmin(!isModeAdmin);
-    selectedProduct && setSelectedProduct(EMPTY_PRODUCT);
+
+    if (isProductSelected(selectedProduct)) {
+      setIsCollapsed(false);
+      setCurrentTabSelected("edit");
+    }
   };
 
   return (
