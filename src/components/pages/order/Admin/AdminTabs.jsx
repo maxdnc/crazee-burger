@@ -11,7 +11,7 @@ import OrderContext from "../../../../context/OrderContext";
 import { useContext } from "react";
 
 // config
-import { tabsConfig } from "./tabsConfig";
+import { getTabsConfig } from "./tabsConfig";
 
 const AdminTabs = () => {
   const {
@@ -26,7 +26,7 @@ const AdminTabs = () => {
     setCurrentTabSelected(tabSelected);
   };
 
-  const tabs = tabsConfig;
+  const tabs = getTabsConfig();
   return (
     <AdminTabsStyled>
       <Tab

@@ -1,22 +1,14 @@
 import { useContext, useState } from "react";
-import { getTextInputsConfig } from "./textInputsConfig.jsx";
+import { EMPTY_PRODUCT } from "../../../../../enums/product";
 
+//context
+import OrderContext from "../../../../../context/OrderContext";
 //component
-import TextInput from "../../../../reusable-ui/TextInput";
 import Button from "../../../../reusable-ui/Button.jsx";
-
+import Form from "./Form.jsx";
+import SubmitMessage from "./SubmitMessage";
 //style
 import { styled } from "styled-components";
-import OrderContext from "../../../../../context/OrderContext";
-import ImagePreview from "./ImagePreview";
-import SubmitMessage from "./SubmitMessage";
-
-export const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-};
 
 const AddForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -24,6 +16,12 @@ const AddForm = () => {
     useContext(OrderContext);
 
   const handleSubmit = (event) => {
+    const displaySuccessMessage = () => {
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 2000);
+    };
     event.preventDefault();
     const newProductToAdd = {
       ...newProduct,
@@ -34,67 +32,28 @@ const AddForm = () => {
     displaySuccessMessage();
   };
 
-  const displaySuccessMessage = () => {
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 2000);
-  };
-
   const handleChange = (event) => {
     const { value, name } = event.target;
     setNewProduct({ ...newProduct, [name]: value });
   };
-  const textInputs = getTextInputsConfig(newProduct);
 
   return (
-    <AddFormStyled onSubmit={handleSubmit} method="POST">
-      <ImagePreview
-        imageSource={newProduct.imageSource}
-        title={newProduct.title}
-      />
-      <div className="container-inputs">
-        {textInputs.map((textInput) => (
-          <TextInput
-            {...textInput}
-            key={textInput.name}
-            onChange={handleChange}
-            version="minimalist"
-          />
-        ))}
-      </div>
-      <div className="submit">
-        <Button
-          label={"Add new product to the menu"}
-          className={"add-form-button"}
-          version="success"
-        />
+    <Form
+      productData={newProduct}
+      onSubmit={handleSubmit}
+      onChange={handleChange}
+    >
+      <FormFooterStyled>
+        <Button label={"Add new product to the menu"} version="success" />
         {isSubmitted && <SubmitMessage />}
-      </div>
-    </AddFormStyled>
+      </FormFooterStyled>
+    </Form>
   );
 };
 
-const AddFormStyled = styled.form`
+const FormFooterStyled = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: repeat(4, 1fr);
-  height: 100%;
-  width: 70%;
-  gap: 8px 20px;
-
-  .container-inputs {
-    display: grid;
-    row-gap: 0.5rem;
-    width: 100%;
-    grid-area: 1 / 2 / 4 / 3;
-  }
-
-  .submit {
-    grid-area: 4 / 2 / 5 / 3;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+  grid-template-columns: 1fr 1fr;
 `;
 
 export default AddForm;

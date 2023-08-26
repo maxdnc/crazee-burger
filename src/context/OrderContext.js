@@ -9,9 +9,17 @@ export default createContext({
   setCurrentTabSelected: () => {},
   menuData: [],
   setMenuData: () => {},
+
   handleAddToMenu: () => {},
+  handleEditToMenu: () => {},
   handleDeleteToMenu: () => {},
   resetMenu: () => {},
-  newProduct: [],
+
+  newProduct: {},
   setNewProduct: () => {},
+
+  selectedProduct: {},
+  setSelectedProduct: () => {},
+
+  titleEditRef: {},
 });

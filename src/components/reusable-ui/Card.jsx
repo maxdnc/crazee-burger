@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
 // component
@@ -16,9 +16,16 @@ const Card = ({
   labelButton,
   hasDeleteButton,
   onDelete,
+  onClick,
+  isHoverable,
+  isSelected,
 }) => {
   return (
-    <CardStyled>
+    <CardStyled
+      onClick={onClick}
+      $isHoverable={isHoverable}
+      $isSelected={isSelected}
+    >
       {hasDeleteButton && (
         <button
           onClick={onDelete}
@@ -32,7 +39,13 @@ const Card = ({
       <div className="container-description">
         <h3>{title}</h3>
         <p>{leftDescription}</p>
-        <Button label={labelButton} className={"card-button-add"} />
+        <Button
+          onClick={(event) => {
+            event.stopPropagation();
+          }}
+          label={labelButton}
+          className={"card-button-add"}
+        />
       </div>
     </CardStyled>
   );
@@ -50,6 +63,9 @@ const CardStyled = styled.div`
   max-width: 240px;
   height: 330px;
   padding: 3.125rem 1.5rem 1.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: ease-out 0.15s;
 
   .delete-button {
     border: 1px solid red;
@@ -110,5 +126,47 @@ const CardStyled = styled.div`
       padding: 0.75rem;
     }
   }
+  ${({ $isHoverable }) => $isHoverable && hoverableStyle};
+  ${({ $isHoverable, $isSelected }) =>
+    $isHoverable & $isSelected && selectedStyle}
 `;
+
+const hoverableStyle = css`
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: ${theme.shadows.orangeHighlight};
+    cursor: pointer;
+  }
+`;
+const selectedStyle = css`
+  background-color: ${theme.colors.primary};
+
+  .card-button-add {
+    background-color: ${theme.colors.white};
+    color: ${theme.colors.primary};
+    &:hover {
+      color: ${theme.colors.white};
+      background-color: ${theme.colors.primary};
+      border: 1px solid ${theme.colors.white};
+    }
+    &:active {
+      color: ${theme.colors.primary};
+      background-color: ${theme.colors.white};
+    }
+  }
+
+  .delete-button {
+    color: ${theme.colors.white};
+    :active {
+      color: ${theme.colors.white};
+    }
+  }
+
+  .container-description {
+    p {
+      color: ${theme.colors.white};
+    }
+  }
+`;
+
 export default Card;

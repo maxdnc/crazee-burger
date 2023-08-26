@@ -1,17 +1,19 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 //components
 import { Navbar } from "./Navbar/Navbar.jsx";
 import Main from "./Main";
 //data
 import { fakeMenu } from "../../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "./Admin/AdminPanel/AddForm";
+import { EMPTY_PRODUCT } from "../../../enums/product";
 
 //style
-
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import AdminContext from "../../../context/OrderContext.js";
+
+//utils
+import { deepCopy } from "../../../utils/array";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -19,20 +21,30 @@ const OrderPage = () => {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menuData, setMenuData] = useState(fakeMenu.LARGE);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [selectedProduct, setSelectedProduct] = useState(EMPTY_PRODUCT);
+  const titleEditRef = useRef();
 
   const handleAddToMenu = (newProduct) => {
-    const menuDataCopy = [...menuData];
+    const menuDataCopy = deepCopy(menuData);
+
     const menuDataUpdated = [newProduct, ...menuDataCopy];
     setMenuData(menuDataUpdated);
   };
 
   const handleDeleteToMenu = (idProductToDelete) => {
-    const menuDataCopy = [...menuData];
+    const menuDataCopy = deepCopy(menuData);
 
     const menuUpdated = menuDataCopy.filter(
       (product) => product.id !== idProductToDelete
     );
     setMenuData(menuUpdated);
+  };
+
+  const handleEditToMenu = (productBeingEdited) => {
+    const menuDataCopy = deepCopy(menuData);
+    const indexOfProducToEdit = menuData.indexOf(selectedProduct);
+    menuDataCopy[indexOfProducToEdit] = productBeingEdited;
+    setMenuData(menuDataCopy);
   };
 
   const resetMenu = () => {
@@ -53,6 +65,10 @@ const OrderPage = () => {
     resetMenu,
     newProduct,
     setNewProduct,
+    selectedProduct,
+    setSelectedProduct,
+    handleEditToMenu,
+    titleEditRef,
   };
 
   const { username } = useParams();
