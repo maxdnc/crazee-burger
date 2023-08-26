@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 import { styled } from "styled-components";
-import { theme } from "../../../../../theme";
 
 //config
 import { getTextInputsConfig } from "./textInputsConfig";
 //component
 import TextInput from "../../../../reusable-ui/TextInput";
 import ImagePreview from "./ImagePreview";
+import EditInfoMessage from "./EditInfoMessage";
 
 //context
 import OrderContext from "../../../../../context/OrderContext";
@@ -49,10 +49,7 @@ const EditForm = () => {
         ))}
       </div>
       <div className="submit">
-        <p className="sentence">
-          Cliquer sur un produit du menu pour le modifier{" "}
-          <span className="live-update">en temps réel</span>
-        </p>
+        <EditInfoMessage />
       </div>
     </EditFormStyled>
   );
@@ -77,14 +74,6 @@ const EditFormStyled = styled.form`
     grid-area: 4 / 2 / 5 / 3;
     display: flex;
     align-items: center;
-
-    .sentence {
-      color: ${theme.colors.primary};
-      font-size: ${theme.fonts.P0};
-      .live-update {
-        text-decoration: underline;
-      }
-    }
   }
 `;
 export default EditForm;
