@@ -14,7 +14,7 @@ import OrderContext from "../../../../context/OrderContext";
 
 //helper
 
-import { isProductSelected } from "../../../../enums/product";
+import { isProductSelected } from "../../../../utils/isProductSelected";
 
 const NavbarRightSide = ({ username }) => {
   const {

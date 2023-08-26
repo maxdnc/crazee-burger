@@ -2,12 +2,12 @@ import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import { getTabSelected, tabsConfig } from "../tabsConfig";
+import { getTabSelected, getTabsConfig } from "../tabsConfig";
+import { isProductSelected } from "../../../../../utils/isProductSelected";
 
 const AdminPanel = () => {
-  const { currentTabSelected } = useContext(OrderContext);
-  const tabs = tabsConfig;
-
+  const { currentTabSelected, selectedProduct } = useContext(OrderContext);
+  const tabs = getTabsConfig(isProductSelected(selectedProduct));
   const tabSelected = getTabSelected(tabs, currentTabSelected);
 
   return <AdminPanelStyled>{tabSelected.Content}</AdminPanelStyled>;
