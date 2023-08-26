@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import { styled } from "styled-components";
+import { theme } from "../../../../../theme";
 
 //config
 import { getTextInputsConfig } from "./textInputsConfig";
 //component
 import TextInput from "../../../../reusable-ui/TextInput";
 import ImagePreview from "./ImagePreview";
-import SubmitMessage from "./SubmitMessage";
+
 //context
 import OrderContext from "../../../../../context/OrderContext";
 
@@ -47,7 +48,12 @@ const EditForm = () => {
           />
         ))}
       </div>
-      <div className="submit">{isSubmitted && <SubmitMessage />}</div>
+      <div className="submit">
+        <p className="sentence">
+          Cliquer sur un produit du menu pour le modifier{" "}
+          <span className="live-update">en temps réel</span>
+        </p>
+      </div>
     </EditFormStyled>
   );
 };
@@ -69,8 +75,16 @@ const EditFormStyled = styled.form`
 
   .submit {
     grid-area: 4 / 2 / 5 / 3;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    align-items: center;
+
+    .sentence {
+      color: ${theme.colors.primary};
+      font-size: ${theme.fonts.P0};
+      .live-update {
+        text-decoration: underline;
+      }
+    }
   }
 `;
 export default EditForm;
