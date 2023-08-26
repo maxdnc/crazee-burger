@@ -8,7 +8,7 @@ import { formatPrice } from "../../../../utils/maths.js";
 import OrderContext from "../../../../context/OrderContext.js";
 //helper
 import { checkIfProductIsSelected } from "./helper";
-import { isProductSelected } from "../../../../enums/product";
+import { isProductSelected } from "../../../../utils/isProductSelected";
 //components
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
@@ -34,6 +34,10 @@ const Menu = () => {
   const handleCardDelete = (event, idProductTodelete) => {
     event.stopPropagation();
     handleDeleteToMenu(idProductTodelete);
+    if (idProductTodelete === selectedProduct.id) {
+      setSelectedProduct(EMPTY_PRODUCT);
+    }
+    titleEditRef.current.focus();
   };
 
   const handleClick = async (idSelectedProduct) => {
