@@ -36,8 +36,8 @@ const Menu = () => {
     handleDeleteToMenu(idProductTodelete);
     if (idProductTodelete === selectedProduct.id) {
       setSelectedProduct(EMPTY_PRODUCT);
+      titleEditRef.current.focus();
     }
-    titleEditRef.current.focus();
   };
 
   const handleClick = async (idSelectedProduct) => {
