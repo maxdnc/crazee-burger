@@ -15,7 +15,7 @@ const AdminPanel = () => {
 
 const AdminPanelStyled = styled.div`
   height: 250px;
-  border-top-left-radius: ${theme.borderRadius.extraRound};
+
   border-top-right-radius: ${theme.borderRadius.extraRound};
   background: ${theme.colors.white};
   border-top: 1px solid ${theme.colors.greyLight};
