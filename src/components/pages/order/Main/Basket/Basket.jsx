@@ -1,24 +1,19 @@
+//style
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import OrderContext from "../../../../../context/OrderContext";
-import { useContext } from "react";
-import { isProductSelected } from "../../../../../utils/isProductSelected";
+//utils
+import { formatPrice } from "../../../../../utils/maths";
+//component
+import Total from "./Total.jsx";
+import Footer from "./Footer";
+import Body from "./Body";
+
 const Basket = () => {
-  const { selectedProduct } = useContext(OrderContext);
-
-  isProductSelected(selectedProduct);
-
   return (
     <BasketStyled>
-      <div className="header">
-        <p>total</p> <p>0.00€</p>
-      </div>
-
-      <p className="empty-basket">Votre commande est vide</p>
-
-      <div className="footer">
-        <p>Codé avec ♥️ et React.JS </p>
-      </div>
+      <Total totalAmount={formatPrice(0.0)} />
+      <Body />
+      <Footer />
     </BasketStyled>
   );
 };
@@ -33,46 +28,7 @@ const BasketStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  border-radius: ${theme.borderRadius.subtle};
   box-shadow: ${theme.shadows.subtle};
   overflow: hidden;
-
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0.5rem 1.5rem;
-    background-color: ${theme.colors.background_dark};
-
-    p {
-      color: ${theme.colors.primary};
-      font-family: ${theme.fontsFamily.amatic};
-      font-size: ${theme.fonts.P4};
-      font-weight: ${theme.weights.bold};
-    }
-  }
-
-  .empty-basket {
-    color: ${theme.colors.greyBlue};
-    font-family: ${theme.fontsFamily.amatic};
-    font-size: ${theme.fonts.P4};
-  }
-
-  .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 1rem 1.5rem;
-    background-color: ${theme.colors.background_dark};
-
-    p {
-      color: ${theme.colors.white};
-      font-family: ${theme.fontsFamily.amatic};
-      font-size: ${theme.fonts.P2};
-      font-weight: ${theme.weights.bold};
-    }
-  }
 `;
 export default Basket;
