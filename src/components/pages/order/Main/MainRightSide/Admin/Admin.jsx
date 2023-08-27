@@ -3,7 +3,7 @@ import AdminTabs from "./AdminTabs";
 import AdminPanel from "./AdminPanel/AdminPanel";
 
 //context
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../../../../context/OrderContext";
 import { useContext } from "react";
 
 const Admin = () => {
@@ -17,10 +17,10 @@ const Admin = () => {
 };
 
 const AdminStyled = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: sticky;
+  bottom: 0rem;
   right: 0;
+  left: 0;
 `;
 
 export default Admin;

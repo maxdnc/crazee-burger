@@ -1,19 +1,17 @@
 import styled from "styled-components";
-import { theme } from "../../../../theme";
+import { theme } from "../../../../../../theme";
 
-import Button from "../../../reusable-ui/Button.jsx";
-
-const EmptyMenuAdmin = ({ onClick }) => {
+const EmptyMenuClient = () => {
   return (
-    <EmptyMenuAdminStyled>
-      <p className="title">Is the menu empty ?</p>
-      <p className="description">Click below to reset it</p>
-      <Button label={"Generate new products"} onClick={onClick} />
-    </EmptyMenuAdminStyled>
+    <EmptyMenuClientStyled>
+      <p className="title">Victim of our success! :D</p>
+      <p className="description">We are working on new recipes.</p>
+      <p className="description">See you soon!</p>
+    </EmptyMenuClientStyled>
   );
 };
 
-const EmptyMenuAdminStyled = styled.div`
+const EmptyMenuClientStyled = styled.div`
   background-color: ${theme.colors.background_white};
   box-shadow: ${theme.shadows.strong};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
@@ -40,11 +38,5 @@ const EmptyMenuAdminStyled = styled.div`
   .description {
     font-size: ${theme.fonts.P4};
   }
-
-  button {
-    margin-top: 0.625rem;
-    font-size: ${theme.fonts.XS};
-    width: auto;
-  }
 `;
-export default EmptyMenuAdmin;
+export default EmptyMenuClient;

@@ -2,14 +2,14 @@ import { useParams } from "react-router-dom";
 import { useState, useRef } from "react";
 //components
 import { Navbar } from "./Navbar/Navbar.jsx";
-import Main from "./Main";
+import Main from "./Main/Main.jsx";
 //data
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 
 //style
 import styled from "styled-components";
-import { theme } from "../../../theme";
+
 import AdminContext from "../../../context/OrderContext.js";
 
 //utils
@@ -76,34 +76,20 @@ const OrderPage = () => {
   return (
     <AdminContext.Provider value={orderContextValue}>
       <OrderPageStyled>
-        <div className="container">
-          <Navbar username={username} />
-          <Main />
-        </div>
+        <Navbar username={username} />
+        <Main />
       </OrderPageStyled>
     </AdminContext.Provider>
   );
 };
 
 const OrderPageStyled = styled.div`
-  background-color: ${theme.colors.primary};
-  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 0 1rem;
-
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    height: 94vh;
-    border-radius: ${theme.borderRadius.extraRound};
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
+  align-items: start;
+  overflow: hidden;
+  height: 100vh;
 `;
 
 export default OrderPage;

@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 //config
 import { getTextInputsConfig } from "./textInputsConfig";
 //component
-import TextInput from "../../../../reusable-ui/TextInput";
+import TextInput from "../../../../../../reusable-ui/TextInput.jsx";
 import ImagePreview from "./ImagePreview";
 
 const Form = React.forwardRef(
@@ -39,7 +39,7 @@ const FormStyled = styled.form`
   grid-template-columns: 1fr 3fr;
   grid-template-rows: repeat(4, 1fr);
   height: 100%;
-  width: 70%;
+  width: 100%;
   gap: 8px 20px;
 
   .container-inputs {
@@ -51,6 +51,7 @@ const FormStyled = styled.form`
 
   .form-footer {
     grid-area: 4 / 2 / 5 / 3;
+    margin-top: 0.5rem;
   }
 `;
 export default Form;

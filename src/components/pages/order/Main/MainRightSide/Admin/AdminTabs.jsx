@@ -1,13 +1,13 @@
 import styled from "styled-components";
 //component
-import Tab from "../../../reusable-ui/Tab";
+import Tab from "../../../../../reusable-ui/Tab.jsx";
 
 // Icon
 
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 //context
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../../../../context/OrderContext";
 import { useContext } from "react";
 
 // config
@@ -53,6 +53,7 @@ const AdminTabs = () => {
 
 const AdminTabsStyled = styled.div`
   display: flex;
+
   gap: 1px;
   padding-left: 4.375rem;
 `;

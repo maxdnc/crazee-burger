@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import OrderContext from "../../../../../context/OrderContext";
+import OrderContext from "../../../../../../../context/OrderContext";
 import styled from "styled-components";
-import { theme } from "../../../../../theme";
+import { theme } from "../../../../../../../theme";
 import { getTabSelected, getTabsConfig } from "../tabsConfig";
-import { isProductSelected } from "../../../../../utils/isProductSelected";
+import { isProductSelected } from "../../../../../../../utils/isProductSelected";
 
 const AdminPanel = () => {
   const { currentTabSelected, selectedProduct } = useContext(OrderContext);
@@ -15,11 +15,11 @@ const AdminPanel = () => {
 
 const AdminPanelStyled = styled.div`
   height: 250px;
-  border-bottom-left-radius: ${theme.borderRadius.extraRound};
-  border-bottom-right-radius: ${theme.borderRadius.extraRound};
+  border-top-left-radius: ${theme.borderRadius.extraRound};
+  border-top-right-radius: ${theme.borderRadius.extraRound};
   background: ${theme.colors.white};
   border-top: 1px solid ${theme.colors.greyLight};
   box-shadow: ${theme.shadows.subtle};
-  padding: 30px 5%;
+  padding: 1.875rem 4.5rem 1rem 4.5rem;
 `;
 export default AdminPanel;
