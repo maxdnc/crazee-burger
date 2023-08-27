@@ -98,6 +98,7 @@ const MenuStyled = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 5rem;
+  min-height: calc(100vh - 108px - 47px - 6rem);
 
   li {
     margin: 0 auto;

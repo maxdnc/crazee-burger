@@ -14,16 +14,13 @@ const EmptyMenuAdmin = ({ onClick }) => {
 };
 
 const EmptyMenuAdminStyled = styled.div`
-  background-color: ${theme.colors.background_white};
-  box-shadow: ${theme.shadows.strong};
-  border-bottom-right-radius: ${theme.borderRadius.extraRound};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1.25rem;
-  height: 100%;
-  padding-bottom: 5%;
+
+  min-height: calc(100vh - 108px - 47px);
 
   .title,
   .description {
