@@ -12,6 +12,7 @@ import { useContext } from "react";
 
 // config
 import { getTabsConfig } from "./tabsConfig";
+import { theme } from "../../../../../../theme/index.js";
 
 const AdminTabs = () => {
   const {
@@ -53,8 +54,13 @@ const AdminTabs = () => {
 
 const AdminTabsStyled = styled.div`
   display: flex;
-
   gap: 1px;
   padding-left: 4.375rem;
+  & > :first-child {
+    border-top-left-radius: ${theme.borderRadius.extraRound};
+  }
+  & > :last-child {
+    border-top-right-radius: ${theme.borderRadius.extraRound};
+  }
 `;
 export default AdminTabs;
