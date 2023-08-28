@@ -10,6 +10,8 @@ const EmptyBasketStyled = styled.p`
   font-family: ${theme.fontsFamily.amatic};
   font-size: ${theme.fonts.P4};
   height: 100%;
-  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export default EmptyBasket;
