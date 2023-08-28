@@ -1,19 +1,18 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
-import { formatPrice } from "../../../../../../utils/maths";
 
-const BasketCard = () => {
+const BasketCard = ({ title, price, imageSource, quantity }) => {
   return (
     <BasketCardStyled>
       <div className="container-img">
-        <img src="/images/burger1.png" alt="" />
+        <img src={imageSource} alt={title} />
       </div>
       <div className="container-info">
         <div className="container-title-price">
-          <p className="title">new york friesssss</p>
-          <p className="price">{formatPrice(2)}</p>
+          <p className="title">{title}</p>
+          <p className="price">{price}</p>
         </div>
-        <p className="number-item">x 3</p>
+        <p className="number-item">x {quantity}</p>
       </div>
     </BasketCardStyled>
   );
