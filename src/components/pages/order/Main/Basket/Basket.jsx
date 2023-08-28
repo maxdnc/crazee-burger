@@ -6,13 +6,13 @@ import { formatPrice } from "../../../../../utils/maths";
 //component
 import Total from "./Total.jsx";
 import Footer from "./Footer";
-import Body from "./Body";
+import BasketBody from "./BasketBody";
 
 const Basket = () => {
   return (
     <BasketStyled>
       <Total totalAmount={formatPrice(0.0)} />
-      <Body />
+      <BasketBody />
       <Footer />
     </BasketStyled>
   );
