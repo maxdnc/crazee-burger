@@ -1,35 +1,13 @@
 import { styled } from "styled-components";
-import { theme } from "../../../../../theme";
-import { formatPrice } from "../../../../../utils/maths";
+import { theme } from "../../../../../../theme";
+import { formatPrice } from "../../../../../../utils/maths";
+import BasketCard from "./BasketCard";
 
 const BasketBody = () => {
   return (
     <BasketBodyStyled>
       <div className="selection-client">
-        <div className="card-basket">
-          <div className="container-img">
-            <img src="/images/burger1.png" alt="" />
-          </div>
-          <div className="container-info">
-            <div className="container-title-price">
-              <p className="title">new york friesssss</p>
-              <p className="price">{formatPrice(2)}</p>
-            </div>
-            <p className="number-item">x 3</p>
-          </div>
-        </div>
-        <div className="card-basket">
-          <div className="container-img">
-            <img src="/images/drink1.png" alt="" />
-          </div>
-          <div className="container-info">
-            <div className="container-title-price">
-              <p className="title">COKE 25CL</p>
-              <p className="price">{formatPrice(12, 233)}</p>
-            </div>
-            <p className="number-item">x 3</p>
-          </div>
-        </div>
+        <BasketCard />
       </div>
 
       {/* <p className="empty-basket">Votre commande est vide</p> */}

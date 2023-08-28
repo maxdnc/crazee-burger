@@ -6,7 +6,7 @@ import { formatPrice } from "../../../../../utils/maths";
 //component
 import Total from "./Total.jsx";
 import Footer from "./Footer";
-import BasketBody from "./BasketBody";
+import BasketBody from "./BasketBody/BasketBody";
 
 const Basket = () => {
   return (
