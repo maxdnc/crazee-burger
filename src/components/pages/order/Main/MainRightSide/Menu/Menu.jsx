@@ -9,12 +9,14 @@ import OrderContext from "../../../../../../context/OrderContext.js";
 //helper
 import { checkIfProductIsSelected } from "./helper.js";
 import { isProductSelected } from "../../../../../../utils/isProductSelected.js";
+import { findInArray } from "../../../../../../utils/array";
 //components
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
 
 //enums
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
+import { deepCopy } from "../../../../../../utils/array.js";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
@@ -29,6 +31,8 @@ const Menu = () => {
     setIsCollapsed,
     setCurrentTabSelected,
     titleEditRef,
+    basketProducts,
+    setBasketProducts,
   } = useContext(OrderContext);
 
   const handleCardDelete = (event, idProductTodelete) => {
@@ -48,14 +52,36 @@ const Menu = () => {
     if (isSelectedProductSame) {
       setSelectedProduct(EMPTY_PRODUCT);
     } else {
-      const selectedProduct = menuData.find(
-        (product) => product.id === idSelectedProduct
-      );
+      const selectedProduct = findInArray(menuData, idSelectedProduct);
 
       await setIsCollapsed(false);
       await setSelectedProduct(selectedProduct);
       await setCurrentTabSelected("edit");
       titleEditRef.current.focus();
+    }
+  };
+
+  const handleAddButton = (event, idClickedProduct) => {
+    const basketProductsCopy = deepCopy(basketProducts);
+
+    const productToAdd = findInArray(menuData, idClickedProduct);
+    const isProductAlreadyInBasket = findInArray(
+      basketProductsCopy,
+      productToAdd.id
+    );
+
+    if (isProductAlreadyInBasket) {
+      const productIndex = basketProductsCopy.findIndex(
+        (product) => product.id === productToAdd.id
+      );
+
+      basketProductsCopy[productIndex].quantity += 1;
+      console.log(basketProductsCopy[productIndex].quantity);
+      setBasketProducts(basketProductsCopy);
+    } else {
+      const newBasketProduct = { ...productToAdd, quantity: 1 };
+      const basketProductUpdated = [newBasketProduct, ...basketProductsCopy];
+      setBasketProducts(basketProductUpdated);
     }
   };
 
@@ -77,9 +103,12 @@ const Menu = () => {
               labelButton={"Add Item"}
               hasDeleteButton={isModeAdmin}
               onDelete={(event) => handleCardDelete(event, id)}
-              onClick={isModeAdmin ? () => handleClick(id) : undefined}
+              onClick={isModeAdmin ? () => handleClick(id) : null}
               isHoverable={isModeAdmin}
               isSelected={checkIfProductIsSelected(id, selectedProduct.id)}
+              onAdd={(event) => {
+                handleAddButton(event, id);
+              }}
             />
           </li>
         );

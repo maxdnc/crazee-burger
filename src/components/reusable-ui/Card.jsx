@@ -19,6 +19,7 @@ const Card = ({
   onClick,
   isHoverable,
   isSelected,
+  onAdd,
 }) => {
   return (
     <CardStyled
@@ -40,9 +41,7 @@ const Card = ({
         <h3>{title}</h3>
         <p>{leftDescription}</p>
         <Button
-          onClick={(event) => {
-            event.stopPropagation();
-          }}
+          onClick={onAdd}
           label={labelButton}
           className={"card-button-add"}
         />
