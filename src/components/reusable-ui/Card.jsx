@@ -114,6 +114,9 @@ const CardStyled = styled.div`
       font-family: ${theme.fontsFamily.amatic};
       font-weight: ${theme.weights.bold};
       color: ${theme.colors.dark};
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     p {
       grid-area: 2 / 1 / 3 / 3;

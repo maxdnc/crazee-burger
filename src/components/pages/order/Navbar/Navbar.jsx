@@ -16,8 +16,12 @@ export const Navbar = ({ username }) => {
 
 const NavbarStyled = styled.nav`
   display: flex;
+  position: sticky;
+  top: 0;
+  max-width: 1440px;
+  margin: 0 auto;
   justify-content: space-between;
   background-color: white;
   width: 100%;
-  padding: 1.5rem 4.5rem 1.5rem 1.25rem;
+  padding: 1.5rem 5rem 1.5rem 3rem;
 `;

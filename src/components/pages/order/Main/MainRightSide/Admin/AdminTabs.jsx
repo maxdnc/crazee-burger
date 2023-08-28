@@ -1,17 +1,18 @@
 import styled from "styled-components";
 //component
-import Tab from "../../../reusable-ui/Tab";
+import Tab from "../../../../../reusable-ui/Tab.jsx";
 
 // Icon
 
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 //context
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../../../../context/OrderContext";
 import { useContext } from "react";
 
 // config
 import { getTabsConfig } from "./tabsConfig";
+import { theme } from "../../../../../../theme/index.js";
 
 const AdminTabs = () => {
   const {
@@ -55,5 +56,11 @@ const AdminTabsStyled = styled.div`
   display: flex;
   gap: 1px;
   padding-left: 4.375rem;
+  & > :first-child {
+    border-top-left-radius: ${theme.borderRadius.extraRound};
+  }
+  & > :last-child {
+    border-top-right-radius: ${theme.borderRadius.extraRound};
+  }
 `;
 export default AdminTabs;

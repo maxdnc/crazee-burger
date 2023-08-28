@@ -1,27 +1,23 @@
-import { useContext, useState } from "react";
-import { EMPTY_PRODUCT } from "../../../../../enums/product";
-
+import { useContext } from "react";
+//enum
+import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
+//CustomHooks
+import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage";
 //context
-import OrderContext from "../../../../../context/OrderContext";
+import OrderContext from "../../../../../../../context/OrderContext";
 //component
-import Button from "../../../../reusable-ui/Button.jsx";
+import Button from "../../../../../../reusable-ui/Button.jsx";
 import Form from "./Form.jsx";
 import SubmitMessage from "./SubmitMessage";
 //style
 import { styled } from "styled-components";
 
 const AddForm = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const { handleAddToMenu, newProduct, setNewProduct } =
     useContext(OrderContext);
+  const { isSubmitted, displaySuccessMessage } = useSuccessMessage(2500);
 
   const handleSubmit = (event) => {
-    const displaySuccessMessage = () => {
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 2000);
-    };
     event.preventDefault();
     const newProductToAdd = {
       ...newProduct,
