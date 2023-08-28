@@ -14,6 +14,7 @@ const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [basketProducts, setBasketProducts] = useState([]);
   const titleEditRef = useRef();
 
   const {
@@ -45,6 +46,8 @@ const OrderPage = () => {
     setNewProduct,
     handleEditToMenu,
     titleEditRef,
+    basketProducts,
+    setBasketProducts,
   };
 
   const { username } = useParams();

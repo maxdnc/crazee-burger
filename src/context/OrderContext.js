@@ -22,4 +22,7 @@ export default createContext({
   setSelectedProduct: () => {},
 
   titleEditRef: {},
+
+  basketProducts: {},
+  setBasketProducts: () => {},
 });
