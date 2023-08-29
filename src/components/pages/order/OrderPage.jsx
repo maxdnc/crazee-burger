@@ -9,13 +9,13 @@ import styled from "styled-components";
 
 import AdminContext from "../../../context/OrderContext.js";
 import { useMenuData } from "../../../hooks/useMenuData.js";
-import { deepCopy } from "../../../utils/array.js";
+import { useBasketProduct } from "../../../hooks/useBasketProducts.js";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
-  const [basketProducts, setBasketProducts] = useState([]);
+
   const titleEditRef = useRef();
 
   const {
@@ -30,13 +30,13 @@ const OrderPage = () => {
     setNewProduct,
   } = useMenuData();
 
-  const handleDeleteToBasket = (idBasketProduct) => {
-    const basketProductsCopy = deepCopy(basketProducts);
-    const basketProductsUpdated = basketProductsCopy.filter(
-      (basketProduct) => basketProduct.id !== idBasketProduct
-    );
-    setBasketProducts(basketProductsUpdated);
-  };
+  const {
+    handleDeleteToBasket,
+    handleIncrementQuantityProduct,
+    handleDecrementQuantityProduct,
+    basketProducts,
+    handleAddToBasket,
+  } = useBasketProduct();
 
   const orderContextValue = {
     isModeAdmin,
@@ -56,8 +56,11 @@ const OrderPage = () => {
     handleEditToMenu,
     titleEditRef,
     basketProducts,
-    setBasketProducts,
+
+    handleAddToBasket,
     handleDeleteToBasket,
+    handleIncrementQuantityProduct,
+    handleDecrementQuantityProduct,
   };
 
   const { username } = useParams();

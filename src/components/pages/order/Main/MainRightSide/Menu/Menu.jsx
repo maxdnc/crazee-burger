@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Card from "../../../../../reusable-ui/Card.jsx";
 import styled from "styled-components";
 
@@ -16,7 +16,6 @@ import EmptyMenuClient from "./EmptyMenuClient.jsx";
 
 //enums
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
-import { deepCopy } from "../../../../../../utils/array.js";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
@@ -31,9 +30,8 @@ const Menu = () => {
     setIsCollapsed,
     setCurrentTabSelected,
     titleEditRef,
-    basketProducts,
-    setBasketProducts,
     handleDeleteToBasket,
+    handleAddToBasket,
   } = useContext(OrderContext);
 
   const handleCardDelete = (event, idProductTodelete) => {
@@ -64,28 +62,10 @@ const Menu = () => {
     }
   };
 
-  const handleAddButton = (event, idClickedProduct) => {
-    const basketProductsCopy = deepCopy(basketProducts);
-
+  const handleAdd = (event, idClickedProduct) => {
+    event.stopPropagation();
     const productToAdd = findInArray(menuData, idClickedProduct);
-    const isProductAlreadyInBasket = findInArray(
-      basketProductsCopy,
-      productToAdd.id
-    );
-
-    if (isProductAlreadyInBasket) {
-      const productIndex = basketProductsCopy.findIndex(
-        (product) => product.id === productToAdd.id
-      );
-
-      basketProductsCopy[productIndex].quantity += 1;
-      console.log(basketProductsCopy[productIndex].quantity);
-      setBasketProducts(basketProductsCopy);
-    } else {
-      const newBasketProduct = { ...productToAdd, quantity: 1 };
-      const basketProductUpdated = [newBasketProduct, ...basketProductsCopy];
-      setBasketProducts(basketProductUpdated);
-    }
+    handleAddToBasket(productToAdd);
   };
 
   if (menuData.length === 0) {
@@ -110,7 +90,7 @@ const Menu = () => {
               isHoverable={isModeAdmin}
               isSelected={checkIfProductIsSelected(id, selectedProduct.id)}
               onAdd={(event) => {
-                handleAddButton(event, id);
+                handleAdd(event, id);
               }}
             />
           </li>
