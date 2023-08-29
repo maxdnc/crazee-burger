@@ -2,7 +2,12 @@ import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { useContext } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
+//icon
 import { TbTrashXFilled } from "react-icons/tb";
+import {
+  MdOutlineKeyboardArrowDown,
+  MdOutlineKeyboardArrowUp,
+} from "react-icons/md";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
@@ -26,7 +31,21 @@ const BasketCard = ({
           <p className="title">{title}</p>
           <p className="price">{price}</p>
         </div>
-        <p className="number-item">x {quantity}</p>
+        <div className="container-quantity">
+          <button
+            className="increment counting-button"
+            onClick={incrementQuantity}
+          >
+            <MdOutlineKeyboardArrowUp className="icon" />
+          </button>
+          <p className="quantity">x {quantity}</p>
+          <button
+            className="decrement counting-button"
+            onClick={decrementQuantity}
+          >
+            <MdOutlineKeyboardArrowDown className="icon" />
+          </button>
+        </div>
       </div>
       {isModeAdmin && (
         <button className="delete-button" onClick={deleteProduct}>
@@ -35,13 +54,6 @@ const BasketCard = ({
           </span>
         </button>
       )}
-
-      <button className="plus" onClick={incrementQuantity}>
-        +
-      </button>
-      <button className="less" onClick={decrementQuantity}>
-        -
-      </button>
     </BasketCardStyled>
   );
 };
@@ -75,7 +87,6 @@ const BasketCardStyled = styled.div`
   .container-info {
     display: flex;
     padding-left: 1rem;
-    align-items: center;
 
     .container-title-price {
       display: grid;
@@ -96,11 +107,61 @@ const BasketCardStyled = styled.div`
         font-size: 0.9375rem;
       }
     }
-
-    .number-item {
+    .container-quantity {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       margin: 0 auto;
-      color: ${theme.colors.primary};
-      font-size: 0.9375rem;
+
+      .quantity {
+        margin: 0 auto;
+        color: ${theme.colors.primary};
+        font-size: 0.9375rem;
+      }
+
+      .counting-button {
+        border: none;
+        padding: 0;
+        background: none;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        color: ${theme.colors.dark};
+      }
+
+      .increment {
+        transition: transform 0.1s ease-in;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.5);
+        }
+        .icon {
+          transition: transform 0.1s ease-in, color 0.1s ease-in;
+
+          &:active {
+            transform: translateY(-5px);
+            color: ${theme.colors.primary};
+          }
+        }
+      }
+
+      .decrement {
+        transition: transform 0.1s ease-in;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.5);
+        }
+        .icon {
+          transition: transform 0.1s ease-in, color 0.1s ease-in;
+
+          &:active {
+            transform: translateY(5px);
+            color: ${theme.colors.primary};
+          }
+        }
+      }
     }
   }
 
@@ -129,17 +190,6 @@ const BasketCardStyled = styled.div`
     &:active {
       color: ${theme.colors.white};
     }
-  }
-
-  .plus {
-    position: absolute;
-    left: 10px;
-    max-width: 30px;
-  }
-  .less {
-    position: absolute;
-    left: 50px;
-    max-width: 30px;
   }
 `;
 export default BasketCard;
