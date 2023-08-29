@@ -76,12 +76,9 @@ const BasketCardStyled = styled.div`
     align-items: center;
 
     .container-title-price {
-      justify-self: center;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
       width: 120px;
-
-      padding-bottom: 0.5rem;
 
       .title {
         font-family: ${theme.fontsFamily.amatic};
