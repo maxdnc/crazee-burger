@@ -9,12 +9,13 @@ import Footer from "./Footer";
 import BasketBody from "./BasketBody/BasketBody";
 import OrderContext from "../../../../../context/OrderContext";
 import { useContext } from "react";
+import { roundedNumber } from "../../../../../utils/maths";
 
 const Basket = () => {
   const { basketProducts } = useContext(OrderContext);
 
   const totalToPay = basketProducts.reduce((total, { price, quantity }) => {
-    total += price * quantity;
+    total += roundedNumber(price) * quantity;
     return total;
   }, 0);
 
