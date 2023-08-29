@@ -1,7 +1,19 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
+import { useContext } from "react";
+import OrderContext from "../../../../../../context/OrderContext";
+import { TbTrashXFilled } from "react-icons/tb";
 
-const BasketCard = ({ title, price, imageSource, quantity }) => {
+const BasketCard = ({
+  title,
+  price,
+  imageSource,
+  quantity,
+  deleteProduct,
+  incrementQuantity,
+  decrementQuantity,
+}) => {
+  const { isModeAdmin } = useContext(OrderContext);
   return (
     <BasketCardStyled>
       <div className="container-img">
@@ -14,6 +26,20 @@ const BasketCard = ({ title, price, imageSource, quantity }) => {
         </div>
         <p className="number-item">x {quantity}</p>
       </div>
+      {isModeAdmin && (
+        <button className="delete-button" onClick={deleteProduct}>
+          <span>
+            <TbTrashXFilled />
+          </span>
+        </button>
+      )}
+
+      <button className="plus" onClick={incrementQuantity}>
+        +
+      </button>
+      <button className="less" onClick={decrementQuantity}>
+        -
+      </button>
     </BasketCardStyled>
   );
 };
@@ -25,9 +51,16 @@ const BasketCardStyled = styled.div`
   align-items: center;
   box-shadow: ${theme.shadows.medium};
   border-radius: ${theme.borderRadius.round};
-
   height: 86px;
   padding: 0.5rem 1rem;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    .delete-button {
+      transform: translateX(0);
+    }
+  }
 
   .container-img {
     justify-self: center;
@@ -70,6 +103,44 @@ const BasketCardStyled = styled.div`
       color: ${theme.colors.primary};
       font-size: 0.9375rem;
     }
+  }
+
+  .delete-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 76px;
+    cursor: pointer;
+    border: none;
+    background-color: ${theme.colors.red};
+    color: ${theme.colors.white};
+    cursor: pointer;
+    transform-origin: right;
+    transform: translateX(100%);
+    transition: transform 0.2s ease-in-out, color ease-out 0.2s;
+    font-size: 1.5rem;
+
+    &:hover {
+      color: ${theme.colors.dark};
+    }
+    &:active {
+      color: ${theme.colors.white};
+    }
+  }
+
+  .plus {
+    position: absolute;
+    left: 10px;
+    max-width: 30px;
+  }
+  .less {
+    position: absolute;
+    left: 50px;
+    max-width: 30px;
   }
 `;
 export default BasketCard;
