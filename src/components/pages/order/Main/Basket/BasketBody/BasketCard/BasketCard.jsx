@@ -53,6 +53,8 @@ const BasketCardStyled = styled.div`
   padding: 0.5rem 1rem;
   position: relative;
   overflow: hidden;
+  max-width: 318px;
+  width: 100%;
 
   &:hover {
     .delete-button {
@@ -75,7 +77,8 @@ const BasketCardStyled = styled.div`
     .container-title-price {
       display: grid;
       grid-template-rows: repeat(2, 1fr);
-      width: 120px;
+      max-width: 120px;
+      width: 100%;
 
       .title {
         font-family: ${theme.fontsFamily.amatic};

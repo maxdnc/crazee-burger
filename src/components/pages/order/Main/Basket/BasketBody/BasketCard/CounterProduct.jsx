@@ -30,6 +30,7 @@ const CounterProductStyled = styled.div`
     margin: 0 auto;
     color: ${theme.colors.primary};
     font-size: 0.9375rem;
+    white-space: nowrap;
   }
 
   .counting-button {

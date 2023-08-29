@@ -69,10 +69,11 @@ const ProductsSelection = () => {
 };
 
 const ProductsSelectionStyled = styled.ul`
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 1.25rem;
   padding: 1.25rem 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(318px, 1fr));
   list-style: none;
   margin-left: 0;
 `;
