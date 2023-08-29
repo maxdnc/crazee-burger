@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BasketCard from "./BasketCard";
+import BasketCard from "./BasketCard/BasketCard";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext } from "react";
 import { formatPrice } from "../../../../../../utils/maths";
@@ -45,20 +45,20 @@ const ProductsSelection = () => {
 
   return (
     <ProductsSelectionStyled>
-      {basketProducts.map((product) => {
+      {basketProducts.map(({ id, title, price, imageSource, quantity }) => {
         return (
-          <li key={product.id}>
+          <li key={id}>
             <BasketCard
-              title={product.title}
-              price={formatPrice(product.price)}
-              imageSource={product.imageSource}
-              quantity={product.quantity}
-              deleteProduct={() => handleDeleteProduct(product.id)}
+              title={title}
+              price={formatPrice(price)}
+              imageSource={imageSource}
+              deleteProduct={() => handleDeleteProduct(id)}
+              quantity={quantity}
               incrementQuantity={() => {
-                handleIncrementQuantityProduct(product.id);
+                handleIncrementQuantityProduct(id);
               }}
               decrementQuantity={() => {
-                handleDecrementQuantityProduct(product.id);
+                handleDecrementQuantityProduct(id);
               }}
             />
           </li>
