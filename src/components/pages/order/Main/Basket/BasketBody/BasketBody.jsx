@@ -17,5 +17,7 @@ const BasketBody = () => {
 
 const BasketBodyStyled = styled.div`
   height: 100%;
+  max-height: min-content;
+  overflow-y: auto;
 `;
 export default BasketBody;
