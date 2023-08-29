@@ -4,6 +4,8 @@ import { useContext } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import { TbTrashXFilled } from "react-icons/tb";
 
+const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
+
 const BasketCard = ({
   title,
   price,
@@ -17,7 +19,7 @@ const BasketCard = ({
   return (
     <BasketCardStyled>
       <div className="container-img">
-        <img src={imageSource} alt={title} />
+        <img src={imageSource ? imageSource : IMAGE_BY_DEFAULT} alt={title} />
       </div>
       <div className="container-info">
         <div className="container-title-price">
