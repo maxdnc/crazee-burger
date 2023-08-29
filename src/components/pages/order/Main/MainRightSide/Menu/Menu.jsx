@@ -33,11 +33,14 @@ const Menu = () => {
     titleEditRef,
     basketProducts,
     setBasketProducts,
+    handleDeleteToBasket,
   } = useContext(OrderContext);
 
   const handleCardDelete = (event, idProductTodelete) => {
     event.stopPropagation();
     handleDeleteToMenu(idProductTodelete);
+    handleDeleteToBasket(idProductTodelete);
+
     if (idProductTodelete === selectedProduct.id) {
       setSelectedProduct(EMPTY_PRODUCT);
       titleEditRef.current.focus();

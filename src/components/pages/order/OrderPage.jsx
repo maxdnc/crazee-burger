@@ -9,6 +9,7 @@ import styled from "styled-components";
 
 import AdminContext from "../../../context/OrderContext.js";
 import { useMenuData } from "../../../hooks/useMenuData.js";
+import { deepCopy } from "../../../utils/array.js";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -29,6 +30,14 @@ const OrderPage = () => {
     setNewProduct,
   } = useMenuData();
 
+  const handleDeleteToBasket = (idBasketProduct) => {
+    const basketProductsCopy = deepCopy(basketProducts);
+    const basketProductsUpdated = basketProductsCopy.filter(
+      (basketProduct) => basketProduct.id !== idBasketProduct
+    );
+    setBasketProducts(basketProductsUpdated);
+  };
+
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -48,6 +57,7 @@ const OrderPage = () => {
     titleEditRef,
     basketProducts,
     setBasketProducts,
+    handleDeleteToBasket,
   };
 
   const { username } = useParams();
