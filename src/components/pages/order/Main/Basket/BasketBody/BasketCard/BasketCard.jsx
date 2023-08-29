@@ -2,9 +2,10 @@ import styled from "styled-components";
 import { theme } from "../../../../../../../theme";
 import { useContext } from "react";
 import OrderContext from "../../../../../../../context/OrderContext";
-//icon
-import { TbTrashXFilled } from "react-icons/tb";
+
+//component
 import CounterProduct from "./CounterProduct";
+import DeleteButton from "./DeleteButton";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
@@ -35,11 +36,7 @@ const BasketCard = ({
         />
       </div>
       {isModeAdmin && (
-        <button className="delete-button" onClick={deleteProduct}>
-          <span>
-            <TbTrashXFilled />
-          </span>
-        </button>
+        <DeleteButton className={"delete-button"} onClick={deleteProduct} />
       )}
     </BasketCardStyled>
   );
@@ -93,33 +90,6 @@ const BasketCardStyled = styled.div`
         color: ${theme.colors.primary};
         font-size: 0.9375rem;
       }
-    }
-  }
-
-  .delete-button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 76px;
-    cursor: pointer;
-    border: none;
-    background-color: ${theme.colors.red};
-    color: ${theme.colors.white};
-    cursor: pointer;
-    transform-origin: right;
-    transform: translateX(100%);
-    transition: transform 0.2s ease-in-out, color ease-out 0.2s;
-    font-size: 1.5rem;
-
-    &:hover {
-      color: ${theme.colors.dark};
-    }
-    &:active {
-      color: ${theme.colors.white};
     }
   }
 `;
