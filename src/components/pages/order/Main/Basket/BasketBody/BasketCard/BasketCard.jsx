@@ -42,9 +42,7 @@ const BasketCard = ({
           decrementQuantity={decrementQuantity}
         />
       </div>
-      {isModeAdmin && (
-        <DeleteButton className={"delete-button"} onClick={deleteProduct} />
-      )}
+      <DeleteButton className={"delete-button"} onClick={deleteProduct} />
     </BasketCardStyled>
   );
 };
