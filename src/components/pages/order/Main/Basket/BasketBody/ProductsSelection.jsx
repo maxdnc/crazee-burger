@@ -3,9 +3,9 @@ import BasketCard from "./BasketCard/BasketCard";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext } from "react";
 import { formatPrice } from "../../../../../../utils/maths";
-import { checkIfProductIsSelected } from "../../../../../../utils/helper";
-import { isProductSelected } from "../../../../../../utils/isProductSelected";
-import { findInArray } from "../../../../../../utils/array";
+import { checkIfSameProductIsSelected } from "../../../../../../utils/array";
+import { isAProductSelected } from "../../../../../../utils/array";
+import { findInArrayById } from "../../../../../../utils/array";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 const ProductsSelection = () => {
@@ -24,13 +24,16 @@ const ProductsSelection = () => {
 
   const handleClick = async (idSelectedProduct) => {
     const isSelectedProductSame =
-      isProductSelected(selectedProduct) &&
+      isAProductSelected(selectedProduct) &&
       selectedProduct.id === idSelectedProduct;
 
     if (isSelectedProductSame) {
       setSelectedProduct(EMPTY_PRODUCT);
     } else {
-      const selectedProduct = findInArray(basketProducts, idSelectedProduct);
+      const selectedProduct = findInArrayById(
+        basketProducts,
+        idSelectedProduct
+      );
 
       await setIsCollapsed(false);
       await setSelectedProduct(selectedProduct);
@@ -59,7 +62,7 @@ const ProductsSelection = () => {
         return (
           <li key={id}>
             <BasketCard
-              isSelected={checkIfProductIsSelected(id, selectedProduct.id)}
+              isSelected={checkIfSameProductIsSelected(id, selectedProduct.id)}
               isHoverable={isModeAdmin}
               onClick={isModeAdmin ? () => handleClick(id) : null}
               title={title}

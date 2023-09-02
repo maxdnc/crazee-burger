@@ -7,9 +7,9 @@ import { formatPrice } from "../../../../../../utils/maths.js";
 
 import OrderContext from "../../../../../../context/OrderContext.js";
 //helper
-import { checkIfProductIsSelected } from "./helper.js";
-import { isProductSelected } from "../../../../../../utils/isProductSelected.js";
-import { findInArray } from "../../../../../../utils/array";
+import { checkIfSameProductIsSelected } from "../../../../../../utils/array.js";
+import { isAProductSelected } from "../../../../../../utils/array.js";
+import { findInArrayById } from "../../../../../../utils/array";
 //components
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
@@ -47,13 +47,13 @@ const Menu = () => {
 
   const handleClick = async (idSelectedProduct) => {
     const isSelectedProductSame =
-      isProductSelected(selectedProduct) &&
+      isAProductSelected(selectedProduct) &&
       selectedProduct.id === idSelectedProduct;
 
     if (isSelectedProductSame) {
       setSelectedProduct(EMPTY_PRODUCT);
     } else {
-      const selectedProduct = findInArray(menuData, idSelectedProduct);
+      const selectedProduct = findInArrayById(menuData, idSelectedProduct);
 
       await setIsCollapsed(false);
       await setSelectedProduct(selectedProduct);
@@ -64,7 +64,7 @@ const Menu = () => {
 
   const handleAdd = (event, idClickedProduct) => {
     event.stopPropagation();
-    const productToAdd = findInArray(menuData, idClickedProduct);
+    const productToAdd = findInArrayById(menuData, idClickedProduct);
     handleAddToBasket(productToAdd);
   };
 
@@ -88,7 +88,7 @@ const Menu = () => {
               onDelete={(event) => handleCardDelete(event, id)}
               onClick={isModeAdmin ? () => handleClick(id) : null}
               isHoverable={isModeAdmin}
-              isSelected={checkIfProductIsSelected(id, selectedProduct.id)}
+              isSelected={checkIfSameProductIsSelected(id, selectedProduct.id)}
               onAdd={(event) => {
                 handleAdd(event, id);
               }}
