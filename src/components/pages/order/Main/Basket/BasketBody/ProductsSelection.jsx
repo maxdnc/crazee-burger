@@ -3,7 +3,6 @@ import BasketCard from "./BasketCard/BasketCard";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext } from "react";
 import { formatPrice } from "../../../../../../utils/maths";
-import { deepCopy, findInArray } from "../../../../../../utils/array";
 
 const ProductsSelection = () => {
   const {
