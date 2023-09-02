@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../../../../../../theme";
 import { useContext } from "react";
 import OrderContext from "../../../../../../../context/OrderContext";
@@ -17,10 +17,17 @@ const BasketCard = ({
   deleteProduct,
   incrementQuantity,
   decrementQuantity,
+  onClick,
+  isHoverable,
+  isSelected,
 }) => {
   const { isModeAdmin } = useContext(OrderContext);
   return (
-    <BasketCardStyled>
+    <BasketCardStyled
+      onClick={onClick}
+      $isHoverable={isHoverable}
+      $isSelected={isSelected}
+    >
       <div className="container-img">
         <img src={imageSource ? imageSource : IMAGE_BY_DEFAULT} alt={title} />
       </div>
@@ -95,5 +102,27 @@ const BasketCardStyled = styled.div`
       }
     }
   }
+  ${({ $isHoverable }) => $isHoverable && hoverableStyle};
+  ${({ $isHoverable, $isSelected }) =>
+    $isHoverable & $isSelected && selectedStyle}
 `;
+
+const selectedStyle = css`
+  background-color: ${theme.colors.primary};
+  .container-info {
+    .quantity {
+      color: ${theme.colors.white};
+    }
+    .container-title-price {
+      .price {
+        color: ${theme.colors.white};
+      }
+    }
+  }
+`;
+
+const hoverableStyle = css`
+  cursor: pointer;
+`;
+
 export default BasketCard;
