@@ -48,15 +48,24 @@ export const useBasketProduct = () => {
     );
 
     if (isProductAlreadyInBasket) {
-      const productIndex = findIndexById(basketProductsCopy, productToAdd.id);
-
-      basketProductsCopy[productIndex].quantity += 1;
-      setBasketProducts(basketProductsCopy);
+      handleIncrementQuantityProduct(productToAdd.id);
     } else {
-      const newBasketProduct = { ...productToAdd, quantity: 1 };
-      const basketProductUpdated = [newBasketProduct, ...basketProductsCopy];
-      setBasketProducts(basketProductUpdated);
+      addNewProductToBasket(
+        productToAdd,
+        basketProductsCopy,
+        setBasketProducts
+      );
     }
+  };
+
+  const addNewProductToBasket = (
+    productToAdd,
+    basketProductsCopy,
+    setBasketProducts
+  ) => {
+    const newBasketProduct = { id: productToAdd.id, quantity: 1 };
+    const basketProductUpdated = [newBasketProduct, ...basketProductsCopy];
+    setBasketProducts(basketProductUpdated);
   };
 
   return {

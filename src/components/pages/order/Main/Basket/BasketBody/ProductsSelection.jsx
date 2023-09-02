@@ -10,37 +10,15 @@ import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 const ProductsSelection = () => {
   const {
+    menuData,
     basketProducts,
     handleDeleteToBasket,
     handleIncrementQuantityProduct,
     handleDecrementQuantityProduct,
     isModeAdmin,
     selectedProduct,
-    setSelectedProduct,
-    setIsCollapsed,
-    setCurrentTabSelected,
-    titleEditRef,
+    handleProductSelected,
   } = useContext(OrderContext);
-
-  const handleClick = async (idSelectedProduct) => {
-    const isSelectedProductSame =
-      isAProductSelected(selectedProduct) &&
-      selectedProduct.id === idSelectedProduct;
-
-    if (isSelectedProductSame) {
-      setSelectedProduct(EMPTY_PRODUCT);
-    } else {
-      const selectedProduct = findInArrayById(
-        basketProducts,
-        idSelectedProduct
-      );
-
-      await setIsCollapsed(false);
-      await setSelectedProduct(selectedProduct);
-      await setCurrentTabSelected("edit");
-      titleEditRef.current.focus();
-    }
-  };
 
   const handleDelete = (event, idBasketProduct) => {
     event.stopPropagation();
@@ -56,25 +34,34 @@ const ProductsSelection = () => {
     event.stopPropagation();
     handleDecrementQuantityProduct(idBasketProduct);
   };
+
   return (
     <ProductsSelectionStyled>
-      {basketProducts.map(({ id, title, price, imageSource, quantity }) => {
+      {basketProducts.map((basketProducts) => {
+        const menuProduct = findInArrayById(menuData, basketProducts.id);
         return (
-          <li key={id}>
+          <li key={basketProducts.id}>
             <BasketCard
-              isSelected={checkIfSameProductIsSelected(id, selectedProduct.id)}
+              isSelected={checkIfSameProductIsSelected(
+                basketProducts.id,
+                selectedProduct.id
+              )}
               isHoverable={isModeAdmin}
-              onClick={isModeAdmin ? () => handleClick(id) : null}
-              title={title}
-              price={formatPrice(price)}
-              imageSource={imageSource}
-              deleteProduct={(event) => handleDelete(event, id)}
-              quantity={quantity}
+              onClick={
+                isModeAdmin
+                  ? () => handleProductSelected(basketProducts.id)
+                  : null
+              }
+              title={menuProduct.title}
+              price={formatPrice(menuProduct.price)}
+              imageSource={menuProduct.imageSource}
+              deleteProduct={(event) => handleDelete(event, basketProducts.id)}
+              quantity={basketProducts.quantity}
               incrementQuantity={(event) => {
-                handleIncrement(event, id);
+                handleIncrement(event, basketProducts.id);
               }}
               decrementQuantity={(event) => {
-                handleDecrement(event, id);
+                handleDecrement(event, basketProducts.id);
               }}
             />
           </li>

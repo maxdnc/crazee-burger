@@ -6,10 +6,13 @@ import Main from "./Main/Main.jsx";
 
 //style
 import styled from "styled-components";
-
 import AdminContext from "../../../context/OrderContext.js";
+
+//hooks
 import { useMenuData } from "../../../hooks/useMenuData.js";
 import { useBasketProduct } from "../../../hooks/useBasketProducts.js";
+//utils
+import { findInArrayById, isAProductSelected } from "../../../utils/array.js";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -38,6 +41,21 @@ const OrderPage = () => {
     handleAddToBasket,
   } = useBasketProduct();
 
+  const handleProductSelected = async (idSelectedProduct) => {
+    const isSelectedProductSame =
+      isAProductSelected(menuData) && menuData.id === idSelectedProduct;
+
+    if (isSelectedProductSame) {
+      setSelectedProduct(EMPTY_PRODUCT);
+    } else {
+      const selectedProduct = findInArrayById(menuData, idSelectedProduct);
+      await setIsCollapsed(false);
+      await setSelectedProduct(selectedProduct);
+      await setCurrentTabSelected("edit");
+      titleEditRef.current.focus();
+    }
+  };
+
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -61,6 +79,8 @@ const OrderPage = () => {
     handleDeleteToBasket,
     handleIncrementQuantityProduct,
     handleDecrementQuantityProduct,
+
+    handleProductSelected,
   };
 
   const { username } = useParams();

@@ -33,4 +33,6 @@ export default createContext({
   handleDeleteToBasket: () => {},
   handleIncrementQuantityProduct: () => {},
   handleDecrementQuantityProduct: () => {},
+
+  handleProductSelected: () => {},
 });
