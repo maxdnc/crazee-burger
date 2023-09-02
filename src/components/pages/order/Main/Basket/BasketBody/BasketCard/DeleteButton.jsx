@@ -18,7 +18,7 @@ const DeleteButtonStyled = styled.button`
   left: 0;
   top: 0;
   bottom: 0;
-  width: 33%;
+  width: calc(33% + 1rem);
   cursor: pointer;
   border: none;
   background-color: ${theme.colors.red};
