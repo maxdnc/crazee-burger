@@ -1,12 +1,15 @@
 import styled from "styled-components";
+//component
 import BasketCard from "./BasketCard/BasketCard";
+//context
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext } from "react";
+//utils
 import { formatPrice } from "../../../../../../utils/maths";
-import { checkIfSameProductIsSelected } from "../../../../../../utils/array";
-import { isAProductSelected } from "../../../../../../utils/array";
-import { findInArrayById } from "../../../../../../utils/array";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product";
+import {
+  checkIfSameProductIsSelected,
+  findInArrayById,
+} from "../../../../../../utils/array";
 
 const ProductsSelection = () => {
   const {

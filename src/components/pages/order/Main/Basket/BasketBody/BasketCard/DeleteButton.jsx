@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../../theme";
+//icon
 import { TbTrashXFilled } from "react-icons/tb";
+
 const DeleteButton = ({ onClick, className }) => {
   return (
     <DeleteButtonStyled className={className} onClick={onClick}>

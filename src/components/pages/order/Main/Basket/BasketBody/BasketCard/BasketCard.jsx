@@ -1,7 +1,5 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../../../../../../theme";
-import { useContext } from "react";
-import OrderContext from "../../../../../../../context/OrderContext";
 
 //component
 import CounterProduct from "./CounterProduct";
@@ -21,7 +19,6 @@ const BasketCard = ({
   isHoverable,
   isSelected,
 }) => {
-  const { isModeAdmin } = useContext(OrderContext);
   return (
     <BasketCardStyled
       onClick={onClick}
