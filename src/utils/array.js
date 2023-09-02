@@ -14,8 +14,9 @@ export const removeInArrayById = (array, idItemToRemove) => {
   return array.filter((itemToRemove) => itemToRemove.id !== idItemToRemove);
 };
 
+import { EMPTY_PRODUCT } from "../enums/product";
 export const isAProductSelected = (product) => {
-  if (product.length !== 0) return true;
+  if (product !== EMPTY_PRODUCT) return true;
   else {
     return false;
   }
