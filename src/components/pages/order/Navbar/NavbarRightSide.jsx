@@ -14,7 +14,7 @@ import OrderContext from "../../../../context/OrderContext";
 
 //helper
 
-import { isProductSelected } from "../../../../utils/isProductSelected";
+import { isAProductSelected } from "../../../../utils/array";
 
 const NavbarRightSide = ({ username }) => {
   const {
@@ -35,7 +35,7 @@ const NavbarRightSide = ({ username }) => {
     displayToastAdminModeNotify();
     setIsModeAdmin(!isModeAdmin);
 
-    if (isProductSelected(selectedProduct)) {
+    if (isAProductSelected(selectedProduct)) {
       setIsCollapsed(false);
       setCurrentTabSelected("edit");
     } else {

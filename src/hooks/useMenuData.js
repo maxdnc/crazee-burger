@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 //utils
-import { deepCopy } from "../utils/array";
+import { deepCopy, removeInArrayById } from "../utils/array";
 //data
 import { fakeMenu } from "../fakeData/fakeMenu";
 
@@ -22,9 +22,7 @@ export const useMenuData = () => {
   const handleDeleteToMenu = (idProductToDelete) => {
     const menuDataCopy = deepCopy(menuData);
 
-    const menuUpdated = menuDataCopy.filter(
-      (product) => product.id !== idProductToDelete
-    );
+    const menuUpdated = removeInArrayById(menuDataCopy, idProductToDelete);
     setMenuData(menuUpdated);
   };
 

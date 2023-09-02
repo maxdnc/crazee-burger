@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../../theme";
+//icon
 import { TbTrashXFilled } from "react-icons/tb";
+
 const DeleteButton = ({ onClick, className }) => {
   return (
     <DeleteButtonStyled className={className} onClick={onClick}>
@@ -25,7 +27,7 @@ const DeleteButtonStyled = styled.button`
   color: ${theme.colors.white};
   cursor: pointer;
   transform-origin: left;
-  transform: translateX(-100%);
+  transform: translateX(-105%);
   transition: transform 0.2s ease-out, color ease-out 0.2s;
   font-size: 1.5rem;
 
@@ -34,6 +36,9 @@ const DeleteButtonStyled = styled.button`
   }
   &:active {
     color: ${theme.colors.white};
+  }
+  &:focus {
+    transform: translateX(0%);
   }
 `;
 export default DeleteButton;

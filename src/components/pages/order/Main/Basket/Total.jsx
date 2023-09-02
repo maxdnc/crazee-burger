@@ -1,11 +1,27 @@
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 
-const Total = ({ totalAmount }) => {
+//context
+import { useContext } from "react";
+import OrderContext from "../../../../../context/OrderContext";
+
+//ultils
+import { formatPrice, roundedNumber } from "../../../../../utils/maths";
+import { findInArrayById } from "../../../../../utils/array";
+
+const Total = () => {
+  const { basketProducts, menuData } = useContext(OrderContext);
+
+  const totalToPay = basketProducts.reduce((total, basketProduct) => {
+    const productInfo = findInArrayById(menuData, basketProduct.id);
+    total += roundedNumber(productInfo.price) * basketProduct.quantity;
+    return total;
+  }, 0);
+
   return (
     <TotalStyled>
       <p>total</p>
-      <p>{totalAmount}</p>
+      <p>{formatPrice(totalToPay)}</p>
     </TotalStyled>
   );
 };

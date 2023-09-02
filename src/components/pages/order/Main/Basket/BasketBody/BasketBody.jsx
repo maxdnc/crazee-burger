@@ -1,7 +1,8 @@
 import { styled } from "styled-components";
-
+//component
 import EmptyBasket from "./EmptyBasket";
 import ProductsSelection from "./ProductsSelection";
+//content
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext } from "react";
 

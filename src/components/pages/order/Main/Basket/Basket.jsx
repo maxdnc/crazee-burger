@@ -1,27 +1,16 @@
 //style
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-//utils
-import { formatPrice } from "../../../../../utils/maths";
+
 //component
 import Total from "./Total.jsx";
 import Footer from "./Footer";
 import BasketBody from "./BasketBody/BasketBody";
-import OrderContext from "../../../../../context/OrderContext";
-import { useContext } from "react";
-import { roundedNumber } from "../../../../../utils/maths";
 
 const Basket = () => {
-  const { basketProducts } = useContext(OrderContext);
-
-  const totalToPay = basketProducts.reduce((total, { price, quantity }) => {
-    total += roundedNumber(price) * quantity;
-    return total;
-  }, 0);
-
   return (
     <BasketStyled>
-      <Total totalAmount={formatPrice(totalToPay)} />
+      <Total />
       <BasketBody />
       <Footer />
     </BasketStyled>

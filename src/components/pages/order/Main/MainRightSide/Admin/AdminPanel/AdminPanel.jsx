@@ -3,11 +3,11 @@ import OrderContext from "../../../../../../../context/OrderContext";
 import styled from "styled-components";
 import { theme } from "../../../../../../../theme";
 import { getTabSelected, getTabsConfig } from "../tabsConfig";
-import { isProductSelected } from "../../../../../../../utils/isProductSelected";
+import { isAProductSelected } from "../../../../../../../utils/array";
 
 const AdminPanel = () => {
   const { currentTabSelected, selectedProduct } = useContext(OrderContext);
-  const tabs = getTabsConfig(isProductSelected(selectedProduct));
+  const tabs = getTabsConfig(isAProductSelected(selectedProduct));
   const tabSelected = getTabSelected(tabs, currentTabSelected);
 
   return <AdminPanelStyled>{tabSelected.Content}</AdminPanelStyled>;

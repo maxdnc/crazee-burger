@@ -1,37 +1,39 @@
 import { useState } from "react";
-import { deepCopy, findInArray } from "../utils/array";
+import {
+  deepCopy,
+  findInArrayById,
+  findIndexById,
+  removeInArrayById,
+} from "../utils/array";
 
 export const useBasketProduct = () => {
   const [basketProducts, setBasketProducts] = useState([]);
 
   const handleDeleteToBasket = (idBasketProduct) => {
-    const basketProductsCopy = deepCopy(basketProducts);
-    const basketProductsUpdated = basketProductsCopy.filter(
-      (basketProduct) => basketProduct.id !== idBasketProduct
+    const basketProductsUpdated = removeInArrayById(
+      basketProducts,
+      idBasketProduct
     );
     setBasketProducts(basketProductsUpdated);
   };
 
   const handleIncrementQuantityProduct = (idBasketProduct) => {
     const basketProductsCopy = deepCopy(basketProducts);
-    const productIndex = basketProductsCopy.findIndex(
-      (basketProduct) => basketProduct.id === idBasketProduct
-    );
+    const productIndex = findIndexById(basketProductsCopy, idBasketProduct);
     basketProductsCopy[productIndex].quantity += 1;
     setBasketProducts(basketProductsCopy);
   };
 
   const handleDecrementQuantityProduct = (idBasketProduct) => {
     const basketProductsCopy = deepCopy(basketProducts);
-    const productIndex = basketProductsCopy.findIndex(
-      (basketProduct) => basketProduct.id === idBasketProduct
-    );
+    const productIndex = findIndexById(basketProductsCopy, idBasketProduct);
     basketProductsCopy[productIndex].quantity -= 1;
     setBasketProducts(basketProductsCopy);
 
     if (basketProductsCopy[productIndex].quantity < 1) {
-      const basketProductUpdated = basketProductsCopy.filter(
-        (product) => product.id !== idBasketProduct
+      const basketProductUpdated = removeInArrayById(
+        basketProductsCopy,
+        idBasketProduct
       );
       setBasketProducts(basketProductUpdated);
     }
@@ -39,23 +41,30 @@ export const useBasketProduct = () => {
 
   const handleAddToBasket = (productToAdd) => {
     const basketProductsCopy = deepCopy(basketProducts);
-    const isProductAlreadyInBasket = findInArray(
+    const isProductAlreadyInBasket = findInArrayById(
       basketProductsCopy,
       productToAdd.id
     );
 
     if (isProductAlreadyInBasket) {
-      const productIndex = basketProductsCopy.findIndex(
-        (product) => product.id === productToAdd.id
-      );
-
-      basketProductsCopy[productIndex].quantity += 1;
-      setBasketProducts(basketProductsCopy);
+      handleIncrementQuantityProduct(productToAdd.id);
     } else {
-      const newBasketProduct = { ...productToAdd, quantity: 1 };
-      const basketProductUpdated = [newBasketProduct, ...basketProductsCopy];
-      setBasketProducts(basketProductUpdated);
+      addNewProductToBasket(
+        productToAdd,
+        basketProductsCopy,
+        setBasketProducts
+      );
     }
+  };
+
+  const addNewProductToBasket = (
+    productToAdd,
+    basketProductsCopy,
+    setBasketProducts
+  ) => {
+    const newBasketProduct = { id: productToAdd.id, quantity: 1 };
+    const basketProductUpdated = [newBasketProduct, ...basketProductsCopy];
+    setBasketProducts(basketProductUpdated);
   };
 
   return {
