@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Card from "../../../../../reusable-ui/Card.jsx";
 import styled from "styled-components";
 
@@ -9,6 +9,7 @@ import OrderContext from "../../../../../../context/OrderContext.js";
 //helper
 import { checkIfProductIsSelected } from "./helper.js";
 import { isProductSelected } from "../../../../../../utils/isProductSelected.js";
+import { findInArray } from "../../../../../../utils/array";
 //components
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
@@ -29,11 +30,15 @@ const Menu = () => {
     setIsCollapsed,
     setCurrentTabSelected,
     titleEditRef,
+    handleDeleteToBasket,
+    handleAddToBasket,
   } = useContext(OrderContext);
 
   const handleCardDelete = (event, idProductTodelete) => {
     event.stopPropagation();
     handleDeleteToMenu(idProductTodelete);
+    handleDeleteToBasket(idProductTodelete);
+
     if (idProductTodelete === selectedProduct.id) {
       setSelectedProduct(EMPTY_PRODUCT);
       titleEditRef.current.focus();
@@ -48,15 +53,19 @@ const Menu = () => {
     if (isSelectedProductSame) {
       setSelectedProduct(EMPTY_PRODUCT);
     } else {
-      const selectedProduct = menuData.find(
-        (product) => product.id === idSelectedProduct
-      );
+      const selectedProduct = findInArray(menuData, idSelectedProduct);
 
       await setIsCollapsed(false);
       await setSelectedProduct(selectedProduct);
       await setCurrentTabSelected("edit");
       titleEditRef.current.focus();
     }
+  };
+
+  const handleAdd = (event, idClickedProduct) => {
+    event.stopPropagation();
+    const productToAdd = findInArray(menuData, idClickedProduct);
+    handleAddToBasket(productToAdd);
   };
 
   if (menuData.length === 0) {
@@ -77,9 +86,12 @@ const Menu = () => {
               labelButton={"Add Item"}
               hasDeleteButton={isModeAdmin}
               onDelete={(event) => handleCardDelete(event, id)}
-              onClick={isModeAdmin ? () => handleClick(id) : undefined}
+              onClick={isModeAdmin ? () => handleClick(id) : null}
               isHoverable={isModeAdmin}
               isSelected={checkIfProductIsSelected(id, selectedProduct.id)}
+              onAdd={(event) => {
+                handleAdd(event, id);
+              }}
             />
           </li>
         );

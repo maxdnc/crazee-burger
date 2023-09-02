@@ -26,9 +26,7 @@ const ButtonStyled = styled.button`
     background-color: ${theme.colors.white};
     color: ${theme.colors.primary};
   }
-  &:focus {
-    border-color: ${theme.colors.white};
-  }
+
   &:active {
     border-color: ${theme.colors.white};
     background-color: ${theme.colors.primary};
@@ -45,6 +43,9 @@ const extraStyleNormal = css`
   padding: 1.125rem 1.5rem;
   color: ${theme.colors.white};
   font-size: ${theme.fonts.P0};
+  &:focus {
+    border-color: ${theme.colors.primary};
+  }
 `;
 
 const extraStyleSuccess = css`

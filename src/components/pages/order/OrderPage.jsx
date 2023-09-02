@@ -9,11 +9,13 @@ import styled from "styled-components";
 
 import AdminContext from "../../../context/OrderContext.js";
 import { useMenuData } from "../../../hooks/useMenuData.js";
+import { useBasketProduct } from "../../../hooks/useBasketProducts.js";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
+
   const titleEditRef = useRef();
 
   const {
@@ -27,6 +29,14 @@ const OrderPage = () => {
     newProduct,
     setNewProduct,
   } = useMenuData();
+
+  const {
+    handleDeleteToBasket,
+    handleIncrementQuantityProduct,
+    handleDecrementQuantityProduct,
+    basketProducts,
+    handleAddToBasket,
+  } = useBasketProduct();
 
   const orderContextValue = {
     isModeAdmin,
@@ -45,6 +55,12 @@ const OrderPage = () => {
     setNewProduct,
     handleEditToMenu,
     titleEditRef,
+    basketProducts,
+
+    handleAddToBasket,
+    handleDeleteToBasket,
+    handleIncrementQuantityProduct,
+    handleDecrementQuantityProduct,
   };
 
   const { username } = useParams();
