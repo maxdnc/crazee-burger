@@ -10,9 +10,8 @@ export const useBasketProduct = () => {
   const [basketProducts, setBasketProducts] = useState([]);
 
   const handleDeleteToBasket = (idBasketProduct) => {
-    const basketProductsCopy = deepCopy(basketProducts);
     const basketProductsUpdated = removeInArrayById(
-      basketProductsCopy,
+      basketProducts,
       idBasketProduct
     );
     setBasketProducts(basketProductsUpdated);
