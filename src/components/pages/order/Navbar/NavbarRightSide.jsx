@@ -49,8 +49,10 @@ const NavbarRightSide = ({ username }) => {
   return (
     <NavbarRightSideStyled>
       <ToggleButton
+        onClick={handleToggleAdminMode}
         onToggle={handleToggleAdminMode}
         icon={isModeAdmin ? <FaUnlock /> : <FaLock />}
+        isChecked={isModeAdmin}
       />
       <Profil username={username} />
     </NavbarRightSideStyled>

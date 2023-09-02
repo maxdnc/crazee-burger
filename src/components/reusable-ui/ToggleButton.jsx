@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 import { devices } from "../../enums/devices";
 
-export default function ToggleButton({ isChecked, onToggle, icon }) {
+export default function ToggleButton({ isChecked, onToggle, icon, onClick }) {
   return (
     <ToggleButtonStyled>
-      <p>{icon}</p>
+      <button onClick={onClick}>{icon}</button>
       <div className="btn-wrap">
         <input
           type="checkbox"
@@ -26,7 +26,10 @@ const ToggleButtonStyled = styled.div`
   text-transform: uppercase;
   gap: 1rem;
 
-  p {
+  button {
+    background: none;
+    cursor: pointer;
+    border: none;
     font-size: 1.5rem;
     color: ${theme.colors.primary};
   }
@@ -40,6 +43,9 @@ const ToggleButtonStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media ${devices.sm} {
+      display: none;
+    }
 
     &::before {
       content: "";
