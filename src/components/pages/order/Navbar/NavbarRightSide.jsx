@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 //components
 import ToggleButton from "../../../reusable-ui/ToggleButton";
 import Profil from "../Profil";
@@ -8,13 +8,16 @@ import { toastAdminModeNotify } from "../../../../utils/toast";
 
 //style
 import styled from "styled-components";
+import { devices } from "../../../../enums/devices";
 
 //Context
 import OrderContext from "../../../../context/OrderContext";
 
 //helper
-
 import { isAProductSelected } from "../../../../utils/array";
+
+//icon
+import { FaLock, FaUnlock } from "react-icons/fa";
 
 const NavbarRightSide = ({ username }) => {
   const {
@@ -46,9 +49,8 @@ const NavbarRightSide = ({ username }) => {
   return (
     <NavbarRightSideStyled>
       <ToggleButton
-        labelIfChecked="Disable Admin Mode"
-        labelIfUnchecked="Enable Admin Mode"
         onToggle={handleToggleAdminMode}
+        icon={isModeAdmin ? <FaUnlock /> : <FaLock />}
       />
       <Profil username={username} />
     </NavbarRightSideStyled>
@@ -59,8 +61,8 @@ const NavbarRightSideStyled = styled.div`
   gap: 3.75rem;
   align-items: center;
 
-  .profil {
-    background: tomato;
+  @media ${devices.lg} {
+    gap: 2rem;
   }
 `;
 
