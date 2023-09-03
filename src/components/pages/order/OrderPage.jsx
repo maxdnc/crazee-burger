@@ -2,11 +2,12 @@ import { Outlet, useParams } from "react-router-dom";
 import { useState, useRef } from "react";
 //components
 import { Navbar } from "./Navbar/Navbar.jsx";
-import Main from "./Main/Main.jsx";
 
 //style
 import styled from "styled-components";
 import AdminContext from "../../../context/OrderContext.js";
+//enums
+import { EMPTY_PRODUCT } from "../../../enums/product.js";
 
 //hooks
 import { useMenuData } from "../../../hooks/useMenuData.js";
@@ -45,7 +46,8 @@ const OrderPage = () => {
 
   const handleProductSelected = async (idSelectedProduct) => {
     const isSelectedProductSame =
-      isAProductSelected(menuData) && menuData.id === idSelectedProduct;
+      isAProductSelected(selectedProduct) &&
+      selectedProduct.id === idSelectedProduct;
 
     if (isSelectedProductSame) {
       setSelectedProduct(EMPTY_PRODUCT);

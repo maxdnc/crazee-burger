@@ -8,7 +8,6 @@ import { formatPrice } from "../../../../../../utils/maths.js";
 import OrderContext from "../../../../../../context/OrderContext.js";
 //helper
 import { checkIfSameProductIsSelected } from "../../../../../../utils/array.js";
-import { isAProductSelected } from "../../../../../../utils/array.js";
 import { findInArrayById } from "../../../../../../utils/array";
 //components
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
@@ -40,7 +39,7 @@ const Menu = () => {
 
     if (idProductTodelete === selectedProduct.id) {
       setSelectedProduct(EMPTY_PRODUCT);
-      // titleEditRef.current.focus();
+      titleEditRef.current.focus();
     }
   };
 
@@ -90,7 +89,7 @@ const MenuStyled = styled.ul`
   list-style: none;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-
+  padding-bottom: 3rem;
   margin: 0 auto;
   margin-block: 3rem;
   display: grid;
