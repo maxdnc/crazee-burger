@@ -5,7 +5,7 @@ import { theme } from "../../../../../../../theme";
 export default function HintMessage() {
   return (
     <HintMessageStyled>
-      <span className="hint">Cliquer sur un produit pour le modifier</span>
+      <span className="hint">Edit a product by clicking on it</span>
       <HiCursorClick />
     </HintMessageStyled>
   );

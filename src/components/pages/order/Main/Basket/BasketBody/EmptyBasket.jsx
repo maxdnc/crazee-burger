@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 
 const EmptyBasket = () => {
-  return <EmptyBasketStyled>Votre commande est vide</EmptyBasketStyled>;
+  return <EmptyBasketStyled>Your basket is empty</EmptyBasketStyled>;
 };
 
 const EmptyBasketStyled = styled.p`

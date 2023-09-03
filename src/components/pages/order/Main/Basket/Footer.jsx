@@ -24,7 +24,7 @@ const Footer = () => {
       >
         <IoMdExit />
       </button>
-      <p>Codé avec ♥️ et React.JS </p>
+      <p>Coded with ❤️ and React.JS</p>
     </FooterStyled>
   );
 };
