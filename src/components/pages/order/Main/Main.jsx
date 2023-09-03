@@ -31,7 +31,6 @@ const MainStyled = styled.main`
     align-items: start;
     max-width: 1440px;
     margin: 0 auto;
-    height: 100%;
   }
 `;
 export default Main;
