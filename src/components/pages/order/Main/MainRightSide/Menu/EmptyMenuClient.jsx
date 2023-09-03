@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
+import { devices } from "../../../../../../enums/devices";
+import OrderContext from "../../../../../../context/OrderContext";
+import { useContext } from "react";
 
 const EmptyMenuClient = () => {
   return (
@@ -19,7 +22,14 @@ const EmptyMenuClientStyled = styled.div`
   gap: 1.25rem;
   height: 100%;
   padding-bottom: 5%;
-  min-height: calc(100vh - 108px - 47px);
+  min-height: calc(100dvh - 108px - 47px);
+
+  @media ${devices.lg} {
+    min-height: calc(100dvh - 92px - 47px);
+  }
+  @media ${devices.md} {
+    min-height: calc(100dvh - 76px - 47px);
+  }
 
   .title,
   .description {
@@ -37,4 +47,5 @@ const EmptyMenuClientStyled = styled.div`
     font-size: ${theme.fonts.P4};
   }
 `;
+
 export default EmptyMenuClient;

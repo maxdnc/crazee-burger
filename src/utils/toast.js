@@ -4,7 +4,7 @@ export const toastAdminModeNotify = () => {
   toast.info("Admin Mode Activated", {
     theme: "dark",
     position: "bottom-right",
-    autoClose: 5000,
+    autoClose: 2300,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,

@@ -6,6 +6,7 @@ import { BsPersonCircle } from "react-icons/bs";
 //style
 import styled from "styled-components";
 import { theme } from "../../../theme";
+import { devices } from "../../../enums/devices";
 
 const Profil = ({ username }) => {
   return (
@@ -50,6 +51,9 @@ const ProfilStyled = styled.div`
   .picture-user {
     font-size: ${theme.fonts.P4};
     color: ${theme.colors.greyBlue};
+    @media ${devices.sm} {
+      display: none;
+    }
   }
   button {
     background: none;

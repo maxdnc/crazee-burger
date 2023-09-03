@@ -13,6 +13,7 @@ import { useContext } from "react";
 // config
 import { getTabsConfig } from "./tabsConfig";
 import { theme } from "../../../../../../theme/index.js";
+import { devices } from "../../../../../../enums/devices.js";
 
 const AdminTabs = () => {
   const {
@@ -61,6 +62,11 @@ const AdminTabsStyled = styled.div`
   }
   & > :last-child {
     border-top-right-radius: ${theme.borderRadius.extraRound};
+  }
+
+  @media ${devices.md} {
+    padding-left: 0;
+    justify-content: center;
   }
 `;
 export default AdminTabs;

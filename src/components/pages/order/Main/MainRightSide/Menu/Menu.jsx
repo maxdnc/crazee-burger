@@ -8,7 +8,6 @@ import { formatPrice } from "../../../../../../utils/maths.js";
 import OrderContext from "../../../../../../context/OrderContext.js";
 //helper
 import { checkIfSameProductIsSelected } from "../../../../../../utils/array.js";
-import { isAProductSelected } from "../../../../../../utils/array.js";
 import { findInArrayById } from "../../../../../../utils/array";
 //components
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
@@ -90,13 +89,13 @@ const MenuStyled = styled.ul`
   list-style: none;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-
+  padding-bottom: 3rem;
   margin: 0 auto;
   margin-block: 3rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 5rem;
-  min-height: calc(100vh - 108px - 47px - 6rem);
+  min-height: calc(100dvh - 108px - 47px - 6rem);
 
   li {
     margin: 0 auto;

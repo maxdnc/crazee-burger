@@ -1,12 +1,13 @@
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { useState, useRef } from "react";
 //components
 import { Navbar } from "./Navbar/Navbar.jsx";
-import Main from "./Main/Main.jsx";
 
 //style
 import styled from "styled-components";
 import AdminContext from "../../../context/OrderContext.js";
+//enums
+import { EMPTY_PRODUCT } from "../../../enums/product.js";
 
 //hooks
 import { useMenuData } from "../../../hooks/useMenuData.js";
@@ -18,6 +19,8 @@ const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [isBasketSmallDevicesActive, setIsBasketSmallDevicesActive] =
+    useState(false);
 
   const titleEditRef = useRef();
 
@@ -43,7 +46,8 @@ const OrderPage = () => {
 
   const handleProductSelected = async (idSelectedProduct) => {
     const isSelectedProductSame =
-      isAProductSelected(menuData) && menuData.id === idSelectedProduct;
+      isAProductSelected(selectedProduct) &&
+      selectedProduct.id === idSelectedProduct;
 
     if (isSelectedProductSame) {
       setSelectedProduct(EMPTY_PRODUCT);
@@ -81,6 +85,9 @@ const OrderPage = () => {
     handleDecrementQuantityProduct,
 
     handleProductSelected,
+
+    isBasketSmallDevicesActive,
+    setIsBasketSmallDevicesActive,
   };
 
   const { username } = useParams();
@@ -89,7 +96,7 @@ const OrderPage = () => {
     <AdminContext.Provider value={orderContextValue}>
       <OrderPageStyled>
         <Navbar username={username} />
-        <Main />
+        <Outlet />
       </OrderPageStyled>
     </AdminContext.Provider>
   );
@@ -98,10 +105,9 @@ const OrderPage = () => {
 const OrderPageStyled = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: start;
   overflow: hidden;
-  height: 100vh;
+  height: 100dvh;
 `;
 
 export default OrderPage;

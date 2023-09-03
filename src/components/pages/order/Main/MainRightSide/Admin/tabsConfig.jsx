@@ -7,13 +7,13 @@ import HintMessage from "./AdminPanel/HintMessage";
 export const getTabsConfig = (isProductSelected) => [
   {
     index: "add",
-    label: "Add product",
+    label: "Add",
     Icon: <AiOutlinePlus />,
     Content: <AddForm />,
   },
   {
     index: "edit",
-    label: "Edit product",
+    label: "Edit ",
     Icon: <MdModeEditOutline />,
     Content: isProductSelected ? <EditForm /> : <HintMessage />,
   },

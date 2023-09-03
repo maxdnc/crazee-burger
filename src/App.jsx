@@ -1,6 +1,7 @@
 import LoginPage from "./components/pages/login/LoginPage.jsx";
 import OrderPage from "./components/pages/order/OrderPage.jsx";
 import ErrorPage from "./components/pages/error/ErrorPage.jsx";
+import Main from "./components/pages/order/Main/Main.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -18,6 +19,12 @@ const router = createBrowserRouter([
   {
     path: "/order/:username",
     element: <OrderPage />,
+    children: [
+      {
+        index: true,
+        element: <Main />,
+      },
+    ],
   },
   {
     path: "*",

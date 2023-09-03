@@ -11,6 +11,7 @@ import Form from "./Form.jsx";
 import SubmitMessage from "./SubmitMessage";
 //style
 import { styled } from "styled-components";
+import { devices } from "../../../../../../../enums/devices";
 
 const AddForm = () => {
   const { handleAddToMenu, newProduct, setNewProduct } =
@@ -40,7 +41,7 @@ const AddForm = () => {
       onChange={handleChange}
     >
       <FormFooterStyled>
-        <Button label={"Add new product to the menu"} version="success" />
+        <Button label={"Add New Product"} version="success" />
         {isSubmitted && <SubmitMessage />}
       </FormFooterStyled>
     </Form>
@@ -50,6 +51,13 @@ const AddForm = () => {
 const FormFooterStyled = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  @media ${devices.md} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
 `;
 
 export default AddForm;

@@ -35,4 +35,7 @@ export default createContext({
   handleDecrementQuantityProduct: () => {},
 
   handleProductSelected: () => {},
+
+  isBasketSmallDevicesActive: false,
+  setIsBasketSmallDevicesActive: () => {},
 });

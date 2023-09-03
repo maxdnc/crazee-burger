@@ -6,6 +6,7 @@ import { getTextInputsConfig } from "./textInputsConfig";
 //component
 import TextInput from "../../../../../../reusable-ui/TextInput.jsx";
 import ImagePreview from "./ImagePreview";
+import { devices } from "../../../../../../../enums/devices";
 
 const Form = React.forwardRef(
   ({ productData, onChange, onSubmit, children }, ref) => {
@@ -47,11 +48,24 @@ const FormStyled = styled.form`
     row-gap: 0.5rem;
     width: 100%;
     grid-area: 1 / 2 / 4 / 3;
+    @media ${devices.md} {
+      grid-area: unset;
+    }
   }
 
   .form-footer {
     grid-area: 4 / 2 / 5 / 3;
     margin-top: 0.5rem;
+    @media ${devices.md} {
+      grid-area: unset;
+    }
+  }
+
+  @media ${devices.md} {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2rem;
   }
 `;
 export default Form;
