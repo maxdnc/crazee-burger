@@ -1,3 +1,4 @@
+import { devices } from "../../../enums/devices";
 import Logo from "../../reusable-ui/Logo";
 import LoginForm from "./LoginForm";
 import styled from "styled-components";
@@ -17,7 +18,7 @@ const LoginPageStyled = styled.div`
   gap: 5rem;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100dvh;
   position: relative;
   z-index: 0;
 
@@ -32,6 +33,12 @@ const LoginPageStyled = styled.div`
   }
   .logo-login-page {
     transform: scale(2.5);
+    @media ${devices.md} {
+      transform: scale(1.5);
+    }
+    @media ${devices.sm} {
+      transform: scale(1.25);
+    }
   }
 `;
 

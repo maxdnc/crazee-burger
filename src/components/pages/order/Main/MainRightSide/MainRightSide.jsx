@@ -17,5 +17,6 @@ const MainRightSide = () => {
 
 const MainRightSideStyled = styled.div`
   flex: 1;
+  height: 100%;
 `;
 export default MainRightSide;

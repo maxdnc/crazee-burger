@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../../theme";
+import { devices } from "../../../../../../../enums/devices";
 
 const ImagePreview = ({ imageSource, title }) => {
   return (
@@ -20,12 +21,22 @@ const ImagePreviewStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media ${devices.md} {
+    grid-area: 1/1/2/2;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
 
   img {
     width: 100px;
     height: 100px;
     object-fit: contain;
     object-position: center center;
+    @media ${devices.md} {
+      width: 150px;
+      height: 150px;
+    }
   }
   .empty-image {
     border: 1px solid ${theme.colors.greyLight};

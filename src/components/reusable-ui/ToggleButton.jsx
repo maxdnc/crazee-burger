@@ -30,8 +30,12 @@ const ToggleButtonStyled = styled.div`
     background: none;
     cursor: pointer;
     border: none;
+    padding: unset;
     font-size: 1.5rem;
     color: ${theme.colors.primary};
+    @media ${devices.sm} {
+      font-size: 1.2rem;
+    }
   }
   .btn-wrap {
     position: relative;

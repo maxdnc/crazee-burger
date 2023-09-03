@@ -1,11 +1,16 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../../../../../theme";
 
 import Button from "../../../../../reusable-ui/Button.jsx";
+import { devices } from "../../../../../../enums/devices";
+import OrderContext from "../../../../../../context/OrderContext";
+import { useContext } from "react";
 
 const EmptyMenuAdmin = ({ onClick }) => {
+  const { isCollapsed } = useContext(OrderContext);
+
   return (
-    <EmptyMenuAdminStyled>
+    <EmptyMenuAdminStyled $isCollapsed={!isCollapsed}>
       <p className="title">Is the menu empty ?</p>
       <p className="description">Click below to reset it</p>
       <Button label={"Generate new products"} onClick={onClick} />
@@ -19,8 +24,15 @@ const EmptyMenuAdminStyled = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1.25rem;
+  min-height: calc(100dvh - 108px - 47px);
+  ${({ $isCollapsed }) => $isCollapsed && isCollapsedStyle};
 
-  min-height: calc(100vh - 108px - 47px);
+  @media ${devices.lg} {
+    min-height: calc(100dvh - 92px - 47px);
+  }
+  @media ${devices.md} {
+    min-height: calc(100dvh - 76px - 47px);
+  }
 
   .title,
   .description {
@@ -43,5 +55,9 @@ const EmptyMenuAdminStyled = styled.div`
     font-size: ${theme.fonts.XS};
     width: auto;
   }
+`;
+
+const isCollapsedStyle = css`
+  min-height: calc(100dvh - 92px - 47px - 250px - 1rem);
 `;
 export default EmptyMenuAdmin;

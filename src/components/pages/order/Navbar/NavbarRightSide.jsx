@@ -18,6 +18,7 @@ import { isAProductSelected } from "../../../../utils/array";
 
 //icon
 import { FaLock, FaUnlock } from "react-icons/fa";
+import BasketMenu from "./BasketMenu";
 
 const NavbarRightSide = ({ username }) => {
   const {
@@ -48,6 +49,8 @@ const NavbarRightSide = ({ username }) => {
 
   return (
     <NavbarRightSideStyled>
+      <BasketMenu />
+
       <ToggleButton
         onClick={handleToggleAdminMode}
         onToggle={handleToggleAdminMode}
@@ -65,6 +68,9 @@ const NavbarRightSideStyled = styled.div`
 
   @media ${devices.lg} {
     gap: 2rem;
+  }
+  @media ${devices.sm} {
+    gap: 1.5rem;
   }
 `;
 

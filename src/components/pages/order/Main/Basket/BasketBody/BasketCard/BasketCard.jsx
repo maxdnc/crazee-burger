@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../../../../../../theme";
+import { devices } from "../../../../../../../enums/devices";
 
 //component
 import CounterProduct from "./CounterProduct";
@@ -57,6 +58,10 @@ const BasketCardStyled = styled.div`
   overflow: hidden;
   max-width: 318px;
   width: 100%;
+
+  @media ${devices.lg} {
+    max-width: unset;
+  }
 
   &:hover {
     .delete-button {

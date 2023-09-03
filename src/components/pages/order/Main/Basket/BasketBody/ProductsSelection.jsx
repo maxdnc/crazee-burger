@@ -10,6 +10,7 @@ import {
   checkIfSameProductIsSelected,
   findInArrayById,
 } from "../../../../../../utils/array";
+import { devices } from "../../../../../../enums/devices";
 
 const ProductsSelection = () => {
   const {
@@ -82,5 +83,12 @@ const ProductsSelectionStyled = styled.ul`
   padding: 1.25rem 1rem;
   list-style: none;
   margin-left: 0;
+  width: 100%;
+  @media ${devices.lg} {
+    padding: 1.25rem 6.25rem;
+  }
+  @media ${devices.sm} {
+    padding: 1.25rem 1rem;
+  }
 `;
 export default ProductsSelection;

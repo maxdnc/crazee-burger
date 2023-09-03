@@ -8,6 +8,7 @@ import { FaChevronRight } from "react-icons/fa";
 //style
 import { theme } from "../../../theme";
 import styled from "styled-components";
+import { devices } from "../../../enums/devices";
 
 //components
 import TextInput from "../../reusable-ui/TextInput";
@@ -58,6 +59,11 @@ const LoginFormStyled = styled.form`
   gap: 1rem;
   max-width: 400px;
   width: 100%;
+  @media ${devices.md} {
+    padding: 1rem;
+  }
+  @media ${devices.sm} {
+  }
 
   h1,
   h2 {
@@ -65,6 +71,10 @@ const LoginFormStyled = styled.form`
     font-family: ${theme.fontsFamily.amatic};
     font-weight: ${theme.weights.bold};
     font-size: ${theme.fonts.P5};
+
+    @media ${devices.sm} {
+      font-size: ${theme.fonts.P4};
+    }
   }
 
   h2 {

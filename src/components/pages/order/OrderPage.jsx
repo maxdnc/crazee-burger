@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { useState, useRef } from "react";
 //components
 import { Navbar } from "./Navbar/Navbar.jsx";
@@ -18,6 +18,8 @@ const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [isBasketSmallDevicesActive, setIsBasketSmallDevicesActive] =
+    useState(false);
 
   const titleEditRef = useRef();
 
@@ -81,6 +83,9 @@ const OrderPage = () => {
     handleDecrementQuantityProduct,
 
     handleProductSelected,
+
+    isBasketSmallDevicesActive,
+    setIsBasketSmallDevicesActive,
   };
 
   const { username } = useParams();
@@ -89,7 +94,7 @@ const OrderPage = () => {
     <AdminContext.Provider value={orderContextValue}>
       <OrderPageStyled>
         <Navbar username={username} />
-        <Main />
+        <Outlet />
       </OrderPageStyled>
     </AdminContext.Provider>
   );
@@ -98,10 +103,9 @@ const OrderPage = () => {
 const OrderPageStyled = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: start;
   overflow: hidden;
-  height: 100vh;
+  height: 100dvh;
 `;
 
 export default OrderPage;
