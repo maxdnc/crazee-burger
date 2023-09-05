@@ -25,3 +25,6 @@ dist-ssr
 .vercel
 # Vercel configuration
 vercel.json
+
+# environement 
+.env
