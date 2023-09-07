@@ -21,7 +21,7 @@ const OrderPage = () => {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [isBasketSmallDevicesActive, setIsBasketSmallDevicesActive] =
     useState(false);
-
+  const { username } = useParams();
   const titleEditRef = useRef();
 
   const {
@@ -61,6 +61,7 @@ const OrderPage = () => {
   };
 
   const orderContextValue = {
+    username,
     isModeAdmin,
     setIsModeAdmin,
     isCollapsed,
@@ -89,8 +90,6 @@ const OrderPage = () => {
     isBasketSmallDevicesActive,
     setIsBasketSmallDevicesActive,
   };
-
-  const { username } = useParams();
 
   return (
     <AdminContext.Provider value={orderContextValue}>
