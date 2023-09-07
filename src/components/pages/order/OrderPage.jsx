@@ -17,8 +17,7 @@ import { useBasketProduct } from "../../../hooks/useBasketProducts.js";
 import { findInArrayById, isAProductSelected } from "../../../utils/array.js";
 
 //api
-import { getMenu } from "../../../api/product.js";
-import { getLocalStorage } from "../../../utils/window";
+import { initialiseUserSession } from "./helpers/initialiseUserSession.js";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -52,22 +51,8 @@ const OrderPage = () => {
   const { username } = useParams();
   const titleEditRef = useRef();
 
-  const intialiseMenu = async () => {
-    const menuReceived = await getMenu(username);
-    setMenuData(menuReceived);
-  };
-  const intialiseBasket = () => {
-    const basketReceived = getLocalStorage(username);
-    basketReceived && setBasketProducts(basketReceived);
-  };
-
-  const initialiseUserSession = async () => {
-    await intialiseMenu();
-    intialiseBasket();
-  };
-
   useEffect(() => {
-    initialiseUserSession();
+    initialiseUserSession(username, setMenuData, setBasketProducts);
   }, []);
 
   const handleProductSelected = async (idSelectedProduct) => {
