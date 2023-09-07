@@ -6,13 +6,13 @@ import { BsPersonCircle } from "react-icons/bs";
 import { FaChevronRight } from "react-icons/fa";
 
 //style
-import { theme } from "../../../theme";
 import styled from "styled-components";
-import { devices } from "../../../enums/devices";
 
 //components
 import TextInput from "../../reusable-ui/TextInput";
+import WelcomMessage from "./WelcomMessage";
 import Button from "../../reusable-ui/Button";
+
 //api
 import { authenticateUser } from "../../../api/user";
 
@@ -33,10 +33,7 @@ const LoginForm = () => {
 
   return (
     <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-      <h1>Explore Our Platform !</h1>
-      <hr />
-      <h2>Log In</h2>
-
+      <WelcomMessage />
       <TextInput
         label="Enter your first name"
         id="input-username"
@@ -62,34 +59,7 @@ const LoginFormStyled = styled.form`
   gap: 1rem;
   max-width: 400px;
   width: 100%;
-  @media ${devices.md} {
-    padding: 1rem;
-  }
-  @media ${devices.sm} {
-  }
-
-  h1,
-  h2 {
-    color: ${theme.colors.white};
-    font-family: ${theme.fontsFamily.amatic};
-    font-weight: ${theme.weights.bold};
-    font-size: ${theme.fonts.P5};
-
-    @media ${devices.sm} {
-      font-size: ${theme.fonts.P4};
-    }
-  }
-
-  h2 {
-    font-size: ${theme.fonts.P4};
-  }
-
-  hr {
-    width: 100%;
-    border: 1.5px solid #f56a2c;
-    border-radius: ${theme.borderRadius.round};
-    margin-bottom: 1.5rem;
-  }
+  padding: 1rem;
 
   .icon-access-button {
     margin-top: 3px;
