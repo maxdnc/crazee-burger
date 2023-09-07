@@ -20,6 +20,7 @@ const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
 const Menu = () => {
   const {
+    username,
     menuData,
     isModeAdmin,
     handleDeleteToMenu,
@@ -34,7 +35,7 @@ const Menu = () => {
 
   const handleCardDelete = (event, idProductTodelete) => {
     event.stopPropagation();
-    handleDeleteToMenu(idProductTodelete);
+    handleDeleteToMenu(idProductTodelete, username);
     handleDeleteToBasket(idProductTodelete);
 
     if (idProductTodelete === selectedProduct.id) {

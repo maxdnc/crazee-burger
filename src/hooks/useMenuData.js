@@ -21,11 +21,11 @@ export const useMenuData = () => {
     syncBothMenus(username, menuDataUpdated);
   };
 
-  const handleDeleteToMenu = (idProductToDelete) => {
+  const handleDeleteToMenu = (idProductToDelete, username) => {
     const menuDataCopy = deepCopy(menuData);
-
-    const menuUpdated = removeInArrayById(menuDataCopy, idProductToDelete);
-    setMenuData(menuUpdated);
+    const menuDataUpdated = removeInArrayById(menuDataCopy, idProductToDelete);
+    setMenuData(menuDataUpdated);
+    syncBothMenus(username, menuDataUpdated);
   };
 
   const handleEditToMenu = (productBeingEdited) => {
