@@ -1,5 +1,5 @@
 import { Outlet, useParams } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 //components
 import { Navbar } from "./Navbar/Navbar.jsx";
 
@@ -12,8 +12,12 @@ import { EMPTY_PRODUCT } from "../../../enums/product.js";
 //hooks
 import { useMenuData } from "../../../hooks/useMenuData.js";
 import { useBasketProduct } from "../../../hooks/useBasketProducts.js";
+
 //utils
 import { findInArrayById, isAProductSelected } from "../../../utils/array.js";
+
+//api
+import { getMenu } from "../../../api/product.js";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -21,11 +25,10 @@ const OrderPage = () => {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [isBasketSmallDevicesActive, setIsBasketSmallDevicesActive] =
     useState(false);
-  const { username } = useParams();
-  const titleEditRef = useRef();
 
   const {
     menuData,
+    setMenuData,
     handleAddToMenu,
     handleDeleteToMenu,
     handleEditToMenu,
@@ -43,6 +46,17 @@ const OrderPage = () => {
     basketProducts,
     handleAddToBasket,
   } = useBasketProduct();
+  const { username } = useParams();
+  const titleEditRef = useRef();
+
+  const intialiseMenu = async () => {
+    const menuReceived = await getMenu(username);
+    setMenuData(menuReceived);
+  };
+
+  useEffect(() => {
+    intialiseMenu();
+  }, []);
 
   const handleProductSelected = async (idSelectedProduct) => {
     const isSelectedProductSame =

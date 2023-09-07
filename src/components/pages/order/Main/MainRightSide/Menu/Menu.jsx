@@ -54,9 +54,12 @@ const Menu = () => {
     handleAddToBasket(productToAdd);
   };
 
+  if (menuData === undefined) {
+    return <span>loading...</span>;
+  }
+
   if (menuData.length === 0) {
     if (!isModeAdmin) return <EmptyMenuClient />;
-
     return <EmptyMenuAdmin onClick={resetMenu} />;
   }
   return (
