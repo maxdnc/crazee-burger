@@ -27,7 +27,7 @@ const ProductsSelection = () => {
 
   const handleDelete = (event, idBasketProduct) => {
     event.stopPropagation();
-    handleDeleteToBasket(idBasketProduct);
+    handleDeleteToBasket(idBasketProduct, username);
   };
 
   const handleIncrement = (event, idBasketProduct) => {

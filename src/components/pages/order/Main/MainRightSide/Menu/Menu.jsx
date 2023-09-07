@@ -38,7 +38,7 @@ const Menu = () => {
   const handleCardDelete = (event, idProductTodelete) => {
     event.stopPropagation();
     handleDeleteToMenu(idProductTodelete, username);
-    handleDeleteToBasket(idProductTodelete);
+    handleDeleteToBasket(idProductTodelete, username);
 
     if (idProductTodelete === selectedProduct.id) {
       setSelectedProduct(EMPTY_PRODUCT);
