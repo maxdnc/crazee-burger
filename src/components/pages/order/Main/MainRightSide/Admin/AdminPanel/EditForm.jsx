@@ -7,6 +7,7 @@ import OrderContext from "../../../../../../../context/OrderContext";
 
 const EditForm = () => {
   const {
+    username,
     selectedProduct,
     setSelectedProduct,
     handleEditToMenu,
@@ -18,7 +19,7 @@ const EditForm = () => {
     const productBeingUpdated = { ...selectedProduct, [name]: value };
 
     setSelectedProduct(productBeingUpdated); //update form
-    handleEditToMenu(productBeingUpdated); // update menu
+    handleEditToMenu(productBeingUpdated, username); // update menu
   };
 
   return (

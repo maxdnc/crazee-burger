@@ -27,11 +27,12 @@ export const useMenuData = () => {
     syncBothMenus(username, menuDataUpdated);
   };
 
-  const handleEditToMenu = (productBeingEdited) => {
+  const handleEditToMenu = (productBeingEdited, username) => {
     const menuDataCopy = deepCopy(menuData);
     const indexOfProducToEdit = menuData.indexOf(selectedProduct);
     menuDataCopy[indexOfProducToEdit] = productBeingEdited;
     setMenuData(menuDataCopy);
+    syncBothMenus(username, menuDataCopy);
   };
 
   const resetMenu = (username) => {
