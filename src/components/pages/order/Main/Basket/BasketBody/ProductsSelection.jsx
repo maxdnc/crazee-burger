@@ -14,6 +14,7 @@ import { devices } from "../../../../../../enums/devices";
 
 const ProductsSelection = () => {
   const {
+    username,
     menuData,
     basketProducts,
     handleDeleteToBasket,
@@ -31,12 +32,12 @@ const ProductsSelection = () => {
 
   const handleIncrement = (event, idBasketProduct) => {
     event.stopPropagation();
-    handleIncrementQuantityProduct(idBasketProduct);
+    handleIncrementQuantityProduct(idBasketProduct, username);
   };
 
   const handleDecrement = (event, idBasketProduct) => {
     event.stopPropagation();
-    handleDecrementQuantityProduct(idBasketProduct);
+    handleDecrementQuantityProduct(idBasketProduct, username);
   };
 
   return (

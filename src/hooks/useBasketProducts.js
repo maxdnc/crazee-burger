@@ -18,18 +18,20 @@ export const useBasketProduct = () => {
     setBasketProducts(basketProductsUpdated);
   };
 
-  const handleIncrementQuantityProduct = (idBasketProduct) => {
+  const handleIncrementQuantityProduct = (idBasketProduct, username) => {
     const basketProductsCopy = deepCopy(basketProducts);
     const productIndex = findIndexById(basketProductsCopy, idBasketProduct);
     basketProductsCopy[productIndex].quantity += 1;
     setBasketProducts(basketProductsCopy);
+    setLocalStorage(username, basketProductsCopy);
   };
 
-  const handleDecrementQuantityProduct = (idBasketProduct) => {
+  const handleDecrementQuantityProduct = (idBasketProduct, username) => {
     const basketProductsCopy = deepCopy(basketProducts);
     const productIndex = findIndexById(basketProductsCopy, idBasketProduct);
     basketProductsCopy[productIndex].quantity -= 1;
     setBasketProducts(basketProductsCopy);
+    setLocalStorage(username, basketProductsCopy);
 
     if (basketProductsCopy[productIndex].quantity < 1) {
       const basketProductUpdated = removeInArrayById(
@@ -37,6 +39,7 @@ export const useBasketProduct = () => {
         idBasketProduct
       );
       setBasketProducts(basketProductUpdated);
+      setLocalStorage(username, basketProductUpdated);
     }
   };
 
@@ -48,7 +51,7 @@ export const useBasketProduct = () => {
     );
 
     if (isProductAlreadyInBasket) {
-      handleIncrementQuantityProduct(productToAdd.id);
+      handleIncrementQuantityProduct(productToAdd.id, username);
     } else {
       addNewProductToBasket(
         productToAdd,
@@ -77,5 +80,6 @@ export const useBasketProduct = () => {
     handleDecrementQuantityProduct,
     basketProducts,
     handleAddToBasket,
+    setBasketProducts,
   };
 };
