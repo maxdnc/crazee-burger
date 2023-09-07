@@ -12,6 +12,7 @@ import { findInArrayById } from "../../../../../../utils/array";
 //components
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
+import Loader from "../../../../../reusable-ui/Loader.jsx";
 
 //enums
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
@@ -55,7 +56,7 @@ const Menu = () => {
   };
 
   if (menuData === undefined) {
-    return <span>loading...</span>;
+    return <Loader />;
   }
 
   if (menuData.length === 0) {
