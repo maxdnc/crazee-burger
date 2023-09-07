@@ -5,6 +5,7 @@ import {
   findIndexById,
   removeInArrayById,
 } from "../utils/array";
+import { setLocalStorage } from "../utils/window";
 
 export const useBasketProduct = () => {
   const [basketProducts, setBasketProducts] = useState([]);
@@ -39,7 +40,7 @@ export const useBasketProduct = () => {
     }
   };
 
-  const handleAddToBasket = (productToAdd) => {
+  const handleAddToBasket = (productToAdd, username) => {
     const basketProductsCopy = deepCopy(basketProducts);
     const isProductAlreadyInBasket = findInArrayById(
       basketProductsCopy,
@@ -52,7 +53,8 @@ export const useBasketProduct = () => {
       addNewProductToBasket(
         productToAdd,
         basketProductsCopy,
-        setBasketProducts
+        setBasketProducts,
+        username
       );
     }
   };
@@ -60,11 +62,13 @@ export const useBasketProduct = () => {
   const addNewProductToBasket = (
     productToAdd,
     basketProductsCopy,
-    setBasketProducts
+    setBasketProducts,
+    username
   ) => {
     const newBasketProduct = { id: productToAdd.id, quantity: 1 };
     const basketProductUpdated = [newBasketProduct, ...basketProductsCopy];
     setBasketProducts(basketProductUpdated);
+    setLocalStorage(username, basketProductUpdated);
   };
 
   return {

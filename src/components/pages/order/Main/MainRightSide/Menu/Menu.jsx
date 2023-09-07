@@ -52,7 +52,7 @@ const Menu = () => {
   const handleAdd = (event, idClickedProduct) => {
     event.stopPropagation();
     const productToAdd = findInArrayById(menuData, idClickedProduct);
-    handleAddToBasket(productToAdd);
+    handleAddToBasket(productToAdd, username);
   };
 
   if (menuData === undefined) {
