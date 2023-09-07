@@ -61,7 +61,7 @@ const Menu = () => {
 
   if (menuData.length === 0) {
     if (!isModeAdmin) return <EmptyMenuClient />;
-    return <EmptyMenuAdmin onClick={resetMenu} />;
+    return <EmptyMenuAdmin onClick={() => resetMenu(username)} />;
   }
   return (
     <MenuStyled>

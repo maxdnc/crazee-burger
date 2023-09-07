@@ -34,9 +34,11 @@ export const useMenuData = () => {
     setMenuData(menuDataCopy);
   };
 
-  const resetMenu = () => {
+  const resetMenu = (username) => {
     setMenuData(fakeMenu.LARGE);
+    syncBothMenus(username, fakeMenu.LARGE);
   };
+
   return {
     menuData,
     setMenuData,
