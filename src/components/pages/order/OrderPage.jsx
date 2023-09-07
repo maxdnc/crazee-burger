@@ -61,12 +61,13 @@ const OrderPage = () => {
     basketReceived && setBasketProducts(basketReceived);
   };
 
-  useEffect(() => {
-    intialiseMenu();
-  }, []);
+  const initialiseUserSession = async () => {
+    await intialiseMenu();
+    intialiseBasket();
+  };
 
   useEffect(() => {
-    intialiseBasket();
+    initialiseUserSession();
   }, []);
 
   const handleProductSelected = async (idSelectedProduct) => {
