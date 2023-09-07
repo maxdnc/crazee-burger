@@ -9,7 +9,7 @@ import ImagePreview from "./ImagePreview";
 import { devices } from "../../../../../../../enums/devices";
 
 const Form = React.forwardRef(
-  ({ productData, onChange, onSubmit, children }, ref) => {
+  ({ productData, onChange, onSubmit, onFocus, onBlur, children }, ref) => {
     const textInputs = getTextInputsConfig(productData);
 
     return (
@@ -22,6 +22,8 @@ const Form = React.forwardRef(
           {textInputs.map((product) => (
             <TextInput
               {...product}
+              onFocus={onFocus}
+              onBlur={onBlur}
               key={product.name}
               onChange={onChange}
               version="minimalist"
