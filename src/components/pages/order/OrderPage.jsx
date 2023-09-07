@@ -18,6 +18,7 @@ import { findInArrayById, isAProductSelected } from "../../../utils/array.js";
 
 //api
 import { getMenu } from "../../../api/product.js";
+import { getLocalStorage } from "../../../utils/window";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -45,7 +46,9 @@ const OrderPage = () => {
     handleDecrementQuantityProduct,
     basketProducts,
     handleAddToBasket,
+    setBasketProducts,
   } = useBasketProduct();
+
   const { username } = useParams();
   const titleEditRef = useRef();
 
@@ -53,9 +56,17 @@ const OrderPage = () => {
     const menuReceived = await getMenu(username);
     setMenuData(menuReceived);
   };
+  const intialiseBasket = () => {
+    const basketReceived = getLocalStorage(username);
+    setBasketProducts(basketReceived);
+  };
 
   useEffect(() => {
     intialiseMenu();
+  }, []);
+
+  useEffect(() => {
+    intialiseBasket();
   }, []);
 
   const handleProductSelected = async (idSelectedProduct) => {
