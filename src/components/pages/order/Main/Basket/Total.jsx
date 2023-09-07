@@ -12,11 +12,13 @@ import { findInArrayById } from "../../../../../utils/array";
 const Total = () => {
   const { basketProducts, menuData } = useContext(OrderContext);
 
-  const totalToPay = basketProducts.reduce((total, basketProduct) => {
-    const productInfo = findInArrayById(menuData, basketProduct.id);
-    total += roundedNumber(productInfo.price) * basketProduct.quantity;
-    return total;
-  }, 0);
+  const totalToPay = menuData
+    ? basketProducts.reduce((total, basketProduct) => {
+        const productInfo = findInArrayById(menuData, basketProduct.id);
+        total += roundedNumber(productInfo.price) * basketProduct.quantity;
+        return total;
+      }, 0)
+    : 0;
 
   return (
     <TotalStyled>

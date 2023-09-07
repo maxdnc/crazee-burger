@@ -1,19 +1,20 @@
 //style
 import styled, { css } from "styled-components";
 import { theme } from "../../../../../theme";
+import { devices } from "../../../../../enums/devices";
 
 //component
 import Total from "./Total.jsx";
 import Footer from "./Footer";
 import BasketBody from "./BasketBody/BasketBody";
 
-import { devices } from "../../../../../enums/devices";
 //content
 import OrderContext from "../../../../../context/OrderContext";
 import { useContext } from "react";
 
 const Basket = () => {
   const { isBasketSmallDevicesActive } = useContext(OrderContext);
+
   return (
     <BasketStyled $isBasketSmallDevicesActive={isBasketSmallDevicesActive}>
       <Total />
