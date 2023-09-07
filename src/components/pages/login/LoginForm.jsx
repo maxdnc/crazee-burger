@@ -13,12 +13,15 @@ import { devices } from "../../../enums/devices";
 //components
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
+//api
+import { authenticateUser } from "../../../api/user";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
+    authenticateUser(username);
     event.preventDefault();
     navigate(`/order/${username}`);
     setUsername("");

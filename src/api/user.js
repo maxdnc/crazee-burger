@@ -17,6 +17,12 @@ export const createUser = (userId) => {
     username: userId,
     menu: fakeMenu.LARGE,
   };
-
   setDoc(docRef, infoUser);
+};
+
+export const authenticateUser = async (userId) => {
+  const isUserExist = await getUser(userId);
+  if (!isUserExist) {
+    createUser(userId);
+  }
 };
