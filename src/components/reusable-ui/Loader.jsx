@@ -1,13 +1,9 @@
 import styled, { keyframes } from "styled-components";
 import { theme } from "../../theme";
-import { devices } from "../../enums/devices";
-import { useContext } from "react";
-import OrderContext from "../../context/OrderContext";
 
 const Loader = () => {
-  const { isCollapsed } = useContext(OrderContext);
   return (
-    <LoaderStyled $isCollapsed={!isCollapsed}>
+    <LoaderStyled>
       <div className="loader"></div>
     </LoaderStyled>
   );
@@ -27,15 +23,6 @@ const LoaderStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  min-height: calc(100dvh - 108px - 47px);
-
-  @media ${devices.lg} {
-    min-height: calc(100dvh - 92px - 47px);
-  }
-  @media ${devices.md} {
-    min-height: calc(100dvh - 76px - 47px);
-  }
 
   span {
     text-align: center;
