@@ -15,21 +15,27 @@ import Button from "../../reusable-ui/Button";
 
 //api
 import { authenticateUser } from "../../../api/user";
+import Loader from "../../reusable-ui/Loader";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    authenticateUser(username);
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    navigate(`/order/${username}`);
+    setIsLoading(true);
+    const userReceived = await authenticateUser(username);
+    navigate(`/order/${userReceived.username}`);
     setUsername("");
+    setIsLoading(false);
   };
 
   const handleChangeUsername = (event) => {
     setUsername(event.target.value);
   };
+
+  if (isLoading) return <Loader />;
 
   return (
     <LoginFormStyled action="submit" onSubmit={handleSubmit}>
