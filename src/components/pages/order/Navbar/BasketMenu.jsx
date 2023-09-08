@@ -6,6 +6,7 @@ import { devices } from "../../../../enums/devices";
 //context
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
+import CasinoEffect from "../../../reusable-ui/CasinoEffect";
 
 const BasketMenu = () => {
   const {
@@ -34,7 +35,9 @@ const BasketMenu = () => {
       className={isBasketSmallDevicesActive && "active"}
     >
       {emptyBasket ? null : (
-        <span className="total">{totalProductsInBasket}</span>
+        <span className="total">
+          <CasinoEffect count={totalProductsInBasket} />
+        </span>
       )}
       <span className={"icon"}>
         <SlBasket />
@@ -73,7 +76,7 @@ const BasketMenuStyled = styled.button`
     align-items: center;
     transform: translate(50%, -75%);
     font-size: 0.8rem;
-    top: 3px;
+    top: 1px;
     right: 0;
     z-index: 1;
     color: ${theme.colors.dark};
