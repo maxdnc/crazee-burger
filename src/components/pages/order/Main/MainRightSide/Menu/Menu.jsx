@@ -17,6 +17,8 @@ import Loader from "../../../../../reusable-ui/Loader.jsx";
 //enums
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
 import { devices } from "../../../../../../enums/devices.js";
+//animation
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
@@ -68,29 +70,41 @@ const Menu = () => {
     return <EmptyMenuAdmin onClick={() => resetMenu(username)} />;
   }
   return (
-    <MenuStyled>
+    <TransitionGroup component={MenuStyled}>
       {menuData.map(({ imageSource, title, price, id }) => {
         return (
-          <li key={id}>
-            <Card
-              image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-              alt={title}
-              title={title}
-              leftDescription={formatPrice(price)}
-              labelButton={"Add Item"}
-              hasDeleteButton={isModeAdmin}
-              onDelete={(event) => handleCardDelete(event, id)}
-              onClick={isModeAdmin ? () => handleClick(id) : null}
-              isHoverable={isModeAdmin}
-              isSelected={checkIfSameProductIsSelected(id, selectedProduct.id)}
-              onAdd={(event) => {
-                handleAdd(event, id);
-              }}
-            />
-          </li>
+          <CSSTransition
+            classNames={"animated-menu-card"}
+            key={id}
+            timeout={{ enter: 300, exit: 150 }}
+            appear={true}
+            exit={true}
+          >
+            <li key={id}>
+              <Card
+                className={"menu-card"}
+                image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+                alt={title}
+                title={title}
+                leftDescription={formatPrice(price)}
+                labelButton={"Add Item"}
+                hasDeleteButton={isModeAdmin}
+                onDelete={(event) => handleCardDelete(event, id)}
+                onClick={isModeAdmin ? () => handleClick(id) : null}
+                isHoverable={isModeAdmin}
+                isSelected={checkIfSameProductIsSelected(
+                  id,
+                  selectedProduct.id
+                )}
+                onAdd={(event) => {
+                  handleAdd(event, id);
+                }}
+              />
+            </li>
+          </CSSTransition>
         );
       })}
-    </MenuStyled>
+    </TransitionGroup>
   );
 };
 
@@ -109,6 +123,36 @@ const MenuStyled = styled.ul`
   li {
     margin: 0 auto;
     position: relative;
+  }
+
+  .animated-menu-card-appear,
+  .animated-menu-card-enter {
+    .menu-card {
+      opacity: 0;
+      transform: translateY(-10%);
+    }
+  }
+
+  .animated-menu-card-appear-active,
+  .animated-menu-card-enter-active {
+    .menu-card {
+      transform: translateY(0);
+      opacity: 1;
+      transition: all 0.3s ease-out;
+    }
+  }
+
+  .animated-menu-card-exit {
+    .menu-card {
+      opacity: 1;
+    }
+  }
+
+  .animated-menu-card-exit-active {
+    .menu-card {
+      opacity: 0;
+      transition: all 0.15s ease-out;
+    }
   }
 `;
 
