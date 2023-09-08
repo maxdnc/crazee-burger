@@ -1,3 +1,4 @@
+import React from "react";
 import styled, { css } from "styled-components";
 import { theme } from "../../../../../../../theme";
 import { devices } from "../../../../../../../enums/devices";
@@ -19,12 +20,14 @@ const BasketCard = ({
   onClick,
   isHoverable,
   isSelected,
+  className,
 }) => {
   return (
     <BasketCardStyled
       onClick={onClick}
       $isHoverable={isHoverable}
       $isSelected={isSelected}
+      className={className}
     >
       <div className="container-img">
         <img src={imageSource ? imageSource : IMAGE_BY_DEFAULT} alt={title} />
@@ -50,7 +53,7 @@ const BasketCardStyled = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: center;
-  box-shadow: ${theme.shadows.medium};
+  box-shadow: ${theme.shadows.small};
   border-radius: ${theme.borderRadius.round};
   height: 86px;
   padding: 0.5rem 1rem;
