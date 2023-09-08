@@ -40,7 +40,8 @@ const LoaderStyled = styled.div`
     border: 10px solid ${theme.colors.greyMedium};
     border-top: 10px solid ${theme.colors.primary};
     border-radius: 50%;
-    animation: ${loaderAnimation} 1s infinite linear;
+    animation: ${loaderAnimation} 0.8s infinite
+      cubic-bezier(0.3, 0.65, 0.9, 0.64);
   }
 `;
 
