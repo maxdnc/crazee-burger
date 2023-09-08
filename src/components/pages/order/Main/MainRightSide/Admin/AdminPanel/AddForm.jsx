@@ -14,7 +14,7 @@ import { styled } from "styled-components";
 import { devices } from "../../../../../../../enums/devices";
 
 const AddForm = () => {
-  const { handleAddToMenu, newProduct, setNewProduct } =
+  const { handleAddToMenu, newProduct, setNewProduct, username } =
     useContext(OrderContext);
   const { isSubmitted, displaySuccessMessage } = useSuccessMessage(2500);
 
@@ -24,7 +24,7 @@ const AddForm = () => {
       ...newProduct,
       id: crypto.randomUUID(),
     };
-    handleAddToMenu(newProductToAdd);
+    handleAddToMenu(newProductToAdd, username);
     setNewProduct(EMPTY_PRODUCT);
     displaySuccessMessage();
   };

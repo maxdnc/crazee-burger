@@ -33,10 +33,16 @@ const LoginPageStyled = styled.div`
   }
   .logo-login-page {
     transform: scale(2.5);
+
     @media ${devices.md} {
-      transform: scale(1.5);
+      transform: scale(2);
     }
+
     @media ${devices.sm} {
+      transform: scale(1.75);
+    }
+
+    @media ${devices.xsm} {
       transform: scale(1.25);
     }
   }

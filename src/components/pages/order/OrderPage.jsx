@@ -1,5 +1,5 @@
 import { Outlet, useParams } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 //components
 import { Navbar } from "./Navbar/Navbar.jsx";
 
@@ -12,8 +12,12 @@ import { EMPTY_PRODUCT } from "../../../enums/product.js";
 //hooks
 import { useMenuData } from "../../../hooks/useMenuData.js";
 import { useBasketProduct } from "../../../hooks/useBasketProducts.js";
+
 //utils
 import { findInArrayById, isAProductSelected } from "../../../utils/array.js";
+
+//api
+import { initialiseUserSession } from "./helpers/initialiseUserSession.js";
 
 const OrderPage = () => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -22,10 +26,9 @@ const OrderPage = () => {
   const [isBasketSmallDevicesActive, setIsBasketSmallDevicesActive] =
     useState(false);
 
-  const titleEditRef = useRef();
-
   const {
     menuData,
+    setMenuData,
     handleAddToMenu,
     handleDeleteToMenu,
     handleEditToMenu,
@@ -42,7 +45,15 @@ const OrderPage = () => {
     handleDecrementQuantityProduct,
     basketProducts,
     handleAddToBasket,
+    setBasketProducts,
   } = useBasketProduct();
+
+  const { username } = useParams();
+  const titleEditRef = useRef();
+
+  useEffect(() => {
+    initialiseUserSession(username, setMenuData, setBasketProducts);
+  }, []);
 
   const handleProductSelected = async (idSelectedProduct) => {
     const isSelectedProductSame =
@@ -61,6 +72,7 @@ const OrderPage = () => {
   };
 
   const orderContextValue = {
+    username,
     isModeAdmin,
     setIsModeAdmin,
     isCollapsed,
@@ -89,8 +101,6 @@ const OrderPage = () => {
     isBasketSmallDevicesActive,
     setIsBasketSmallDevicesActive,
   };
-
-  const { username } = useParams();
 
   return (
     <AdminContext.Provider value={orderContextValue}>

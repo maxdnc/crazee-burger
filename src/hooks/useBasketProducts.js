@@ -5,30 +5,34 @@ import {
   findIndexById,
   removeInArrayById,
 } from "../utils/array";
+import { setLocalStorage } from "../utils/window";
 
 export const useBasketProduct = () => {
   const [basketProducts, setBasketProducts] = useState([]);
 
-  const handleDeleteToBasket = (idBasketProduct) => {
+  const handleDeleteToBasket = (idBasketProduct, username) => {
     const basketProductsUpdated = removeInArrayById(
       basketProducts,
       idBasketProduct
     );
     setBasketProducts(basketProductsUpdated);
+    setLocalStorage(username, basketProductsUpdated);
   };
 
-  const handleIncrementQuantityProduct = (idBasketProduct) => {
+  const handleIncrementQuantityProduct = (idBasketProduct, username) => {
     const basketProductsCopy = deepCopy(basketProducts);
     const productIndex = findIndexById(basketProductsCopy, idBasketProduct);
     basketProductsCopy[productIndex].quantity += 1;
     setBasketProducts(basketProductsCopy);
+    setLocalStorage(username, basketProductsCopy);
   };
 
-  const handleDecrementQuantityProduct = (idBasketProduct) => {
+  const handleDecrementQuantityProduct = (idBasketProduct, username) => {
     const basketProductsCopy = deepCopy(basketProducts);
     const productIndex = findIndexById(basketProductsCopy, idBasketProduct);
     basketProductsCopy[productIndex].quantity -= 1;
     setBasketProducts(basketProductsCopy);
+    setLocalStorage(username, basketProductsCopy);
 
     if (basketProductsCopy[productIndex].quantity < 1) {
       const basketProductUpdated = removeInArrayById(
@@ -36,10 +40,11 @@ export const useBasketProduct = () => {
         idBasketProduct
       );
       setBasketProducts(basketProductUpdated);
+      setLocalStorage(username, basketProductUpdated);
     }
   };
 
-  const handleAddToBasket = (productToAdd) => {
+  const handleAddToBasket = (productToAdd, username) => {
     const basketProductsCopy = deepCopy(basketProducts);
     const isProductAlreadyInBasket = findInArrayById(
       basketProductsCopy,
@@ -47,12 +52,13 @@ export const useBasketProduct = () => {
     );
 
     if (isProductAlreadyInBasket) {
-      handleIncrementQuantityProduct(productToAdd.id);
+      handleIncrementQuantityProduct(productToAdd.id, username);
     } else {
       addNewProductToBasket(
         productToAdd,
         basketProductsCopy,
-        setBasketProducts
+        setBasketProducts,
+        username
       );
     }
   };
@@ -60,11 +66,13 @@ export const useBasketProduct = () => {
   const addNewProductToBasket = (
     productToAdd,
     basketProductsCopy,
-    setBasketProducts
+    setBasketProducts,
+    username
   ) => {
     const newBasketProduct = { id: productToAdd.id, quantity: 1 };
     const basketProductUpdated = [newBasketProduct, ...basketProductsCopy];
     setBasketProducts(basketProductUpdated);
+    setLocalStorage(username, basketProductUpdated);
   };
 
   return {
@@ -73,5 +81,6 @@ export const useBasketProduct = () => {
     handleDecrementQuantityProduct,
     basketProducts,
     handleAddToBasket,
+    setBasketProducts,
   };
 };

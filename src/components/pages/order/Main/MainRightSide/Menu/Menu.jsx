@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import Card from "../../../../../reusable-ui/Card.jsx";
 import styled from "styled-components";
 
 //utils
@@ -10,16 +9,20 @@ import OrderContext from "../../../../../../context/OrderContext.js";
 import { checkIfSameProductIsSelected } from "../../../../../../utils/array.js";
 import { findInArrayById } from "../../../../../../utils/array";
 //components
+import Card from "../../../../../reusable-ui/Card.jsx";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
+import Loader from "../../../../../reusable-ui/Loader.jsx";
 
 //enums
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
+import { devices } from "../../../../../../enums/devices.js";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
 const Menu = () => {
   const {
+    username,
     menuData,
     isModeAdmin,
     handleDeleteToMenu,
@@ -34,8 +37,8 @@ const Menu = () => {
 
   const handleCardDelete = (event, idProductTodelete) => {
     event.stopPropagation();
-    handleDeleteToMenu(idProductTodelete);
-    handleDeleteToBasket(idProductTodelete);
+    handleDeleteToMenu(idProductTodelete, username);
+    handleDeleteToBasket(idProductTodelete, username);
 
     if (idProductTodelete === selectedProduct.id) {
       setSelectedProduct(EMPTY_PRODUCT);
@@ -50,13 +53,19 @@ const Menu = () => {
   const handleAdd = (event, idClickedProduct) => {
     event.stopPropagation();
     const productToAdd = findInArrayById(menuData, idClickedProduct);
-    handleAddToBasket(productToAdd);
+    handleAddToBasket(productToAdd, username);
   };
+
+  if (menuData === undefined)
+    return (
+      <ContainerLoaderStyled>
+        <Loader />
+      </ContainerLoaderStyled>
+    );
 
   if (menuData.length === 0) {
     if (!isModeAdmin) return <EmptyMenuClient />;
-
-    return <EmptyMenuAdmin onClick={resetMenu} />;
+    return <EmptyMenuAdmin onClick={() => resetMenu(username)} />;
   }
   return (
     <MenuStyled>
@@ -100,6 +109,20 @@ const MenuStyled = styled.ul`
   li {
     margin: 0 auto;
     position: relative;
+  }
+`;
+
+const ContainerLoaderStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100dvh - 108px);
+
+  @media ${devices.lg} {
+    min-height: calc(100dvh - 92px - 47px);
+  }
+  @media ${devices.md} {
+    min-height: calc(100dvh - 76px - 47px);
   }
 `;
 

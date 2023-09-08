@@ -5,10 +5,15 @@ import ProductsSelection from "./ProductsSelection";
 //content
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext } from "react";
+import Loader from "../../../../../reusable-ui/Loader";
 
 const BasketBody = () => {
-  const { basketProducts } = useContext(OrderContext);
+  const { basketProducts, menuData } = useContext(OrderContext);
+
   const isBasketEmpty = basketProducts.length === 0;
+
+  if (menuData === undefined) return <Loader />;
+
   return (
     <BasketBodyStyled>
       {isBasketEmpty ? <EmptyBasket /> : <ProductsSelection />}
