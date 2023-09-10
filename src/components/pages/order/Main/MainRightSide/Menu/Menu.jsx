@@ -18,7 +18,7 @@ import Loader from "../../../../../reusable-ui/Loader.jsx";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
 import { devices } from "../../../../../../enums/devices.js";
 //animation
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
@@ -58,6 +58,8 @@ const Menu = () => {
     handleAddToBasket(productToAdd, username);
   };
 
+  const [animationParent] = useAutoAnimate();
+
   if (menuData === undefined)
     return (
       <ContainerLoaderStyled>
@@ -70,41 +72,30 @@ const Menu = () => {
     return <EmptyMenuAdmin onClick={() => resetMenu(username)} />;
   }
   return (
-    <TransitionGroup component={MenuStyled}>
+    <MenuStyled ref={animationParent}>
       {menuData.map(({ imageSource, title, price, id }) => {
         return (
-          <CSSTransition
-            classNames={"animated-menu-card"}
-            key={id}
-            timeout={{ enter: 300, exit: 150 }}
-            appear={true}
-            exit={true}
-          >
-            <li key={id}>
-              <Card
-                className={"menu-card"}
-                image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-                alt={title}
-                title={title}
-                leftDescription={formatPrice(price)}
-                labelButton={"Add Item"}
-                hasDeleteButton={isModeAdmin}
-                onDelete={(event) => handleCardDelete(event, id)}
-                onClick={isModeAdmin ? () => handleClick(id) : null}
-                isHoverable={isModeAdmin}
-                isSelected={checkIfSameProductIsSelected(
-                  id,
-                  selectedProduct.id
-                )}
-                onAdd={(event) => {
-                  handleAdd(event, id);
-                }}
-              />
-            </li>
-          </CSSTransition>
+          <li key={id}>
+            <Card
+              className={"menu-card"}
+              image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+              alt={title}
+              title={title}
+              leftDescription={formatPrice(price)}
+              labelButton={"Add Item"}
+              hasDeleteButton={isModeAdmin}
+              onDelete={(event) => handleCardDelete(event, id)}
+              onClick={isModeAdmin ? () => handleClick(id) : null}
+              isHoverable={isModeAdmin}
+              isSelected={checkIfSameProductIsSelected(id, selectedProduct.id)}
+              onAdd={(event) => {
+                handleAdd(event, id);
+              }}
+            />
+          </li>
         );
       })}
-    </TransitionGroup>
+    </MenuStyled>
   );
 };
 
