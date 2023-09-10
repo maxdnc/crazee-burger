@@ -8,6 +8,8 @@ import OrderContext from "../../../../../context/OrderContext";
 //ultils
 import { formatPrice, roundedNumber } from "../../../../../utils/maths";
 import { findInArrayById } from "../../../../../utils/array";
+//component
+import CasinoEffect from "../../../../reusable-ui/CasinoEffect";
 
 const Total = () => {
   const { basketProducts, menuData } = useContext(OrderContext);
@@ -23,7 +25,7 @@ const Total = () => {
   return (
     <TotalStyled>
       <p>total</p>
-      <p>{formatPrice(totalToPay)}</p>
+      <CasinoEffect count={formatPrice(totalToPay)} className={"count"} />
     </TotalStyled>
   );
 };
@@ -33,9 +35,17 @@ const TotalStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0.5rem 1.5rem;
+  padding: 0.75rem 1.5rem;
+  overflow: hidden;
   background-color: ${theme.colors.background_dark};
+  .container-price {
+    width: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 
+  .count,
   p {
     color: ${theme.colors.primary};
     font-family: ${theme.fontsFamily.amatic};

@@ -17,6 +17,8 @@ import Loader from "../../../../../reusable-ui/Loader.jsx";
 //enums
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
 import { devices } from "../../../../../../enums/devices.js";
+//animation
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
@@ -56,6 +58,8 @@ const Menu = () => {
     handleAddToBasket(productToAdd, username);
   };
 
+  const [animationParent] = useAutoAnimate();
+
   if (menuData === undefined)
     return (
       <ContainerLoaderStyled>
@@ -68,11 +72,12 @@ const Menu = () => {
     return <EmptyMenuAdmin onClick={() => resetMenu(username)} />;
   }
   return (
-    <MenuStyled>
+    <MenuStyled ref={animationParent}>
       {menuData.map(({ imageSource, title, price, id }) => {
         return (
           <li key={id}>
             <Card
+              className={"menu-card"}
               image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
               alt={title}
               title={title}
@@ -109,6 +114,36 @@ const MenuStyled = styled.ul`
   li {
     margin: 0 auto;
     position: relative;
+  }
+
+  .animated-menu-card-appear,
+  .animated-menu-card-enter {
+    .menu-card {
+      opacity: 0;
+      transform: translateY(-10%);
+    }
+  }
+
+  .animated-menu-card-appear-active,
+  .animated-menu-card-enter-active {
+    .menu-card {
+      transform: translateY(0);
+      opacity: 1;
+      transition: all 0.3s ease-out;
+    }
+  }
+
+  .animated-menu-card-exit {
+    .menu-card {
+      opacity: 1;
+    }
+  }
+
+  .animated-menu-card-exit-active {
+    .menu-card {
+      opacity: 0;
+      transition: all 0.15s ease-out;
+    }
   }
 `;
 

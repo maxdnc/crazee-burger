@@ -20,12 +20,14 @@ const Card = ({
   isHoverable,
   isSelected,
   onAdd,
+  className,
 }) => {
   return (
     <CardStyled
       onClick={onClick}
       $isHoverable={isHoverable}
       $isSelected={isSelected}
+      className={className}
     >
       {hasDeleteButton && (
         <button

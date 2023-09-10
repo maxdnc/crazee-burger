@@ -5,6 +5,7 @@ import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
+import CasinoEffect from "../../../../../../reusable-ui/CasinoEffect";
 
 const CounterProduct = ({ quantity, incrementQuantity, decrementQuantity }) => {
   return (
@@ -12,7 +13,9 @@ const CounterProduct = ({ quantity, incrementQuantity, decrementQuantity }) => {
       <button className="increment counting-button" onClick={incrementQuantity}>
         <MdOutlineKeyboardArrowUp className="icon" />
       </button>
-      <p className="quantity">x {quantity}</p>
+      <span className="quantity">
+        x <CasinoEffect count={quantity} />
+      </span>
       <button className="decrement counting-button" onClick={decrementQuantity}>
         <MdOutlineKeyboardArrowDown className="icon" />
       </button>
@@ -28,6 +31,8 @@ const CounterProductStyled = styled.div`
   margin: 0 auto;
 
   .quantity {
+    display: flex;
+    gap: 2px;
     margin: 0 auto;
     color: ${theme.colors.primary};
     font-size: 0.9375rem;

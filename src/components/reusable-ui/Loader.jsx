@@ -23,14 +23,8 @@ const LoaderStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
 
-  span {
-    text-align: center;
-    font-family: ${theme.fontsFamily.amatic};
-    color: ${theme.colors.greyBlue};
-    font-size: ${theme.fonts.P4};
-    font-weight: ${theme.weights.semiBold};
-  }
   .loader {
     display: flex;
     flex-direction: column;
