@@ -109,13 +109,6 @@ const ProductsSelectionStyled = styled.ul`
     padding: 1.25rem 1rem;
   }
 
-  .animated-basket-card-appear {
-    .basket-card {
-      opacity: 0;
-      transform: translateY(-10%);
-    }
-  }
-
   ${basketAnimation}
 `;
 export default ProductsSelection;

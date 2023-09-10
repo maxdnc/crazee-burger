@@ -5,12 +5,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 const CasinoEffect = ({ className, count }) => {
   return (
     <TransitionGroup component={CasinoEffectStyled}>
-      <CSSTransition
-        classNames="animated-casino"
-        timeout={250}
-        key={count}
-        appear={true}
-      >
+      <CSSTransition classNames="animated-casino" timeout={250} key={count}>
         <span className={className}>{count}</span>
       </CSSTransition>
     </TransitionGroup>
