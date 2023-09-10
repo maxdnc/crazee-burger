@@ -43,6 +43,7 @@ const TextInputStyled = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 1rem;
+  flex: 1;
 
   input {
     width: 100%;
@@ -66,6 +67,8 @@ const extraStyleNormal = css`
   }
   span {
     color: ${theme.colors.greyDark};
+    font-size: 1rem;
+    min-width: min-content;
   }
 `;
 
