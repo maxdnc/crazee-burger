@@ -24,11 +24,10 @@ const CasinoEffectStyled = styled.div`
     display: inline-block;
   }
 
-  .animated-casino-appear,
   .animated-casino-enter {
     transform: translateY(100%);
   }
-  .animated-casino-appear-active,
+
   .animated-casino-enter-active {
     transform: translateY(0%);
     transition: 0.25s ease-in-out;

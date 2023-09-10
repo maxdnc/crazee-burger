@@ -13,6 +13,7 @@ import {
   findInArrayById,
 } from "../../../../../../utils/array";
 //animation
+
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const ProductsSelection = () => {
@@ -52,7 +53,7 @@ const ProductsSelection = () => {
           <CSSTransition
             classNames={"animated-basket-card"}
             key={basketProducts.id}
-            timeout={300}
+            timeout={5000}
             appear={true}
             exit={true}
           >
@@ -95,15 +96,12 @@ const ProductsSelectionStyled = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.25rem;
   padding: 1.25rem 1rem;
   list-style: none;
   margin-left: 0;
   width: 100%;
   overflow: hidden;
-  li {
-    transition: all 0.2s ease-in-out;
-  }
+
   @media ${devices.lg} {
     padding: 1.25rem 6.25rem;
   }
@@ -111,20 +109,32 @@ const ProductsSelectionStyled = styled.ul`
     padding: 1.25rem 1rem;
   }
 
-  .animated-basket-card-appear,
+  .animated-basket-card-appear {
+    .basket-card {
+      opacity: 0;
+      transform: translateY(-10%);
+    }
+  }
+
   .animated-basket-card-enter {
     .basket-card {
       opacity: 0;
-      transform: translateX(50%);
+      transform: translateY(-10%);
+      max-height: 0px;
+      margin-bottom: 0;
+      padding: 0 0;
     }
   }
 
   .animated-basket-card-appear-active,
   .animated-basket-card-enter-active {
     .basket-card {
-      transform: translateX(0);
+      transform: translateY(0);
       opacity: 1;
-      transition: all 0.3s ease-out;
+      transition: all 0.2s ease-out;
+      max-height: 86px;
+      margin-bottom: 1.25rem;
+      padding: 0.5rem 1rem;
     }
   }
 
@@ -132,6 +142,7 @@ const ProductsSelectionStyled = styled.ul`
     .basket-card {
       transform: translateX(0);
       opacity: 1;
+      max-height: 86px;
     }
   }
 
@@ -140,6 +151,9 @@ const ProductsSelectionStyled = styled.ul`
       transform: translateX(-100%);
       opacity: 0;
       transition: all 0.2s ease-in;
+      max-height: 0px;
+      margin-bottom: 0;
+      padding: 0 0;
     }
   }
 `;

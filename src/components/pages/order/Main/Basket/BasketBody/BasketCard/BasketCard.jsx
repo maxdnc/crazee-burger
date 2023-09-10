@@ -56,6 +56,7 @@ const BasketCardStyled = styled.div`
   box-shadow: ${theme.shadows.small};
   border-radius: ${theme.borderRadius.round};
   height: 86px;
+  margin-bottom: 1.25rem;
   padding: 0.5rem 1rem;
   position: relative;
   overflow: hidden;

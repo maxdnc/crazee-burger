@@ -25,6 +25,7 @@ const BasketBodyStyled = styled.div`
   height: 100%;
   max-height: min-content;
   overflow-y: auto;
+  scrollbar-gutter: stable;
   width: 100%;
 `;
 export default BasketBody;
