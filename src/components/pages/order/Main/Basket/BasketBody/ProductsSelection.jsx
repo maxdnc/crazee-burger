@@ -53,7 +53,7 @@ const ProductsSelection = () => {
           <CSSTransition
             classNames={"animated-basket-card"}
             key={basketProducts.id}
-            timeout={5000}
+            timeout={200}
             appear={true}
             exit={true}
           >
@@ -116,9 +116,20 @@ const ProductsSelectionStyled = styled.ul`
     }
   }
 
+  .animated-basket-card-appear {
+    .basket-card {
+      opacity: 0;
+      transform: translateY(-10%);
+    }
+  }
+
   .animated-basket-card-enter {
     .basket-card {
       opacity: 0;
+      transform: translateY(-10%);
+      max-height: 0px;
+      margin-bottom: 0;
+      padding: 0 0;
       transform: translateY(-10%);
       max-height: 0px;
       margin-bottom: 0;
@@ -129,6 +140,7 @@ const ProductsSelectionStyled = styled.ul`
   .animated-basket-card-appear-active,
   .animated-basket-card-enter-active {
     .basket-card {
+      transform: translateY(0);
       transform: translateY(0);
       opacity: 1;
       transition: all 0.2s ease-out;
@@ -143,6 +155,7 @@ const ProductsSelectionStyled = styled.ul`
       transform: translateX(0);
       opacity: 1;
       max-height: 86px;
+      max-height: 86px;
     }
   }
 
@@ -151,6 +164,9 @@ const ProductsSelectionStyled = styled.ul`
       transform: translateX(-100%);
       opacity: 0;
       transition: all 0.2s ease-in;
+      max-height: 0px;
+      margin-bottom: 0;
+      padding: 0 0;
       max-height: 0px;
       margin-bottom: 0;
       padding: 0 0;
