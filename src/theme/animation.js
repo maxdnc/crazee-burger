@@ -23,7 +23,7 @@ export const basketAnimation = css`
     .basket-card {
       transform: translateY(0);
       opacity: 1;
-      transition: all 0.2s ease-in;
+      transition: all 0.2s ease-in, padding 0.1s ease-in;
       max-height: 86px;
       margin-bottom: 1.25rem;
       padding: 0.5rem 1rem;
