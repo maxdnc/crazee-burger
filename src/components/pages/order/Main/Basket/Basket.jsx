@@ -41,7 +41,7 @@ const BasketStyled = styled.div`
   @media ${devices.lg} {
     height: calc(100dvh - 92px);
     position: absolute;
-    z-index: 10;
+    z-index: 20;
     top: 92px;
     max-width: unset;
     transform: translateX(-100%);
