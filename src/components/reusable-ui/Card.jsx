@@ -78,7 +78,7 @@ const CardStyled = styled.div`
 
   .sold-out {
     background-color: ${theme.colors.white};
-    opacity: 0.9;
+    opacity: 0.85;
     position: absolute;
     inset: 0;
     z-index: 1;

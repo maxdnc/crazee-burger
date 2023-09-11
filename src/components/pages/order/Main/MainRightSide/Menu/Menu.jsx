@@ -1,12 +1,13 @@
+//context
 import { useContext } from "react";
+import OrderContext from "../../../../../../context/OrderContext.js";
+//style
 import styled from "styled-components";
-
+import { devices } from "../../../../../../enums/devices.js";
 //utils
 import { formatPrice } from "../../../../../../utils/maths.js";
-
-import OrderContext from "../../../../../../context/OrderContext.js";
-//helper
 import { checkIfSameProductIsSelected } from "../../../../../../utils/array.js";
+//helper
 import { findInArrayById } from "../../../../../../utils/array";
 //components
 import Card from "../../../../../reusable-ui/Card.jsx";
@@ -21,9 +22,9 @@ import {
   IMAGE_SOLD_OUT,
 } from "../../../../../../enums/product.js";
 
-import { devices } from "../../../../../../enums/devices.js";
 //animation
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { convertStringToBoolean } from "../../../../../../utils/string.js";
 
 const Menu = () => {
   const {
@@ -80,8 +81,10 @@ const Menu = () => {
         return (
           <li key={id}>
             <Card
-              isAvailable={isAvailable}
-              imageSoldOut={isAvailable ? null : IMAGE_SOLD_OUT}
+              isAvailable={convertStringToBoolean(isAvailable)}
+              imageSoldOut={
+                convertStringToBoolean(isAvailable) ? null : IMAGE_SOLD_OUT
+              }
               imageSoldOutAlt="sold-out"
               className={"menu-card"}
               image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
