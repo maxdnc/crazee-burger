@@ -49,6 +49,7 @@ const Card = ({
           onClick={onAdd}
           label={labelButton}
           className={"card-button-add"}
+          disabled={!isAvailable}
         />
       </div>
       {isAvailable ? null : (
