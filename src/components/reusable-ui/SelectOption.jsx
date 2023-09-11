@@ -1,7 +1,18 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-const SelectOption = ({ name, label, id, Icon, value, className, options }) => {
+const SelectOption = ({
+  name,
+  label,
+  id,
+  Icon,
+  value,
+  className,
+  options,
+  onChange,
+  onFocus,
+  onBlur,
+}) => {
   return (
     <SelectOptionStyled className={className}>
       <span>{Icon && Icon}</span>
@@ -10,7 +21,14 @@ const SelectOption = ({ name, label, id, Icon, value, className, options }) => {
           {label}
         </label>
       )}
-      <select id={id} name={name} value={value}>
+      <select
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      >
         {options.map(({ label, value }) => (
           <option key={label} value={value}>
             {label}

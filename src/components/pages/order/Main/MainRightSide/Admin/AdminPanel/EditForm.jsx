@@ -9,6 +9,7 @@ import OrderContext from "../../../../../../../context/OrderContext";
 import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage";
 
 const EditForm = () => {
+  const [valueOnFocus, setValueOnFocus] = useState();
   const {
     username,
     selectedProduct,
@@ -19,8 +20,6 @@ const EditForm = () => {
 
   const { isSubmitted: isSaved, displaySuccessMessage } =
     useSuccessMessage(2000);
-
-  const [valueOnFocus, setValueOnFocus] = useState();
 
   const handleChange = (event) => {
     const { name, value } = event.target;

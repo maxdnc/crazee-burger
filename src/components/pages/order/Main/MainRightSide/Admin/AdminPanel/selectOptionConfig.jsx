@@ -3,27 +3,27 @@ import { GoMegaphone } from "react-icons/go";
 
 export const getSelectOptionConfig = (newProduct) => [
   {
-    name: "availability",
+    name: "isAvailable",
     label: "Product Availability:",
-    id: "availability",
+    id: "isAvailable",
     Icon: <FiPackage />,
     value: newProduct.isAvailable,
-    className: "availability",
+    className: "isAvailable",
     options: [
-      { id: 1, label: "Available", value: true },
-      { id: 2, label: "Not Available", value: false },
+      { id: 1, label: "In Stocks", value: true },
+      { id: 2, label: "Sold-out", value: false },
     ],
   },
   {
-    name: "add-option",
+    name: "isAdvertised",
     label: "Add Option:",
-    id: "add-option",
+    id: "isAdvertised",
     Icon: <GoMegaphone />,
     value: newProduct.isAdvertised,
     className: "add-option",
     options: [
-      { id: 1, label: "With Add", value: true },
-      { id: 2, label: "Without Add", value: false },
+      { id: 1, label: "With Ad", value: true },
+      { id: 2, label: "No Ad", value: false },
     ],
   },
 ];
