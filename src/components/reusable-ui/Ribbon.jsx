@@ -12,6 +12,7 @@ export default function Ribbon({ label = "new", className }) {
 }
 
 const RibbonStyled = styled.div`
+  pointer-events: none;
   body {
     display: flex;
     justify-content: center;

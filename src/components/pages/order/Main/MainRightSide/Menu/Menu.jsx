@@ -81,7 +81,7 @@ const Menu = () => {
       {menuData.map(
         ({ imageSource, title, price, id, isAvailable, isAdvertised }) => {
           return (
-            <li key={id}>
+            <li key={id} className={isModeAdmin ? "hoverable" : null}>
               {convertStringToBoolean(isAdvertised) && <Ribbon />}
 
               <Card
@@ -131,6 +131,13 @@ const MenuStyled = styled.ul`
   li {
     margin: 0 auto;
     position: relative;
+  }
+  .hoverable {
+    &:hover {
+      .ribbon {
+        transform: scale(1.12);
+      }
+    }
   }
 
   .ribbon {
