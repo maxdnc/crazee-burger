@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import OrderContext from "../../../../../../context/OrderContext.js";
 //style
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { devices } from "../../../../../../enums/devices.js";
 //utils
 import { formatPrice } from "../../../../../../utils/maths.js";
@@ -14,6 +14,7 @@ import Card from "../../../../../reusable-ui/Card.jsx";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
 import Loader from "../../../../../reusable-ui/Loader.jsx";
+import Ribbon from "../../../../../reusable-ui/Ribbon.jsx";
 
 //enums
 import {
@@ -77,33 +78,40 @@ const Menu = () => {
 
   return (
     <MenuStyled ref={animationParent}>
-      {menuData.map(({ imageSource, title, price, id, isAvailable }) => {
-        return (
-          <li key={id}>
-            <Card
-              isAvailable={convertStringToBoolean(isAvailable)}
-              imageSoldOut={
-                convertStringToBoolean(isAvailable) ? null : IMAGE_SOLD_OUT
-              }
-              imageSoldOutAlt="sold-out"
-              className={"menu-card"}
-              image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-              alt={title}
-              title={title}
-              leftDescription={formatPrice(price)}
-              labelButton={"Add Item"}
-              hasDeleteButton={isModeAdmin}
-              onDelete={(event) => handleCardDelete(event, id)}
-              onClick={isModeAdmin ? () => handleClick(id) : null}
-              isHoverable={isModeAdmin}
-              isSelected={checkIfSameProductIsSelected(id, selectedProduct.id)}
-              onAdd={(event) => {
-                handleAdd(event, id);
-              }}
-            />
-          </li>
-        );
-      })}
+      {menuData.map(
+        ({ imageSource, title, price, id, isAvailable, isAdvertised }) => {
+          return (
+            <li key={id}>
+              {convertStringToBoolean(isAdvertised) && <Ribbon />}
+
+              <Card
+                isAvailable={convertStringToBoolean(isAvailable)}
+                imageSoldOut={
+                  convertStringToBoolean(isAvailable) ? null : IMAGE_SOLD_OUT
+                }
+                imageSoldOutAlt="sold-out"
+                className={"menu-card"}
+                image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+                alt={title}
+                title={title}
+                leftDescription={formatPrice(price)}
+                labelButton={"Add Item"}
+                hasDeleteButton={isModeAdmin}
+                onDelete={(event) => handleCardDelete(event, id)}
+                onClick={isModeAdmin ? () => handleClick(id) : null}
+                isHoverable={isModeAdmin}
+                isSelected={checkIfSameProductIsSelected(
+                  id,
+                  selectedProduct.id
+                )}
+                onAdd={(event) => {
+                  handleAdd(event, id);
+                }}
+              />
+            </li>
+          );
+        }
+      )}
     </MenuStyled>
   );
 };
@@ -123,6 +131,10 @@ const MenuStyled = styled.ul`
   li {
     margin: 0 auto;
     position: relative;
+  }
+
+  .ribbon {
+    z-index: 5;
   }
 
   .animated-menu-card-appear,
