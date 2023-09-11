@@ -1,9 +1,9 @@
 import styled, { keyframes } from "styled-components";
 import { theme } from "../../theme";
 
-const Loader = () => {
+const Loader = ({ className }) => {
   return (
-    <LoaderStyled>
+    <LoaderStyled className={className}>
       <div className="loader"></div>
     </LoaderStyled>
   );
@@ -23,7 +23,6 @@ const LoaderStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
 
   .loader {
     display: flex;
