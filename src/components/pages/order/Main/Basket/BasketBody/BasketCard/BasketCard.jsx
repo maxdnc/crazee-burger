@@ -67,6 +67,10 @@ const BasketCardStyled = styled.div`
     max-width: unset;
   }
 
+  .delete-button {
+    z-index: 2;
+  }
+
   &:hover {
     .delete-button {
       transform: translateX(0);

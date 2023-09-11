@@ -1,26 +1,31 @@
+//context
 import { useContext } from "react";
-import styled from "styled-components";
-
+import OrderContext from "../../../../../../context/OrderContext.js";
+//style
+import styled, { css } from "styled-components";
+import { devices } from "../../../../../../enums/devices.js";
 //utils
 import { formatPrice } from "../../../../../../utils/maths.js";
-
-import OrderContext from "../../../../../../context/OrderContext.js";
-//helper
 import { checkIfSameProductIsSelected } from "../../../../../../utils/array.js";
+//helper
 import { findInArrayById } from "../../../../../../utils/array";
 //components
 import Card from "../../../../../reusable-ui/Card.jsx";
 import EmptyMenuAdmin from "./EmptyMenuAdmin.jsx";
 import EmptyMenuClient from "./EmptyMenuClient.jsx";
 import Loader from "../../../../../reusable-ui/Loader.jsx";
+import Ribbon from "../../../../../reusable-ui/Ribbon.jsx";
 
 //enums
-import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
-import { devices } from "../../../../../../enums/devices.js";
+import {
+  EMPTY_PRODUCT,
+  IMAGE_BY_DEFAULT,
+  IMAGE_SOLD_OUT,
+} from "../../../../../../enums/product.js";
+
 //animation
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-
-const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
+import { convertStringToBoolean } from "../../../../../../utils/string.js";
 
 const Menu = () => {
   const {
@@ -44,7 +49,6 @@ const Menu = () => {
 
     if (idProductTodelete === selectedProduct.id) {
       setSelectedProduct(EMPTY_PRODUCT);
-      titleEditRef.current.focus();
     }
   };
 
@@ -71,30 +75,43 @@ const Menu = () => {
     if (!isModeAdmin) return <EmptyMenuClient />;
     return <EmptyMenuAdmin onClick={() => resetMenu(username)} />;
   }
+
   return (
     <MenuStyled ref={animationParent}>
-      {menuData.map(({ imageSource, title, price, id }) => {
-        return (
-          <li key={id}>
-            <Card
-              className={"menu-card"}
-              image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-              alt={title}
-              title={title}
-              leftDescription={formatPrice(price)}
-              labelButton={"Add Item"}
-              hasDeleteButton={isModeAdmin}
-              onDelete={(event) => handleCardDelete(event, id)}
-              onClick={isModeAdmin ? () => handleClick(id) : null}
-              isHoverable={isModeAdmin}
-              isSelected={checkIfSameProductIsSelected(id, selectedProduct.id)}
-              onAdd={(event) => {
-                handleAdd(event, id);
-              }}
-            />
-          </li>
-        );
-      })}
+      {menuData.map(
+        ({ imageSource, title, price, id, isAvailable, isAdvertised }) => {
+          return (
+            <li key={id} className={isModeAdmin ? "hoverable" : null}>
+              {convertStringToBoolean(isAdvertised) && <Ribbon />}
+
+              <Card
+                isAvailable={convertStringToBoolean(isAvailable)}
+                imageSoldOut={
+                  convertStringToBoolean(isAvailable) ? null : IMAGE_SOLD_OUT
+                }
+                imageSoldOutAlt="sold-out"
+                className={"menu-card"}
+                image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+                alt={title}
+                title={title}
+                leftDescription={formatPrice(price)}
+                labelButton={"Add Item"}
+                hasDeleteButton={isModeAdmin}
+                onDelete={(event) => handleCardDelete(event, id)}
+                onClick={isModeAdmin ? () => handleClick(id) : null}
+                isHoverable={isModeAdmin}
+                isSelected={checkIfSameProductIsSelected(
+                  id,
+                  selectedProduct.id
+                )}
+                onAdd={(event) => {
+                  handleAdd(event, id);
+                }}
+              />
+            </li>
+          );
+        }
+      )}
     </MenuStyled>
   );
 };
@@ -114,6 +131,17 @@ const MenuStyled = styled.ul`
   li {
     margin: 0 auto;
     position: relative;
+  }
+  .hoverable {
+    &:hover {
+      .ribbon {
+        transform: scale(1.12);
+      }
+    }
+  }
+
+  .ribbon {
+    z-index: 5;
   }
 
   .animated-menu-card-appear,

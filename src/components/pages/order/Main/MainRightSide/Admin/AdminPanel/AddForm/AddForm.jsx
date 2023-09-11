@@ -1,17 +1,17 @@
 import { useContext } from "react";
 //enum
-import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
+import { EMPTY_PRODUCT } from "../../../../../../../../enums/product";
 //CustomHooks
-import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage";
+import { useSuccessMessage } from "../../../../../../../../hooks/useSuccessMessage";
 //context
-import OrderContext from "../../../../../../../context/OrderContext";
+import OrderContext from "../../../../../../../../context/OrderContext";
 //component
-import Button from "../../../../../../reusable-ui/Button.jsx";
-import Form from "./Form.jsx";
+import Button from "../../../../../../../reusable-ui/Button.jsx";
+import Form from "../Form/Form.jsx";
 import SubmitMessage from "./SubmitMessage";
 //style
 import { styled } from "styled-components";
-import { devices } from "../../../../../../../enums/devices";
+import { devices } from "../../../../../../../../enums/devices";
 
 const AddForm = () => {
   const { handleAddToMenu, newProduct, setNewProduct, username } =

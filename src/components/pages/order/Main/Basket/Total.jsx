@@ -8,6 +8,7 @@ import OrderContext from "../../../../../context/OrderContext";
 //ultils
 import { formatPrice, roundedNumber } from "../../../../../utils/maths";
 import { findInArrayById } from "../../../../../utils/array";
+import { convertStringToBoolean } from "../../../../../utils/string";
 //component
 import CasinoEffect from "../../../../reusable-ui/CasinoEffect";
 
@@ -17,6 +18,8 @@ const Total = () => {
   const totalToPay = menuData
     ? basketProducts.reduce((total, basketProduct) => {
         const productInfo = findInArrayById(menuData, basketProduct.id);
+        if (convertStringToBoolean(productInfo.isAvailable) === false)
+          return total;
         total += roundedNumber(productInfo.price) * basketProduct.quantity;
         return total;
       }, 0)

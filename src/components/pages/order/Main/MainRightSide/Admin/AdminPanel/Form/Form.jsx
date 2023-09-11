@@ -1,36 +1,27 @@
 import React from "react";
 //style
 import { styled } from "styled-components";
-//config
-import { getTextInputsConfig } from "./textInputsConfig";
+import { devices } from "../../../../../../../../enums/devices";
+
 //component
-import TextInput from "../../../../../../reusable-ui/TextInput.jsx";
 import ImagePreview from "./ImagePreview";
-import { devices } from "../../../../../../../enums/devices";
+import FormField from "./FormField";
 
 const Form = React.forwardRef(
   ({ productData, onChange, onSubmit, onFocus, onBlur, children }, ref) => {
-    const textInputs = getTextInputsConfig(productData);
-
     return (
       <FormStyled onSubmit={onSubmit}>
         <ImagePreview
           imageSource={productData.imageSource}
           title={productData.title}
         />
-        <div className="container-inputs">
-          {textInputs.map((product) => (
-            <TextInput
-              {...product}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              key={product.name}
-              onChange={onChange}
-              version="minimalist"
-              ref={ref && product.name === "title" ? ref : null}
-            />
-          ))}
-        </div>
+        <FormField
+          productData={productData}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          ref={ref}
+        />
         <div className="form-footer">{children}</div>
       </FormStyled>
     );
@@ -45,16 +36,6 @@ const FormStyled = styled.form`
   width: 100%;
   gap: 8px 20px;
 
-  .container-inputs {
-    display: grid;
-    row-gap: 0.5rem;
-    width: 100%;
-    grid-area: 1 / 2 / 4 / 3;
-    @media ${devices.md} {
-      grid-area: unset;
-    }
-  }
-
   .form-footer {
     grid-area: 4 / 2 / 5 / 3;
     margin-top: 0.5rem;
@@ -66,7 +47,7 @@ const FormStyled = styled.form`
   @media ${devices.md} {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: 2fr 3fr 1fr;
     gap: 2rem;
   }
 `;

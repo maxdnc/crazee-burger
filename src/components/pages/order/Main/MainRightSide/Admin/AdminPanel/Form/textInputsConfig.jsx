@@ -12,6 +12,7 @@ export const getTextInputsConfig = (newProduct) => [
     id: "title",
     Icon: <FaHamburger />,
     value: newProduct.title,
+    className: "title",
   },
   {
     name: "imageSource",
@@ -20,6 +21,7 @@ export const getTextInputsConfig = (newProduct) => [
     id: "imageSource",
     Icon: <BsFillCameraFill />,
     value: newProduct.imageSource,
+    className: "image-source",
   },
   {
     name: "price",
@@ -28,5 +30,6 @@ export const getTextInputsConfig = (newProduct) => [
     id: "price",
     Icon: <MdOutlineEuro />,
     value: newProduct.price ? newProduct.price : "",
+    className: "price",
   },
 ];

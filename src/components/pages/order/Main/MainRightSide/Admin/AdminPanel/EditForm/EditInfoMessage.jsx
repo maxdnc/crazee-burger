@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { theme } from "../../../../../../../theme";
-import { devices } from "../../../../../../../enums/devices";
+import { theme } from "../../../../../../../../theme";
+import { devices } from "../../../../../../../../enums/devices";
 const EditInfoMessage = () => {
   return (
     <EditInfoMessageStyled>

@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 //component
 import EmptyBasket from "./EmptyBasket";
 import ProductsSelection from "./ProductsSelection";
@@ -12,7 +12,7 @@ const BasketBody = () => {
 
   const isBasketEmpty = basketProducts.length === 0;
 
-  if (menuData === undefined) return <Loader />;
+  if (menuData === undefined) return <Loader className={"loader-basket"} />;
 
   return (
     <BasketBodyStyled>
@@ -28,4 +28,11 @@ const BasketBodyStyled = styled.div`
   scrollbar-gutter: stable;
   width: 100%;
 `;
+
+css`
+  .loader-basket {
+    height: 100%;
+  }
+`;
+
 export default BasketBody;
