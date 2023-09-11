@@ -15,12 +15,15 @@ import EmptyMenuClient from "./EmptyMenuClient.jsx";
 import Loader from "../../../../../reusable-ui/Loader.jsx";
 
 //enums
-import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
+import {
+  EMPTY_PRODUCT,
+  IMAGE_BY_DEFAULT,
+  IMAGE_SOLD_OUT,
+} from "../../../../../../enums/product.js";
+
 import { devices } from "../../../../../../enums/devices.js";
 //animation
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-
-const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
 const Menu = () => {
   const {
@@ -44,7 +47,6 @@ const Menu = () => {
 
     if (idProductTodelete === selectedProduct.id) {
       setSelectedProduct(EMPTY_PRODUCT);
-      titleEditRef.current.focus();
     }
   };
 
@@ -71,12 +73,16 @@ const Menu = () => {
     if (!isModeAdmin) return <EmptyMenuClient />;
     return <EmptyMenuAdmin onClick={() => resetMenu(username)} />;
   }
+
   return (
     <MenuStyled ref={animationParent}>
-      {menuData.map(({ imageSource, title, price, id }) => {
+      {menuData.map(({ imageSource, title, price, id, isAvailable }) => {
         return (
           <li key={id}>
             <Card
+              isAvailable={isAvailable}
+              imageSoldOut={isAvailable ? null : IMAGE_SOLD_OUT}
+              imageSoldOutAlt="sold-out"
               className={"menu-card"}
               image={imageSource ? imageSource : IMAGE_BY_DEFAULT}
               alt={title}

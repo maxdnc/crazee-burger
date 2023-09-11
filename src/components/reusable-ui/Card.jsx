@@ -21,6 +21,9 @@ const Card = ({
   isSelected,
   onAdd,
   className,
+  isAvailable,
+  imageSoldOut,
+  imageSoldOutAlt,
 }) => {
   return (
     <CardStyled
@@ -48,6 +51,11 @@ const Card = ({
           className={"card-button-add"}
         />
       </div>
+      {isAvailable ? null : (
+        <div className="sold-out">
+          <img src={imageSoldOut} alt={imageSoldOutAlt} />
+        </div>
+      )}
     </CardStyled>
   );
 };
@@ -68,6 +76,17 @@ const CardStyled = styled.div`
   overflow: hidden;
   transition: ease-out 0.15s;
 
+  .sold-out {
+    background-color: ${theme.colors.white};
+    opacity: 0.9;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .delete-button {
     border: 1px solid red;
     background: none;
@@ -80,6 +99,7 @@ const CardStyled = styled.div`
     height: 30px;
     color: ${theme.colors.primary};
     padding: 0;
+    z-index: 2;
 
     .icon {
       width: 100%;

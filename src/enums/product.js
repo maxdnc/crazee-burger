@@ -6,3 +6,6 @@ export const EMPTY_PRODUCT = Object.freeze({
   isAvailable: true,
   isAdvertised: false,
 });
+
+export const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
+export const IMAGE_SOLD_OUT = "/images/sold-out.png";

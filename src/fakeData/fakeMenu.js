@@ -94,7 +94,7 @@ const LARGE = [
     title: "Burger poulet",
     price: 5.367,
     quantity: 0,
-    isAvailable: true,
+    isAvailable: false,
     isAdvertised: false,
   },
   {
@@ -103,7 +103,7 @@ const LARGE = [
     title: "Coke 25cl",
     price: 3.568,
     quantity: 0,
-    isAvailable: true,
+    isAvailable: false,
     isAdvertised: false,
   },
   {

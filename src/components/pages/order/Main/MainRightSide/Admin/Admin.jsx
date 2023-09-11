@@ -21,6 +21,7 @@ const AdminStyled = styled.div`
   bottom: 0rem;
   right: 0;
   left: 0;
+  z-index: 10;
 `;
 
 export default Admin;
