@@ -15,6 +15,7 @@ import {
   checkIfSameProductIsSelected,
   findInArrayById,
 } from "../../../../../../utils/array";
+import { convertStringToBoolean } from "../../../../../../utils/string";
 
 const ProductsSelection = () => {
   const {
@@ -71,7 +72,11 @@ const ProductsSelection = () => {
                     : null
                 }
                 title={menuProduct.title}
-                price={formatPrice(menuProduct.price)}
+                price={
+                  convertStringToBoolean(menuProduct.isAvailable)
+                    ? formatPrice(menuProduct.price)
+                    : "Sold Out"
+                }
                 imageSource={menuProduct.imageSource}
                 deleteProduct={(event) =>
                   handleDelete(event, basketProducts.id)
