@@ -7,6 +7,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { basketAnimation } from "../../../../../../theme/animation";
 //component
 import BasketCard from "./BasketCard/BasketCard";
+import Sticker from "../../../../../reusable-ui/Sticker";
 //context
 import OrderContext from "../../../../../../context/OrderContext";
 //utils
@@ -59,6 +60,9 @@ const ProductsSelection = () => {
             exit={true}
           >
             <li>
+              {convertStringToBoolean(menuProduct.isAdvertised) && (
+                <Sticker className={"sticker"} />
+              )}
               <BasketCard
                 className={"basket-card"}
                 isSelected={checkIfSameProductIsSelected(
@@ -106,6 +110,20 @@ const ProductsSelectionStyled = styled.ul`
   margin-left: 0;
   width: 100%;
   overflow: hidden;
+
+  li {
+    position: relative;
+    .sticker {
+      position: absolute;
+      font-weight: bold;
+      z-index: 1;
+      left: 21%;
+      top: 40%;
+      transform: translateX(-21%);
+      padding: 1rem;
+      font-size: 0.75rem;
+    }
+  }
 
   @media ${devices.lg} {
     padding: 1.25rem 6.25rem;
