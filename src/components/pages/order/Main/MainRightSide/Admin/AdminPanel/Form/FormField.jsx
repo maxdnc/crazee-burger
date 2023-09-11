@@ -1,8 +1,8 @@
-import TextInput from "../../../../../../reusable-ui/TextInput.jsx";
-import SelectOption from "../../../../../../reusable-ui/SelectOption";
+import TextInput from "../../../../../../../reusable-ui/TextInput.jsx";
+import SelectOption from "../../../../../../../reusable-ui/SelectOption.jsx";
 import React from "react";
 import styled from "styled-components";
-import { devices } from "../../../../../../../enums/devices.js";
+import { devices } from "../../../../../../../../enums/devices.js";
 import { getTextInputsConfig } from "./textInputsConfig.jsx";
 import { getSelectOptionConfig } from "./selectOptionConfig.jsx";
 

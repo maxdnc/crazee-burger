@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 //component
 import EditInfoMessage from "./EditInfoMessage";
-import Form from "./Form";
+import Form from "../Form/Form.jsx";
 import SavingMessage from "./SavingMessage";
 //context
-import OrderContext from "../../../../../../../context/OrderContext";
+import OrderContext from "../../../../../../../../context/OrderContext";
 //hook
-import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage";
+import { useSuccessMessage } from "../../../../../../../../hooks/useSuccessMessage";
 
 const EditForm = () => {
   const [valueOnFocus, setValueOnFocus] = useState();

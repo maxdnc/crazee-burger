@@ -1,7 +1,7 @@
 import React from "react";
 //style
 import { styled } from "styled-components";
-import { devices } from "../../../../../../../enums/devices";
+import { devices } from "../../../../../../../../enums/devices";
 
 //component
 import ImagePreview from "./ImagePreview";
