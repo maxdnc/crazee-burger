@@ -77,7 +77,7 @@ const LARGE = [
     price: 5.598,
     quantity: 0,
     isAvailable: true,
-    isAdvertised: false,
+    isAdvertised: true,
   },
   {
     id: 2,

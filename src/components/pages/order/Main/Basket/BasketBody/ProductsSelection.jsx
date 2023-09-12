@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 //Style
 import styled from "styled-components";
 import { devices } from "../../../../../../enums/devices";
@@ -55,7 +55,7 @@ const ProductsSelection = () => {
           <CSSTransition
             classNames={"animated-basket-card"}
             key={basketProducts.id}
-            timeout={200}
+            timeout={350}
             appear={true}
             exit={true}
           >
@@ -134,4 +134,5 @@ const ProductsSelectionStyled = styled.ul`
 
   ${basketAnimation}
 `;
+
 export default ProductsSelection;
