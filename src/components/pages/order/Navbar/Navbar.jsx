@@ -6,11 +6,11 @@ import NavbarRightSide from "./NavbarRightSide";
 import styled from "styled-components";
 import { devices } from "../../../../enums/devices";
 
-export const Navbar = ({ username }) => {
+export const Navbar = () => {
   return (
     <NavbarStyled>
       <NavbarLeftSide />
-      <NavbarRightSide username={username} />
+      <NavbarRightSide />
     </NavbarStyled>
   );
 };

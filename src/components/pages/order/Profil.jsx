@@ -8,15 +8,15 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import { devices } from "../../../enums/devices";
 
-const Profil = ({ username }) => {
+const Profil = ({ username, onClick }) => {
   return (
     <ProfilStyled>
       <div className="container-user">
         <p>
           Hey, <span>{username}</span>
         </p>
-        <Link to="/">
-          <button>Log out</button>
+        <Link onClick={onClick} to="/">
+          Log out
         </Link>
       </div>
       <div className="picture-user">
@@ -55,7 +55,8 @@ const ProfilStyled = styled.div`
       display: none;
     }
   }
-  button {
+  a {
+    text-decoration: none;
     background: none;
     border: none;
     padding: unset;
@@ -63,7 +64,7 @@ const ProfilStyled = styled.div`
     color: ${theme.colors.greyBlue};
     cursor: pointer;
     &:hover {
-      border-bottom: 1px solid ${theme.colors.greyBlue};
+      text-decoration: underline;
     }
   }
 `;

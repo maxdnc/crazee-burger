@@ -20,8 +20,9 @@ import { isAProductSelected } from "../../../../utils/array";
 import { FaLock, FaUnlock } from "react-icons/fa";
 import BasketMenu from "./BasketMenu";
 
-const NavbarRightSide = ({ username }) => {
+const NavbarRightSide = () => {
   const {
+    username,
     isModeAdmin,
     setIsModeAdmin,
     selectedProduct,
@@ -47,6 +48,10 @@ const NavbarRightSide = ({ username }) => {
     }
   };
 
+  const handleLogOut = () => {
+    localStorage.removeItem(username);
+  };
+
   return (
     <NavbarRightSideStyled>
       <BasketMenu />
@@ -57,7 +62,7 @@ const NavbarRightSide = ({ username }) => {
         icon={isModeAdmin ? <FaUnlock /> : <FaLock />}
         isChecked={isModeAdmin}
       />
-      <Profil username={username} />
+      <Profil onClick={handleLogOut} username={username} />
     </NavbarRightSideStyled>
   );
 };
