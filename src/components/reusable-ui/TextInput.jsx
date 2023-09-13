@@ -71,6 +71,24 @@ const extraStyleNormal = css`
     min-width: min-content;
   }
 `;
+const extraStyleNormalError = css`
+  background-color: ${theme.colors.white};
+  color: ${theme.colors.red};
+  padding: 1rem 1.5rem;
+  outline: 2px solid ${theme.colors.red};
+  input {
+    color: ${theme.colors.red};
+    &::placeholder {
+      color: ${theme.colors.red};
+      font-size: ${theme.fonts.P0};
+    }
+  }
+  span {
+    color: ${theme.colors.red};
+    font-size: 1rem;
+    min-width: min-content;
+  }
+`;
 
 const extraStyleMinimalist = css`
   background-color: ${theme.colors.background_white};
@@ -90,6 +108,7 @@ const extraStyleMinimalist = css`
 
 const extraStyles = {
   normal: extraStyleNormal,
+  normalError: extraStyleNormalError,
   minimalist: extraStyleMinimalist,
 };
 
