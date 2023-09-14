@@ -24,7 +24,7 @@ const LogoStyled = styled.div`
   }
 
   span {
-    color: ${theme.colors.primary_burger};
+    color: ${theme.colors.primary};
     font-size: ${theme.fonts.P4};
     font-family: ${theme.fontsFamily.amatic};
     font-weight: ${theme.weights.bold};

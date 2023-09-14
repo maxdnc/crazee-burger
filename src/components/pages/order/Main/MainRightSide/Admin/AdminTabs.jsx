@@ -37,6 +37,7 @@ const AdminTabs = () => {
           setIsCollapsed(!isCollapsed);
         }}
         className={isCollapsed ? "active" : ""}
+        ariaLabel={isCollapsed ? "open admin panel" : "close admin panel"}
       />
       {tabs.map((tab) => (
         <Tab

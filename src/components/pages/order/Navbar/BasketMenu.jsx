@@ -31,6 +31,7 @@ const BasketMenu = () => {
 
   return (
     <BasketMenuStyled
+      aria-label="Basket"
       onClick={() => handleClick()}
       className={isBasketSmallDevicesActive && "active"}
     >

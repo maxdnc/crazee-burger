@@ -50,7 +50,7 @@ const TotalStyled = styled.div`
 
   .count,
   p {
-    color: ${theme.colors.primary};
+    color: ${theme.colors.secondary};
     font-family: ${theme.fontsFamily.amatic};
     font-size: ${theme.fonts.P4};
     font-weight: ${theme.weights.bold};

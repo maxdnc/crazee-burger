@@ -2,9 +2,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-const Tab = ({ Icon, label, onClick, className }) => {
+const Tab = ({ Icon, label, onClick, className, ariaLabel }) => {
   return (
-    <TabStyled onClick={onClick} className={className}>
+    <TabStyled onClick={onClick} className={className} aria-label={ariaLabel}>
       {Icon && <span className="icon">{Icon}</span>}
       {label && <span>{label}</span>}
     </TabStyled>

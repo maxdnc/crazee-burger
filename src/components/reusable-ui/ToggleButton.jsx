@@ -5,8 +5,13 @@ import { devices } from "../../enums/devices";
 export default function ToggleButton({ isChecked, onToggle, icon, onClick }) {
   return (
     <ToggleButtonStyled>
-      <button onClick={onClick}>{icon}</button>
+      <button aria-label="Admin-mode" onClick={onClick}>
+        {icon}
+      </button>
       <div className="btn-wrap">
+        <label htmlFor="rounded" hidden>
+          Admin mode :
+        </label>
         <input
           type="checkbox"
           className="toggle"
