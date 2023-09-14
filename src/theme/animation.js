@@ -2,6 +2,10 @@ import { css } from "styled-components";
 
 export const basketAnimation = css`
   .animated-basket-card-appear {
+    .sticker {
+      opacity: 0;
+      z-index: 1;
+    }
     .basket-card {
       opacity: 0;
       transform: translateY(-10%);
@@ -9,6 +13,10 @@ export const basketAnimation = css`
   }
 
   .animated-basket-card-enter {
+    .sticker {
+      opacity: 0;
+      z-index: 1;
+    }
     .basket-card {
       opacity: 0;
       transform: translateY(-10%);
@@ -20,6 +28,11 @@ export const basketAnimation = css`
 
   .animated-basket-card-appear-active,
   .animated-basket-card-enter-active {
+    .sticker {
+      opacity: 1;
+      transition: all 0.35s ease-in-out;
+      z-index: 1;
+    }
     .basket-card {
       transform: translateY(0);
       opacity: 1;
@@ -31,6 +44,10 @@ export const basketAnimation = css`
   }
 
   .animated-basket-card-exit {
+    .sticker {
+      opacity: 1;
+      z-index: 1;
+    }
     .basket-card {
       transform: translateX(0);
       opacity: 1;
@@ -39,6 +56,11 @@ export const basketAnimation = css`
   }
 
   .animated-basket-card-exit-active {
+    .sticker {
+      opacity: 0;
+      transition: all 0.1s linear;
+      z-index: 1;
+    }
     .basket-card {
       transform: translateX(-100%);
       opacity: 0;

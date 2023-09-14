@@ -1,8 +1,28 @@
-# React + Vite
+# Crazee Burger
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Responsive web app for customers to browse and select food from a menu.
+Admins can efficiently manage menu items using straightforward CRUD (Create, Read, Update, Delete) functionality.
 
-Currently, two official plugins are available:
+## Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🌱 > [crazee-burger live demo](https://crazee-burger-maxdnc.vercel.app/)
+
+## Preview
+
+![App Screenshot](./public/images/crazee-burger.png)
+
+## Technologies used:
+
+- React
+- Styled-Components
+- GIT
+- Github
+- Javascript
+- SCSS
+- Firebase
+- Vite
+- Vercel
+
+## Authors
+
+- [@maxdnc](https://github.com/maxdnc)

@@ -105,7 +105,7 @@ const OrderPage = () => {
   return (
     <AdminContext.Provider value={orderContextValue}>
       <OrderPageStyled>
-        <Navbar username={username} />
+        <Navbar />
         <Outlet />
       </OrderPageStyled>
     </AdminContext.Provider>

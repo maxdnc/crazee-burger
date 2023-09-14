@@ -5,12 +5,13 @@ import NavbarRightSide from "./NavbarRightSide";
 //Style
 import styled from "styled-components";
 import { devices } from "../../../../enums/devices";
+import { theme } from "../../../../theme";
 
-export const Navbar = ({ username }) => {
+export const Navbar = () => {
   return (
     <NavbarStyled>
       <NavbarLeftSide />
-      <NavbarRightSide username={username} />
+      <NavbarRightSide />
     </NavbarStyled>
   );
 };
@@ -23,7 +24,7 @@ const NavbarStyled = styled.nav`
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: ${theme.colors.white};
   width: 100%;
   padding: 1.5rem 5rem 1.5rem 3rem;
 
