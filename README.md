@@ -9,7 +9,7 @@ Admins can efficiently manage menu items using straightforward CRUD (Create, Rea
 
 ## Preview
 
-![App Screenshot](./public/images/crazee-burger.png)
+![App Screenshot](./public/images/preview-crazee-burger.png)
 
 ## Technologies used:
 
