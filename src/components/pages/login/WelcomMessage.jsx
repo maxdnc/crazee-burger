@@ -40,7 +40,7 @@ const WelcomMessageStyled = styled.div`
 
   hr {
     width: 100%;
-    border: 1.5px solid #f56a2c;
+    border: 1.5px solid ${theme.colors.primary};
     border-radius: ${theme.borderRadius.round};
   }
 `;
